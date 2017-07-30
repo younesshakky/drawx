@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Draw that</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- big view  -->
+  <!-- <canvas id="drawCanva"></canvas> -->
+  <!-- facebook-like photo editing -->
+  <main class="page_wrap">
+    <!-- end item inputs -->
+    <div id="item-inputs" class="active">
+      <form action="/">
+        <div class="input-url">
+          <input id="in-img-url" type="text" placeholder="coolmme.com/image.png">
+          <button class="button-prim" id="submit">Submit</button>
+        </div>
+        <!-- not available for now -->
+        <div class="input-upload">
+          <input type="text" placeholder="please enter image url">
+          <button>Submit</button>
+        </div>
+
+      </form>
+    </div>
+    <!-- end item inputs -->
+
+    <!-- start img confirmation -->
+
+    <div id="confirm-input-img" class="inactive">
+      <h2> is this's your wanted image ?</h2>
+      <img src="" alt="your photo should appear here">
+      <div class="isError"></div>
+      <button id="isTrue" class="button-prim">yes</button>
+      <button id="isFalse" class="button-prim gray">no</button>
+    </div>
+
+    <div id="edit-img"></div>
+    <div id="save-img"></div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

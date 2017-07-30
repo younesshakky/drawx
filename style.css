@@ -1,0 +1,142 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'montserrat'
+}
+
+html, body {
+  height: 100%;
+  margin: 0
+}
+
+body {
+  background: #172025;
+}
+
+.page_wrap {
+  position: relative;
+  height: 100%
+}
+
+.input-upload {
+  display: none
+}
+
+#item-inputs
+/* .pointer-status {
+  color: #333;
+  position: fixed;
+  top: 30px;
+  left: 30px;
+} */
+
+.inactive,
+.active {
+  transition: all .35s cubic-bezier(0.1, 0.74, 0.51, 1);
+}
+
+.inactive {
+  opacity: 0;
+  margin-top: 52px;
+}
+
+.active {
+  margin: 0;
+  display: block;
+  z-index: 100;
+}
+
+
+#item-inputs {
+  position: absolute;
+  padding: 20px 30px;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);  
+  min-height: 230px;
+  background: #26333b;
+  text-align: center;
+  width: 400px;
+  max-width: 98%;
+}
+
+#item-inputs .input-url {
+  display: flex;
+  /* height: 60px; */
+  flex-direction: column;
+  align-items: center;
+}
+
+#item-inputs .input-url input {
+  font-size: 20px;
+  width: 90%;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 43px;
+  border: 2px solid #1e2c31;
+  outline: none;
+  margin-bottom: 15px;
+  color: #333
+}
+
+.button-prim {
+  padding: 15px 40px;
+  border-radius: 43px;
+  font-size: 20px;
+  background: #0eee64;
+  color: white;
+  border: 0;
+  cursor: pointer
+}
+
+.button-prim.gray {
+  background: rgba(0, 0, 0, .3)
+}
+
+#confirm-input-img {
+  position: absolute;
+  padding: 20px 30px;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 230px;
+  background: #26333b;
+  text-align: center;
+  width: 400px;
+  max-width: 98%;
+  overflow: hidden;
+}
+
+#confirm-input-img h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 15px 10px;
+}
+
+#confirm-input-img img {
+  width: 98%;
+  border: 2px solid #fff;
+  height: auto;
+  margin-bottom: 15px;
+  min-height: 180px;
+}
+
+#confirm-input-img .error {
+  background: #ff2255;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+#confirm-input-img #isTrue {
+  float: left
+}
+
+#confirm-input-img #isFalse {
+  float: right
+}
+
+
+/* button color 0eee64 */
