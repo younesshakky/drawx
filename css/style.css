@@ -1,10 +1,12 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'montserrat'
+  font-family: 'montserrat';
+  opacity: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0
 }
@@ -22,13 +24,12 @@ body {
   display: none
 }
 
-#item-inputs
-/* .pointer-status {
+/* #item-inputs .pointer-status {
   color: #333;
   position: fixed;
   top: 30px;
   left: 30px;
-} */
+}  */
 
 .inactive,
 .active {
@@ -46,13 +47,12 @@ body {
   z-index: 100;
 }
 
-
 #item-inputs {
   position: absolute;
   padding: 20px 30px;
   top: 100px;
   left: 50%;
-  transform: translateX(-50%);  
+  transform: translateX(-50%);
   min-height: 230px;
   background: #26333b;
   text-align: center;
@@ -124,7 +124,7 @@ body {
 }
 
 #confirm-input-img .error {
-  background: #ff2255;
+  background: #EE2010;
   color: white;
   text-align: center;
   padding: 10px;

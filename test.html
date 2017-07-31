@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Drawx - testing playground</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: 0;
+      font-family: sans-serif;
+    }
+
+    main {
+      padding: 8px;
+      display: flex;
+      position: relative;
+      flex-direction: row
+    }
+
+    [class^="test--"] {
+      background: #EE2010;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .test--rectangle {
+      height: 200px;
+      width: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: All .3s ease-out
+    }
+
+    .test--rectangle span {
+      font-size: 30px
+    }
+    #rect {
+      background: #1100ff;
+      height: 500px;
+      width: 500px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <div class="test--rectangle" id="rect">
+      <span>#1</span>
+    </div>
+    <div class="test--rectangle" id="rect2">
+      <span>#2</span>
+    </div>
+
+  </main>
+
+
+   <script src="scripts/script.js"></script> 
+  <script>
+  window.onload = function (){
+    setInterval(function(){
+      var rand = randPosition( getElm('#rect'), window )      
+      var rect = getElm('#rect');
+      rect.style.position = 'absolute';
+      rect.style.left = rand[0] + 'px'
+      rect.style.top = rand[1] + 'px'
+      
+      console.log( rand )
+
+    }, 600)
+  }
+  </script>
+
+</body>
+
+</html>

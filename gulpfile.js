@@ -11,14 +11,14 @@ gulp.task('serve', () => {
 })
 
 gulp.task('concatJS', () => {
-  return gulp.src('src/*.js')
+  return gulp.src('scripts/src/*.js')
     .pipe(concat('script.js'))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./scripts'))
 });
 
 
 gulp.task('concatJS:watch', () => {
-  gulp.watch('./src/*.js', ['concatJS'])
+  gulp.watch('./scripts/src/*.js', ['concatJS'])
 });
 
 gulp.task('default', ['serve', 'concatJS', 'concatJS:watch'])
