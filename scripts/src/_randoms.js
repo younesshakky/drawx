@@ -4,7 +4,7 @@ var getRandom = function getRandom(max) {
 }
 
 // geting random position
-var randPosition = function (elm, rel) {
+var getRandPos = function (elm, rel) {
   if (typeof elm === 'undefined') {
     throw new Error("some error tho!")
   }
@@ -20,10 +20,26 @@ var randPosition = function (elm, rel) {
 
     return {
       x: (limX() < 0) ? 0 : limX(),
-      y: (limY() < 0) ? 0: limY()
+      y: (limY() < 0) ? 0 : limY()
     }
 
   }
   return [getRandom(getLimit().x), getRandom(getLimit().y)]
+
+}
+
+// for elements with unknown dimensions 
+function centerElm(elm, rel) {
+  // position relative for parent required
+  var isParentRelative = (getComputedStyle(rel).position == 'relative') ? true : false;
+  if (!isParentRelative) {
+    rel.style.position = 'relative';
+  }
+
+  valueX = dimensions(rel).halfX() - dimensions(elm).halfX();
+  valueY = dimensions(rel).halfY() - dimensions(elm).halfY();
+  elm.style.position = 'absolute';
+  elm.style.left = valueX + 'px';
+  elm.style.top = valueY + 'px';
 
 }

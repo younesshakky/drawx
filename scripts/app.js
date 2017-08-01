@@ -54,6 +54,7 @@ getElm("#isFalse").onclick = function (e) {
   activeUi('item-inputs')
 
   inputURL.value = null
+  url = ''
 }
 
 getElm('#isTrue').onclick = function () {

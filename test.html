@@ -14,11 +14,17 @@
       font-family: sans-serif;
     }
 
+    html,
+    body {
+      height: 100%;
+    }
+
     main {
       padding: 8px;
       display: flex;
       position: relative;
-      flex-direction: row
+      flex-direction: row;
+      height: 100%;
     }
 
     [class^="test--"] {
@@ -39,10 +45,11 @@
     .test--rectangle span {
       font-size: 30px
     }
+
     #rect {
       background: #1100ff;
-      height: 500px;
-      width: 500px;
+      height: 200px;
+      width: 200px;
     }
   </style>
 </head>
@@ -60,20 +67,23 @@
   </main>
 
 
-   <script src="scripts/script.js"></script> 
+  <script src="scripts/script.js"></script>
   <script>
-  window.onload = function (){
-    setInterval(function(){
-      var rand = randPosition( getElm('#rect'), window )      
-      var rect = getElm('#rect');
-      rect.style.position = 'absolute';
-      rect.style.left = rand[0] + 'px'
-      rect.style.top = rand[1] + 'px'
-      
-      console.log( rand )
+    var rect = getElm('#rect');
+    window.onload = function () {
+      setInterval(function () {
+        var rand = getRandPos(getElm('#rect'), window)
+        // setRandPos(rect, window)
+        // console.log( rand )
 
-    }, 600)
-  }
+      }, 600)
+    }
+
+    window.onclick = function (e) {
+      console.log(getPointer(e).x)
+    }
+
+    eventOn(window, 'load resize', centerElm(rect, getElm('main')))
   </script>
 
 </body>

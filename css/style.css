@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: 'montserrat';
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 html,
@@ -10,7 +10,6 @@ body {
   height: 100%;
   margin: 0
 }
-
 body {
   background: #172025;
 }
@@ -38,7 +37,7 @@ body {
 
 .inactive {
   opacity: 0;
-  margin-top: 52px;
+  /* margin-top: 52px; */
 }
 
 .active {
@@ -51,8 +50,7 @@ body {
   position: absolute;
   padding: 20px 30px;
   top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50% - 200px);
   min-height: 230px;
   background: #26333b;
   text-align: center;
@@ -97,8 +95,7 @@ body {
   position: absolute;
   padding: 20px 30px;
   top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50% - 200px);
   min-height: 230px;
   background: #26333b;
   text-align: center;
