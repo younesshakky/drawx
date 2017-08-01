@@ -31,6 +31,26 @@ var dimensions = function (item) {
     halfY: half().y
   }
 }
+/**
+ * general purpose functions
+ */
+
+// is (http/s) flag is set
+var httpIsset = function (url) {
+  return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
+}
+
+/**
+ * @todo
+ * this Js file will contain all error, success, info messages...
+ * and UI actions and interactions of those notifications
+ * such as insert notif in the dom or remove it
+ */
+
+/**
+ * all the functions that returns random values
+ */
+
 // get random number with max value
 var getRandom = function getRandom(max) {
   return Math.floor(Math.random() * max)
@@ -56,11 +76,12 @@ var getRandPos = function (elm, rel) {
       y: (limY() < 0) ? 0 : limY()
     }
 
-  }
+}
   return [getRandom(getLimit().x), getRandom(getLimit().y)]
 
 }
-
+// exeption (LOL) :  read line 2
+// to put in _ui-actions
 // for elements with unknown dimensions 
 function centerElm(elm, rel) {
   // position relative for parent required
@@ -76,10 +97,14 @@ function centerElm(elm, rel) {
   elm.style.top = valueY + 'px';
 
 }
+/**
+ * functions that interacts with Dom
+ */
+
+
 /* bind multiple events 
 https://stackoverflow.com/questions/8796988/binding-multiple-events-to-a-listener-without-jquery
 */
-
 var eventOn = function (element, events, fn) {
   events.split(/\s/gi).forEach((e) => element.addEventListener(e, fn, false));
 }
@@ -96,6 +121,9 @@ var UIs = [
   'save-img'
 ]
 
+/**
+ * @todo Getting multiple elements not 1
+ */
 // elements transportating
 function getElm(selector) {
   if (typeof selector == 'undefined' || selector == null) {
@@ -142,11 +170,6 @@ var imgHasLoaded = function (img) {
   return true
 }
 
-// is (http/s) flag is set
-var httpIsset = function (url) {
-  return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
-}
-
 // adding & removing class
 var addRemoveClass = function (el, toAdd, toRemove) {
   if (typeof el == 'undefined') {
@@ -160,6 +183,7 @@ var addRemoveClass = function (el, toAdd, toRemove) {
   return el
 }
 
+// set random position relatively to parent element
 function setRandPos(elm, rel) {
   var randPos = getRandPos(elm, rel)
   if (rel !== (window || document)) {
@@ -171,4 +195,22 @@ function setRandPos(elm, rel) {
   elm.style.top = randPos[1] + 'px'
 }
 
-// console.log(addRemoveClass())
+// loader
+function Loader (options){
+  // var opts = {}, init;
+
+  // opts.default = {
+  //   color: '#EEEEEE',
+  //   size: 35,
+  //   ease: 'linear'
+  // }
+  // if (typeof options == 'undefined' || otions == null){
+  //   options = opts.default;
+  // }
+
+  // options = options['color']
+  // // return {init: init()}
+  // console.log(options)
+}
+
+// canvas operations functions

@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Drawx - testing playground</title>
+  <link rel="stylesheet" href="css/style.css">
   <style>
     * {
       padding: 0;
       margin: 0;
-      box-sizing: 0;
+      box-sizing: border-box;
       font-family: sans-serif;
     }
 
@@ -57,34 +58,19 @@
 <body>
 
   <main>
-    <div class="test--rectangle" id="rect">
+    <!-- <div class="test--rectangle" id="rect">
       <span>#1</span>
     </div>
     <div class="test--rectangle" id="rect2">
       <span>#2</span>
-    </div>
+    </div> -->
+
+    <div class="is-loading"></div>
 
   </main>
 
 
   <script src="scripts/script.js"></script>
-  <script>
-    var rect = getElm('#rect');
-    window.onload = function () {
-      setInterval(function () {
-        var rand = getRandPos(getElm('#rect'), window)
-        // setRandPos(rect, window)
-        // console.log( rand )
-
-      }, 600)
-    }
-
-    window.onclick = function (e) {
-      console.log(getPointer(e).x)
-    }
-
-    eventOn(window, 'load resize', centerElm(rect, getElm('main')))
-  </script>
 
 </body>
 

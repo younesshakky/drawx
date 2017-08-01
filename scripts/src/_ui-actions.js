@@ -1,7 +1,11 @@
+/**
+ * functions that interacts with Dom
+ */
+
+
 /* bind multiple events 
 https://stackoverflow.com/questions/8796988/binding-multiple-events-to-a-listener-without-jquery
 */
-
 var eventOn = function (element, events, fn) {
   events.split(/\s/gi).forEach((e) => element.addEventListener(e, fn, false));
 }
@@ -18,6 +22,9 @@ var UIs = [
   'save-img'
 ]
 
+/**
+ * @todo Getting multiple elements not 1
+ */
 // elements transportating
 function getElm(selector) {
   if (typeof selector == 'undefined' || selector == null) {
@@ -64,11 +71,6 @@ var imgHasLoaded = function (img) {
   return true
 }
 
-// is (http/s) flag is set
-var httpIsset = function (url) {
-  return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
-}
-
 // adding & removing class
 var addRemoveClass = function (el, toAdd, toRemove) {
   if (typeof el == 'undefined') {
@@ -82,6 +84,7 @@ var addRemoveClass = function (el, toAdd, toRemove) {
   return el
 }
 
+// set random position relatively to parent element
 function setRandPos(elm, rel) {
   var randPos = getRandPos(elm, rel)
   if (rel !== (window || document)) {
@@ -93,4 +96,20 @@ function setRandPos(elm, rel) {
   elm.style.top = randPos[1] + 'px'
 }
 
-// console.log(addRemoveClass())
+// loader
+function Loader (options){
+  // var opts = {}, init;
+
+  // opts.default = {
+  //   color: '#EEEEEE',
+  //   size: 35,
+  //   ease: 'linear'
+  // }
+  // if (typeof options == 'undefined' || otions == null){
+  //   options = opts.default;
+  // }
+
+  // options = options['color']
+  // // return {init: init()}
+  // console.log(options)
+}

@@ -10,6 +10,7 @@ body {
   height: 100%;
   margin: 0
 }
+
 body {
   background: #172025;
 }
@@ -22,6 +23,7 @@ body {
 .input-upload {
   display: none
 }
+
 
 /* #item-inputs .pointer-status {
   color: #333;
@@ -133,6 +135,76 @@ body {
 
 #confirm-input-img #isFalse {
   float: right
+}
+
+.is-loading {
+  /* position: relative; */
+}
+
+.is-loading:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  overflow: hidden;
+  background-size: 500% 500%;
+  background-image: linear-gradient(-0deg, #ff6446, #ffc863, #8CD790, #9edcff, #ffc863, #ff6446);
+  background-image: -webkit-linear-gradient(-0deg, #ff6446, #ffc863, #8CD790, #9edcff, #ffc863, #ff6446);
+  -webkit-animation: bgManifesto 4s ease infinite;
+  animation: bgManifesto 4s ease infinite;
+}
+
+.is-loading:after {
+  /* content: ''; */
+  /* position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 5px solid #EEE;
+  border-radius: 50%;
+  border-top-color: transparent;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
+  -webkit-animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
+  animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
+  box-sizing: border-box; */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(360deg)
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+}
+
+@-webkit-keyframes bgManifesto {
+  0% {
+    background-position: 0% 50%
+  }
+  30% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+  /* 100% {
+    background-position: 0% 50%
+  } */
+}
+
+@keyframes bgManifesto {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
 }
 
 

@@ -1,60 +1,56 @@
 // direct Manipulation
 
-// main drawable canva
-var primCanva = document.getElementById('primary-canva')
+/**
+ * @todo after building error UIs
+ * remove console notifs for ui notifications 
+ */
 
-var inputURL = document.getElementById('in-img-url');
-var submitURL = document.getElementById('submit');
+// main drawable canva
+var primCanva = getElm('#prim-canva')
+
+var inputURL = getElm('#in-img-url');
 var confirmUi = getElm('#confirm-input-img');
 var url = inputURL.value;
-var isImg = new Image();
+var rawImg = new Image();
 
+// chaning url
 inputURL.oninput = function () {
   url = encodeURI(inputURL.value);
 }
 
-submitURL.onclick = function (e) {
+getElm('#submit').onclick = function (e) {
   e.preventDefault();
   if (url.length > 3) {
     activeUi('confirm-input-img')
+    // prefixing url with http if it's not already been set 
     if (!httpIsset(url)) {
       url = "https://" + url;
     }
-    isImg.src = url;
-    confirmUi.querySelector('img').src = isImg.src
-    console.log(isImg)
+    rawImg.src = url;
+    confirmUi.querySelector('img').src = rawImg.src
+    // console.log(rawImg)
   } else {
-    alert('please enter at least 4 chars')
+    console.log('please enter at least 4 chars')
   }
+  confirmUi.classList.add('is-loading')
 }
 
 // handling image loading issues
-isImg.onerror = function () {
-  var errorWrap = confirmUi.querySelector('.isError')
-  errorWrap.innerHTML = '<div class="error">an error occurs</div>'
-  setTimeout(function () {
-    errorWrap.innerHTML = null
-  }, 5000)
-
-
+rawImg.onerror = function () {
+  console.log('it looks like an evil error')
 }
 
-isImg.onload = function () {
-  console.log('image has been loaded')
+rawImg.onload = function () {
+  console.log('bless, image loaded')
 }
-
-
-confirmUi.querySelector('img').src.onchange = function () {
-  alert('hey loaded')
-}
-
 
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
   activeUi('item-inputs')
-
-  inputURL.value = null
+  confirmUi.querySelector('img').src = ''
+  // rawImg.src = ''
   url = ''
+  inputURL.value = ''
 }
 
 getElm('#isTrue').onclick = function () {

@@ -1,3 +1,7 @@
+/**
+ * all the functions that returns random values
+ */
+
 // get random number with max value
 var getRandom = function getRandom(max) {
   return Math.floor(Math.random() * max)
@@ -23,11 +27,12 @@ var getRandPos = function (elm, rel) {
       y: (limY() < 0) ? 0 : limY()
     }
 
-  }
+}
   return [getRandom(getLimit().x), getRandom(getLimit().y)]
 
 }
-
+// exeption (LOL) :  read line 2
+// to put in _ui-actions
 // for elements with unknown dimensions 
 function centerElm(elm, rel) {
   // position relative for parent required
