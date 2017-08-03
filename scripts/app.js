@@ -13,6 +13,16 @@ var confirmUi = getElm('#confirm-input-img');
 var url = inputURL.value;
 var rawImg = new Image();
 
+var error = new Notify({
+  type: 'error',
+  message: 'error'
+})
+
+var success = new Notify({
+  type: 'success',
+  message: 'bless'
+})
+
 // chaning url
 inputURL.oninput = function () {
   url = encodeURI(inputURL.value);
@@ -30,7 +40,11 @@ getElm('#submit').onclick = function (e) {
     confirmUi.querySelector('img').src = rawImg.src
     // console.log(rawImg)
   } else {
+
     console.log('please enter at least 4 chars')
+    error.message = 'please enter at least 4 chars'
+    error.createNotif(getElm('#item-inputs'))
+
   }
   confirmUi.classList.add('is-loading')
 }
@@ -38,17 +52,20 @@ getElm('#submit').onclick = function (e) {
 // handling image loading issues
 rawImg.onerror = function () {
   console.log('it looks like an evil error')
+  error.message = 'it looks like an evil error'
+  error.createNotif(confirmUi)
 }
 
 rawImg.onload = function () {
   console.log('bless, image loaded')
+  success.message = 'bless, image loaded'
+  success.createNotif(confirmUi)
 }
 
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
   activeUi('item-inputs')
   confirmUi.querySelector('img').src = ''
-  // rawImg.src = ''
   url = ''
   inputURL.value = ''
 }

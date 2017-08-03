@@ -20,6 +20,10 @@ body {
   height: 100%
 }
 
+.cf {
+  clear: both
+}
+
 .input-upload {
   display: none
 }
@@ -38,14 +42,23 @@ body {
 }
 
 .inactive {
-  opacity: 0;
+  /* opacity: 0; */
+  display: none;
   /* margin-top: 52px; */
 }
 
 .active {
-  margin: 0;
   display: block;
-  z-index: 100;
+  animation: fadeIn .35s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #item-inputs {
@@ -103,7 +116,6 @@ body {
   text-align: center;
   width: 400px;
   max-width: 98%;
-  overflow: hidden;
 }
 
 #confirm-input-img h2 {
@@ -211,17 +223,22 @@ body {
 /* notify styles */
 
 .notify {
-  width: 100%;
+  /* width: 100%; */
   background: #efe;
-  padding: 12px;
+  padding: 12px 18px;
   background: #172044;
-  margin-bottom: 10px;
-  position: relative; /*or absolute*/
-  padding-right: 40px;
+  /* margin-bottom: 10px; */
+  position: absolute;
+  /*or absolute*/
+  /* padding-right: 40px; */
   font-size: 14px;
   border-radius: 5px;
   user-select: none;
   animation: slideDown .4s ease forwards;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
 }
 
 @keyframes slideDown {
@@ -248,11 +265,11 @@ body {
 }
 
 .notify--close {
-   background: transparent; 
+  background: transparent;
   border-radius: 50%;
   /* padding: 3px; */
   color: white;
-  border:0;
+  border: 0;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
