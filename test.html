@@ -12,7 +12,7 @@
       padding: 0;
       margin: 0;
       box-sizing: border-box;
-      font-family: sans-serif;
+       font-family: 'open sans'; 
     }
 
     html,
@@ -48,9 +48,10 @@
     }
 
     #rect {
-      background: #1100ff;
-      height: 200px;
-      width: 200px;
+       background: #fff; 
+      height: 300px;
+      width: 300px;
+      padding: 10px
     }
   </style>
 </head>
@@ -65,13 +66,31 @@
       <span>#2</span>
     </div> -->
 
-    <div class="is-loading"></div>
+    <div id="rect">
 
+    </div>
   </main>
 
 
-  <script src="scripts/script.js"></script>
 
+
+  <script src="scripts/script.js"></script>
+  <script>
+  var rect = getElm('#rect');
+  rect.onclick = function (){
+  error.message = 'creating another message'
+  error.createNotif(rect);
+  }
+
+  rect.ondblclick = function () {
+    success.createNotif(rect)
+  }
+
+  window.onkeypress = function () {
+    info.createNotif(rect)
+  }
+
+  </script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
  */
 
 // get random number with max value
-var getRandom = function getRandom(max) {
+var getRandom = function (max) {
   return Math.floor(Math.random() * max)
 }
 

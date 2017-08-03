@@ -208,4 +208,69 @@ body {
 }
 
 
-/* button color 0eee64 */
+/* notify styles */
+
+.notify {
+  width: 100%;
+  background: #efe;
+  padding: 12px;
+  background: #172044;
+  margin-bottom: 10px;
+  position: relative; /*or absolute*/
+  padding-right: 40px;
+  font-size: 14px;
+  border-radius: 5px;
+  user-select: none;
+  animation: slideDown .4s ease forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    margin-top: -25px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+.notify.notify--error {
+  color: #E53A40;
+}
+
+.notify.notify--success {
+  color: #8CD790;
+}
+
+.notify.notify--info {
+  color: #30A9DE;
+}
+
+.notify--close {
+   background: transparent; 
+  border-radius: 50%;
+  /* padding: 3px; */
+  color: white;
+  border:0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  font-size: 10px;
+}
+
+.notify.delete {
+  animation: slideUp .4s ease forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    margin-top: 0px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -25px;
+  }
+}
