@@ -5,8 +5,6 @@
  * remove console notifs for ui notifications 
  */
 
-// main drawable canva
-var primCanva = getElm('#prim-canva')
 
 var inputURL = getElm('#in-img-url');
 var confirmUi = getElm('#confirm-input-img');
@@ -16,12 +14,12 @@ var rawImg = new Image();
 var error = new Notify({
   type: 'error',
   message: 'error'
-})
+});
 
 var success = new Notify({
   type: 'success',
   message: 'bless'
-})
+});
 
 // chaning url
 inputURL.oninput = function () {
@@ -31,47 +29,48 @@ inputURL.oninput = function () {
 getElm('#submit').onclick = function (e) {
   e.preventDefault();
   if (url.length > 3) {
-    activeUi('confirm-input-img')
+    activeUi('confirm-input-img');
     // prefixing url with http if it's not already been set 
     if (!httpIsset(url)) {
       url = "https://" + url;
     }
     rawImg.src = url;
-    confirmUi.querySelector('img').src = rawImg.src
+    confirmUi.querySelector('img').src = rawImg.src;
     // console.log(rawImg)
   } else {
 
-    console.log('please enter at least 4 chars')
-    error.message = 'please enter at least 4 chars'
-    error.createNotif(getElm('#item-inputs'))
-
+    console.log('please enter at least 4 chars');
+    error.message = 'please enter at least 4 chars';
+    error.createNotif(getElm('#item-inputs'));
   }
-  confirmUi.classList.add('is-loading')
+  confirmUi.classList.add('is-loading');
 }
 
 // handling image loading issues
 rawImg.onerror = function () {
-  console.log('it looks like an evil error')
-  error.message = 'it looks like an evil error'
-  error.createNotif(confirmUi)
+  console.log('it looks like an evil error');
+  error.message = 'it looks like an evil error';
+  error.createNotif(getElm('main'));
 }
 
 rawImg.onload = function () {
-  console.log('bless, image loaded')
-  success.message = 'bless, image loaded'
-  success.createNotif(confirmUi)
+  console.log('bless, image loaded');
+  success.message = 'bless, image loaded';
+  success.createNotif(getElm('main'));
+  confirmUi.classList.remove('is-loading');
 }
 
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
-  activeUi('item-inputs')
-  confirmUi.querySelector('img').src = ''
-  url = ''
-  inputURL.value = ''
+  activeUi('item-inputs');
+  confirmUi.querySelector('img').src = '';
+  url = '';
+  inputURL.value = '';
 }
 
-getElm('#isTrue').onclick = function () {
 
+getElm('#isTrue').onclick = function () {
+  console.log('moving to next step')
 }
 
 

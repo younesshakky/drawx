@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   font-family: 'montserrat';
+  box-sizing: border-box;
   /* opacity: 0; */
 }
 
@@ -61,7 +62,21 @@ body {
   }
 }
 
-#item-inputs {
+#item-inputs,
+#confirm-input-img {
+  width: 490px;
+  position: absolute;
+  padding: 20px 30px;
+  top: 100px;
+  left: calc(50% - 245px);
+  min-height: 230px;
+  background: #26333b;
+  text-align: center;
+  max-width: 98%;
+}
+
+
+/* #item-inputs {
   position: absolute;
   padding: 20px 30px;
   top: 100px;
@@ -69,9 +84,8 @@ body {
   min-height: 230px;
   background: #26333b;
   text-align: center;
-  width: 400px;
   max-width: 98%;
-}
+} */
 
 #item-inputs .input-url {
   display: flex;
@@ -106,17 +120,7 @@ body {
   background: rgba(0, 0, 0, .3)
 }
 
-#confirm-input-img {
-  position: absolute;
-  padding: 20px 30px;
-  top: 100px;
-  left: calc(50% - 200px);
-  min-height: 230px;
-  background: #26333b;
-  text-align: center;
-  width: 400px;
-  max-width: 98%;
-}
+#confirm-input-img {}
 
 #confirm-input-img h2 {
   color: white;
@@ -132,13 +136,6 @@ body {
   height: auto;
   margin-bottom: 15px;
   min-height: 180px;
-}
-
-#confirm-input-img .error {
-  background: #EE2010;
-  color: white;
-  text-align: center;
-  padding: 10px;
 }
 
 #confirm-input-img #isTrue {
@@ -168,9 +165,9 @@ body {
   animation: bgManifesto 4s ease infinite;
 }
 
-.is-loading:after {
-  /* content: ''; */
-  /* position: absolute;
+.is-loading:before {
+   content: ''; 
+   position: absolute;
   width: 40px;
   height: 40px;
   border: 5px solid #EEE;
@@ -180,7 +177,7 @@ body {
   top: calc(50% - 20px);
   -webkit-animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
   animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
-  box-sizing: border-box; */
+  /* box-sizing: border-box;  */
 }
 
 @keyframes spin {
@@ -223,19 +220,15 @@ body {
 /* notify styles */
 
 .notify {
-  /* width: 100%; */
   background: #efe;
   padding: 12px 18px;
-  background: #172044;
-  /* margin-bottom: 10px; */
-  position: absolute;
-  /*or absolute*/
-  /* padding-right: 40px; */
+  background: rgba(0, 0, 0, .3);
+  position: fixed;
   font-size: 14px;
   border-radius: 5px;
   user-select: none;
   animation: slideDown .4s ease forwards;
-  bottom: -15%;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;

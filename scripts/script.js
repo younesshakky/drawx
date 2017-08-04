@@ -40,6 +40,8 @@ var httpIsset = function (url) {
   return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
 }
 
+// verify if every thing is right and move to canvas editing
+ 
 /**
  * @todo
  * this Js file will contain all error, success, info messages...
@@ -145,7 +147,7 @@ var getRandPos = function (elm, rel) {
 // to put in _ui-actions
 // for elements with unknown dimensions 
 function centerElm(elm, rel) {
-  // position relative for parent required
+  // position relative for parent is required
   var isParentRelative = (getComputedStyle(rel).position == 'relative') ? true : false;
   if (!isParentRelative) {
     rel.style.position = 'relative';
@@ -275,3 +277,7 @@ function Loader (options){
 }
 
 // canvas operations functions
+
+(function (){
+  var drawCanva = document.getElementById('prim-canva');
+})

@@ -35,7 +35,7 @@ var getRandPos = function (elm, rel) {
 // to put in _ui-actions
 // for elements with unknown dimensions 
 function centerElm(elm, rel) {
-  // position relative for parent required
+  // position relative for parent is required
   var isParentRelative = (getComputedStyle(rel).position == 'relative') ? true : false;
   if (!isParentRelative) {
     rel.style.position = 'relative';
