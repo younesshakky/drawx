@@ -1,0 +1,91 @@
+@keyframes spin {
+  0% {
+    transform: rotate(360deg)
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+}
+
+@-webkit-keyframes bgManifesto {
+  0% {
+    background-position: 0% 50%
+  }
+  30% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+  /* 100% {
+    background-position: 0% 50%
+  } */
+}
+
+@keyframes bgManifesto {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    margin-top: -25px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    margin-top: 0px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -25px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes slideRight {
+  0% {
+    margin-right: 30px;
+    opacity: 0;
+  }
+  0% {
+    margin-right: 0px;
+    opacity: 1;
+
+  }
+}
+
+/* requires persective set on parent */
+@keyframes scaleIn {
+  0% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1
+  }
+}

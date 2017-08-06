@@ -9,7 +9,6 @@
  * Error cases
  * ** (image not loaded or url broken)
  * ** (url not valid)
- * ** 
  */
 
 function Notify(opts = {}) {
@@ -20,9 +19,6 @@ function Notify(opts = {}) {
 
   function removeNotif(notif, parent) {
     parent.removeChild(notif)
-    // setTimeout(function () {
-
-    // }, 10)
   }
 
   return {
@@ -34,34 +30,36 @@ function Notify(opts = {}) {
       if (isCreated) {
         return;
       }
+      // if parent position is relative or absolute
+      isPositioned = (getComputedStyle(parent).position) == ('absolute' || 'relative') ?
+        true :
+        false;
+        
+      if (!isPositioned) {
+        parent.style.position = 'relative'
+      }
+
       var notif = document.createElement('div');
-      
-      parent.style.position = 'relative'
-
       notif.className = 'notify';
-
       parent.appendChild(notif);
-
       notif.classList.add(notif.className + '--' + opts.type);
-
       notif.classList.add('notify--' + opts.type);
 
       var inDomNotif = getElm('.' + notif.classList[1]);
-
       inDomNotif.innerText = this.message;
 
       var close = document.createElement('button')
       close.className = 'notify--close';
       close.innerText = 'close'
-
       // inDomNotif.appendChild(close)
+
       isCreated = true;
 
+      // remove notification after 4 seconds
       setTimeout(function () {
-        removeNotif(inDomNotif, parent),
-          isCreated = false;
-      }, 4000)
-
+        removeNotif(inDomNotif, parent);
+        isCreated = false;
+      }, 4000);
     },
     message: opts.message
   }

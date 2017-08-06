@@ -41,7 +41,7 @@ var httpIsset = function (url) {
 }
 
 // verify if every thing is right and move to canvas editing
- 
+
 /**
  * @todo
  * this Js file will contain all error, success, info messages...
@@ -53,7 +53,6 @@ var httpIsset = function (url) {
  * Error cases
  * ** (image not loaded or url broken)
  * ** (url not valid)
- * ** 
  */
 
 function Notify(opts = {}) {
@@ -64,9 +63,6 @@ function Notify(opts = {}) {
 
   function removeNotif(notif, parent) {
     parent.removeChild(notif)
-    // setTimeout(function () {
-
-    // }, 10)
   }
 
   return {
@@ -78,34 +74,36 @@ function Notify(opts = {}) {
       if (isCreated) {
         return;
       }
+      // if parent position is relative or absolute
+      isPositioned = (getComputedStyle(parent).position) == ('absolute' || 'relative') ?
+        true :
+        false;
+        
+      if (!isPositioned) {
+        parent.style.position = 'relative'
+      }
+
       var notif = document.createElement('div');
-      
-      parent.style.position = 'relative'
-
       notif.className = 'notify';
-
       parent.appendChild(notif);
-
       notif.classList.add(notif.className + '--' + opts.type);
-
       notif.classList.add('notify--' + opts.type);
 
       var inDomNotif = getElm('.' + notif.classList[1]);
-
       inDomNotif.innerText = this.message;
 
       var close = document.createElement('button')
       close.className = 'notify--close';
       close.innerText = 'close'
-
       // inDomNotif.appendChild(close)
+
       isCreated = true;
 
+      // remove notification after 4 seconds
       setTimeout(function () {
-        removeNotif(inDomNotif, parent),
-          isCreated = false;
-      }, 4000)
-
+        removeNotif(inDomNotif, parent);
+        isCreated = false;
+      }, 4000);
     },
     message: opts.message
   }
@@ -172,17 +170,22 @@ var eventOn = function (element, events, fn) {
   events.split(/\s/gi).forEach((e) => element.addEventListener(e, fn, false));
 }
 
-// staticly setted ui IDs
 
-/* 
- * @TODO: get IDs functionaly (dinamicly)
- */
-var UIs = [
-  'confirm-input-img',
-  'item-inputs',
-  'edit-img',
-  'save-img'
-]
+
+
+// grabing uis dynamically
+var getUis = (function () {
+
+  var elms = document.querySelectorAll('.ui_elm');
+  var uisArr = []
+
+  for(var i = 0; i < elms.length; i++){
+    uisArr.push(elms[i].id)
+  }
+  return uisArr;
+})
+
+var UIs = getUis();
 
 /**
  * @todo Getting multiple elements not 1
@@ -192,8 +195,18 @@ function getElm(selector) {
   if (typeof selector == 'undefined' || selector == null) {
     return null
   }
-  return document.querySelector(selector)
+
+  var element = document.querySelector(selector)
+  return element
 }
+
+// getElm.prototype.find = function (selector) {
+//   console.log(this)
+// }
+
+// find: function (child) {
+//   element.querySelector(child)
+// }
 
 // get pointer position relatively to an element
 var getPointer = function (e) {
@@ -213,14 +226,12 @@ var activeUi = function (elmID) {
 
   var beActive = getElm('#' + elmID);
   beActive.classList.add('active')
-  beActive.classList.remove('inactive')
 
   // setRandPos(beActive, window)
 
   for (var i = 0; i < UIs.length; i++) {
     if (UIs[i] !== null && UIs[i] !== elmID) {
       document.getElementById(UIs[i]).classList.remove('active')
-      document.getElementById(UIs[i]).classList.add('inactive')
     }
   }
 }
@@ -247,35 +258,41 @@ var addRemoveClass = function (el, toAdd, toRemove) {
 }
 
 // set random position relatively to parent element
-function setRandPos(elm, rel) {
-  var randPos = getRandPos(elm, rel)
-  if (rel !== (window || document)) {
-    rel.style.position = 'relative';
-    console.log('not a window or a document')
+// function setRandPos(elm, rel) {
+//   var randPos = getRandPos(elm, rel)
+//   if (rel !== (window || document)) {
+//     rel.style.position = 'relative';
+//     console.log('not a window or a document')
+//   }
+//   elm.style.position = 'absolute';
+//   elm.style.left = randPos[0] + 'px'
+//   elm.style.top = randPos[1] + 'px'
+// }
+
+
+var createImg = function (src, parent) {
+  if (
+    typeof src == ('undefined' || null) ||
+    typeof parent == ('undefined' || null)
+  ) { return; }
+
+  if (httpIsset(url) == false) {
+    src = 'https://' + src;
   }
-  elm.style.position = 'absolute';
-  elm.style.left = randPos[0] + 'px'
-  elm.style.top = randPos[1] + 'px'
+
+  var initImg = new Image(),
+    isCreated = false;
+  if (isCreated) {
+    return;
+  }
+  initImg.src = src;
+  console.log(parent)
+  parent.appendChild(initImg)
+
+  isCreated = true
+  return initImg;
+
 }
-
-// loader
-function Loader (options){
-  // var opts = {}, init;
-
-  // opts.default = {
-  //   color: '#EEEEEE',
-  //   size: 35,
-  //   ease: 'linear'
-  // }
-  // if (typeof options == 'undefined' || otions == null){
-  //   options = opts.default;
-  // }
-
-  // options = options['color']
-  // // return {init: init()}
-  // console.log(options)
-}
-
 // canvas operations functions
 
 (function (){

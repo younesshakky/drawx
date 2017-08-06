@@ -10,17 +10,22 @@ var eventOn = function (element, events, fn) {
   events.split(/\s/gi).forEach((e) => element.addEventListener(e, fn, false));
 }
 
-// staticly setted ui IDs
 
-/* 
- * @TODO: get IDs functionaly (dinamicly)
- */
-var UIs = [
-  'confirm-input-img',
-  'item-inputs',
-  'edit-img',
-  'save-img'
-]
+
+
+// grabing uis dynamically
+var getUis = (function () {
+
+  var elms = document.querySelectorAll('.ui_elm');
+  var uisArr = []
+
+  for(var i = 0; i < elms.length; i++){
+    uisArr.push(elms[i].id)
+  }
+  return uisArr;
+})
+
+var UIs = getUis();
 
 /**
  * @todo Getting multiple elements not 1
@@ -30,8 +35,18 @@ function getElm(selector) {
   if (typeof selector == 'undefined' || selector == null) {
     return null
   }
-  return document.querySelector(selector)
+
+  var element = document.querySelector(selector)
+  return element
 }
+
+// getElm.prototype.find = function (selector) {
+//   console.log(this)
+// }
+
+// find: function (child) {
+//   element.querySelector(child)
+// }
 
 // get pointer position relatively to an element
 var getPointer = function (e) {
@@ -51,14 +66,12 @@ var activeUi = function (elmID) {
 
   var beActive = getElm('#' + elmID);
   beActive.classList.add('active')
-  beActive.classList.remove('inactive')
 
   // setRandPos(beActive, window)
 
   for (var i = 0; i < UIs.length; i++) {
     if (UIs[i] !== null && UIs[i] !== elmID) {
       document.getElementById(UIs[i]).classList.remove('active')
-      document.getElementById(UIs[i]).classList.add('inactive')
     }
   }
 }
@@ -85,31 +98,38 @@ var addRemoveClass = function (el, toAdd, toRemove) {
 }
 
 // set random position relatively to parent element
-function setRandPos(elm, rel) {
-  var randPos = getRandPos(elm, rel)
-  if (rel !== (window || document)) {
-    rel.style.position = 'relative';
-    console.log('not a window or a document')
+// function setRandPos(elm, rel) {
+//   var randPos = getRandPos(elm, rel)
+//   if (rel !== (window || document)) {
+//     rel.style.position = 'relative';
+//     console.log('not a window or a document')
+//   }
+//   elm.style.position = 'absolute';
+//   elm.style.left = randPos[0] + 'px'
+//   elm.style.top = randPos[1] + 'px'
+// }
+
+
+var createImg = function (src, parent) {
+  if (
+    typeof src == ('undefined' || null) ||
+    typeof parent == ('undefined' || null)
+  ) { return; }
+
+  if (httpIsset(url) == false) {
+    src = 'https://' + src;
   }
-  elm.style.position = 'absolute';
-  elm.style.left = randPos[0] + 'px'
-  elm.style.top = randPos[1] + 'px'
-}
 
-// loader
-function Loader (options){
-  // var opts = {}, init;
+  var initImg = new Image(),
+    isCreated = false;
+  if (isCreated) {
+    return;
+  }
+  initImg.src = src;
+  console.log(parent)
+  parent.appendChild(initImg)
 
-  // opts.default = {
-  //   color: '#EEEEEE',
-  //   size: 35,
-  //   ease: 'linear'
-  // }
-  // if (typeof options == 'undefined' || otions == null){
-  //   options = opts.default;
-  // }
+  isCreated = true
+  return initImg;
 
-  // options = options['color']
-  // // return {init: init()}
-  // console.log(options)
 }

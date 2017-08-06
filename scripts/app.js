@@ -5,11 +5,10 @@
  * remove console notifs for ui notifications 
  */
 
-
 var inputURL = getElm('#in-img-url');
 var confirmUi = getElm('#confirm-input-img');
 var url = inputURL.value;
-var rawImg = new Image();
+var rawImg = new Image()
 
 var error = new Notify({
   type: 'error',
@@ -21,7 +20,7 @@ var success = new Notify({
   message: 'bless'
 });
 
-// chaning url
+// chaning url when taping
 inputURL.oninput = function () {
   url = encodeURI(inputURL.value);
 }
@@ -31,33 +30,27 @@ getElm('#submit').onclick = function (e) {
   if (url.length > 3) {
     activeUi('confirm-input-img');
     // prefixing url with http if it's not already been set 
-    if (!httpIsset(url)) {
-      url = "https://" + url;
-    }
-    rawImg.src = url;
-    confirmUi.querySelector('img').src = rawImg.src;
-    // console.log(rawImg)
+    rawImg = createImg(url, getElm('#confirm-input-img .img-display'))
+
   } else {
 
-    console.log('please enter at least 4 chars');
     error.message = 'please enter at least 4 chars';
     error.createNotif(getElm('#item-inputs'));
   }
-  confirmUi.classList.add('is-loading');
+  console.log(rawImg)
+  // while()
 }
 
 // handling image loading issues
-rawImg.onerror = function () {
-  console.log('it looks like an evil error');
-  error.message = 'it looks like an evil error';
-  error.createNotif(getElm('main'));
-}
-
 rawImg.onload = function () {
-  console.log('bless, image loaded');
   success.message = 'bless, image loaded';
   success.createNotif(getElm('main'));
   confirmUi.classList.remove('is-loading');
+}
+
+rawImg.onerror = function () {
+  error.message = 'it looks like an evil error';
+  error.createNotif(getElm('main'));
 }
 
 getElm("#isFalse").onclick = function (e) {
@@ -74,7 +67,7 @@ getElm('#isTrue').onclick = function () {
 }
 
 
-// testing url
+// testing urls
 // https://s-media-cache-ak0.pinimg.com/originals/90/21/41/902141f8da614fec9b97d884f907ec04.jpg
 
 // for offline

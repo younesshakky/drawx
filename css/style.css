@@ -18,15 +18,21 @@ body {
 
 .page_wrap {
   position: relative;
-  height: 100%
+  height: 100%;
+  perspective: 500px
 }
 
 .cf {
   clear: both
 }
 
+/* hide "upload image" section (i dont need it now) */
 .input-upload {
   display: none
+}
+
+.ui_elm {
+   display: none 
 }
 
 
@@ -42,24 +48,13 @@ body {
   transition: all .35s cubic-bezier(0.1, 0.74, 0.51, 1);
 }
 
-.inactive {
-  /* opacity: 0; */
+/* .inactive {
   display: none;
-  /* margin-top: 52px; */
-}
+} */
 
 .active {
   display: block;
-  animation: fadeIn .35s ease forwards;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  animation: scaleIn .4s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
 }
 
 #item-inputs,
@@ -120,8 +115,6 @@ body {
   background: rgba(0, 0, 0, .3)
 }
 
-#confirm-input-img {}
-
 #confirm-input-img h2 {
   color: white;
   font-weight: bold;
@@ -130,12 +123,16 @@ body {
   padding: 15px 10px;
 }
 
-#confirm-input-img img {
+#confirm-input-img .img-display {
   width: 98%;
   border: 2px solid #fff;
   height: auto;
   margin-bottom: 15px;
   min-height: 180px;
+}
+
+#confirm-input-img .img-display img {
+  width: 100%;
 }
 
 #confirm-input-img #isTrue {
@@ -166,8 +163,8 @@ body {
 }
 
 .is-loading:before {
-   content: ''; 
-   position: absolute;
+  content: '';
+  position: absolute;
   width: 40px;
   height: 40px;
   border: 5px solid #EEE;
@@ -178,42 +175,6 @@ body {
   -webkit-animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
   animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
   /* box-sizing: border-box;  */
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(360deg)
-  }
-  100% {
-    transform: rotate(0deg)
-  }
-}
-
-@-webkit-keyframes bgManifesto {
-  0% {
-    background-position: 0% 50%
-  }
-  30% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 100% 100%;
-  }
-  /* 100% {
-    background-position: 0% 50%
-  } */
-}
-
-@keyframes bgManifesto {
-  0% {
-    background-position: 0% 50%
-  }
-  50% {
-    background-position: 100% 50%
-  }
-  100% {
-    background-position: 0% 50%
-  }
 }
 
 
@@ -232,17 +193,6 @@ body {
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
-}
-
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    margin-top: -25px;
-  }
-  100% {
-    opacity: 1;
-    margin-top: 0px;
-  }
 }
 
 .notify.notify--error {
@@ -272,15 +222,4 @@ body {
 
 .notify.delete {
   animation: slideUp .4s ease forwards;
-}
-
-@keyframes slideUp {
-  0% {
-    margin-top: 0px;
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    margin-top: -25px;
-  }
 }

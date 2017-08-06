@@ -8,4 +8,3 @@ var httpIsset = function (url) {
 }
 
 // verify if every thing is right and move to canvas editing
- 

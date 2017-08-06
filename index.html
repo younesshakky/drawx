@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Draw that</title>
+  <link rel="stylesheet" href="css/anims.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -15,14 +16,17 @@
   <!-- <canvas id="drawCanva"></canvas> -->
   <!-- facebook-like photo editing -->
   <main class="page_wrap">
+    <div style="text-align:center">
+      <img src="some.png" height="90" alt="">
+    </div>
     <!-- end item inputs -->
-    <div id="item-inputs" class="active">
+    <div class="ui_elm active" id="item-inputs">
       <form action="/">
         <div class="input-url">
           <input id="in-img-url" type="text" placeholder="coolmme.com/image.png">
           <button class="button-prim" id="submit">Submit</button>
         </div>
-        <!-- not available for now -->
+        <!-- not available now -->
         <div class="input-upload">
           <input type="text" placeholder="please enter image url">
           <button>Submit</button>
@@ -34,10 +38,10 @@
 
     <!-- start img confirmation -->
 
-    <div id="confirm-input-img" class="inactive">
+    <div class="ui_elm" id="confirm-input-img" class="inactive">
       <h2> is this's your wanted image ?</h2>
       <div class="img-display">
-        <img src="" alt="your photo should appear here">
+        <!-- <img src="" alt="your photo should appear here"> -->
       </div>
       <div class="isError"></div>
       <button id="isTrue" class="button-prim">yes</button>
@@ -45,10 +49,10 @@
       <div class="cf"></div>
     </div>
 
-    <div id="edit-img">
+    <div class="ui_elm" id="edit-img">
 
     </div>
-    <div id="save-img"></div>
+    <div class="ui_elm" id="save-img"></div>
 
   </main>
 
