@@ -1,5 +1,4 @@
 // canvas operations functions
 
-(function (){
-  var drawCanva = document.getElementById('prim-canva');
-})
+var drawCanva = document.getElementById('prim-canva');
+ctx = drawCanva.getContext('2d');

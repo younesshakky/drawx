@@ -95,9 +95,10 @@
 
     var info = new Notify({
       type: 'info',
-      message: 'very informative info message dude'
+      message: 'very informative info message '
     })
     var rect = getElm('#rect');
+    
     rect.onclick = function () {
       error.message = 'creating another message'
       error.createNotif(rect);
@@ -110,7 +111,11 @@
     window.onkeypress = function () {
       info.createNotif(rect)
     }
-  </script>
+</script>
+<script>
+
+
+</script>
 </body>
 
 </html>

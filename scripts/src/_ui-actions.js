@@ -40,14 +40,6 @@ function getElm(selector) {
   return element
 }
 
-// getElm.prototype.find = function (selector) {
-//   console.log(this)
-// }
-
-// find: function (child) {
-//   element.querySelector(child)
-// }
-
 // get pointer position relatively to an element
 var getPointer = function (e) {
   return {
