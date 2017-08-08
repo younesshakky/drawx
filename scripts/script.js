@@ -1,36 +1,78 @@
-// get (2d) dimensions of a certain element
-var dimensions = function (item) {
-  if (typeof item == 'undefined' || !item) {
+(function () {
+
+  function isNull(e) {
+    return (e === ('' || null) ? true : false)
+  }
+
+  var dimensions = {}
+
+  var getWidth = function (element) {
+    if (isNull(element)) {
+      return;
+    }
+    var width = element.innerWidth || element.offsetWidth;
+    if (isNaN(width)) {
+      return;
+    }
+    return width
+  }
+  var getHeight = function (element) {
+    if (isNull(element)) {
+      return;
+    }
+    var height = element.innerHeight || element.offsetHeight;
+    if (isNaN(height)) {
+      return;
+    }
+
+    return height;
+  }
+
+  var getHalf = function () {
+    var axis = arguments[1];
+    var el = arguments[0];
+
+    if (axis === 'x-axis') {
+      return getWidth(el) / 2;
+    }
+    if (axis === 'y-axis') {
+      return getHeight(el) / 2;
+    }
     return false;
   }
 
-  function getWidth() {
-    return item.innerWidth || item.offsetWidth;
-  }
 
-  function getHeight() {
-    return item.innerHeight || item.offsetHeight;
-  }
 
-  function half() {
-    return {
-      x: () => {
-        return getWidth() / 2
-      },
-      y: () => {
-        return getHeight() / 2
+  dimensions = {
+    get: function (element) {
+      if (isNull(element)) {
+        return null;
       }
-
+      return {
+        el: element,
+        width: getWidth(element),
+        height: getHeight(element),
+        half: function (axis) {
+          return parseInt(getHalf(this.el, axis))
+        }
+      }
+    },
+    set: function (element) {
+      if (isNull(element)) {
+        return null;
+      }
+      return {
+        width: setWidth,
+        height: setHeight
+      }
     }
   }
 
-  return {
-    height: getHeight(),
-    width: getWidth(),
-    halfX: half().x,
-    halfY: half().y
-  }
-}
+  window.dimensions = dimensions
+
+})();
+
+// var test = dimension.get('slab').height;
 /**
  * general purpose functions
  */
@@ -125,11 +167,11 @@ var getRandPos = function (elm, rel) {
 
   function getLimit() {
     var limX = function () {
-      return dimensions(rel).width - dimensions(elm).width
+      return dimensions.get(rel).width - dimensions.get(elm).width
     }
 
     var limY = function () {
-      return dimensions(rel).height - dimensions(elm).height
+      return dimensions.get(rel).height - dimensions.get(elm).height
     }
 
     return {
@@ -151,8 +193,8 @@ function centerElm(elm, rel) {
     rel.style.position = 'relative';
   }
 
-  valueX = dimensions(rel).halfX() - dimensions(elm).halfX();
-  valueY = dimensions(rel).halfY() - dimensions(elm).halfY();
+  valueX = dimensions.get(rel).halfX() - dimensions.get(elm).halfX();
+  valueY = dimensions.get(rel).halfY() - dimensions.get(elm).halfY();
   elm.style.position = 'absolute';
   elm.style.left = valueX + 'px';
   elm.style.top = valueY + 'px';
@@ -287,5 +329,5 @@ var createImg = function (src, parent) {
 }
 // canvas operations functions
 
-var drawCanva = document.getElementById('prim-canva');
-ctx = drawCanva.getContext('2d');
+// var drawCanva = document.getElementById('prim-canva');
+// ctx = drawCanva.getContext('2d');

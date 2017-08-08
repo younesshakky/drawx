@@ -15,11 +15,11 @@ var getRandPos = function (elm, rel) {
 
   function getLimit() {
     var limX = function () {
-      return dimensions(rel).width - dimensions(elm).width
+      return dimensions.get(rel).width - dimensions.get(elm).width
     }
 
     var limY = function () {
-      return dimensions(rel).height - dimensions(elm).height
+      return dimensions.get(rel).height - dimensions.get(elm).height
     }
 
     return {
@@ -41,8 +41,8 @@ function centerElm(elm, rel) {
     rel.style.position = 'relative';
   }
 
-  valueX = dimensions(rel).halfX() - dimensions(elm).halfX();
-  valueY = dimensions(rel).halfY() - dimensions(elm).halfY();
+  valueX = dimensions.get(rel).halfX() - dimensions.get(elm).halfX();
+  valueY = dimensions.get(rel).halfY() - dimensions.get(elm).halfY();
   elm.style.position = 'absolute';
   elm.style.left = valueX + 'px';
   elm.style.top = valueY + 'px';

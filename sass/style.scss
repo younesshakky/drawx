@@ -96,13 +96,13 @@ body {
 
 
 #confirm-input-img{
-   h2{
+  h2 {
     color: white;
     font-weight: bold;
     font-size: 22px;
     text-transform: uppercase;
     padding: 15px 10px;
-   }
+  }
   .img-display {
     width: 98%;
     border: 2px solid #fff;
@@ -186,7 +186,6 @@ body {
   &--close {
     background: transparent;
     border-radius: 50%;
-    /* padding: 3px; */
     color: white;
     border: 0;
     position: absolute;

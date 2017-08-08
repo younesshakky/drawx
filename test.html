@@ -75,47 +75,21 @@
     <div class="ui_elm" id="damasta"></div>
     <div class="ui_elm" id="hist"></div>
     <div class="ui_elm" id="donshit"></div>
-    <div class="ui_elm" id="grabber"></div>
+    <div class="ui_elm" id="grabber">
+      test1
+      <br>
+      test2
+      <br>
+      test3
+    </div>
   </main>
 
 
 
 
   <script src="scripts/script.js"></script>
-  <script>
-    var error = new Notify({
-      type: 'error',
-      message: 'some error message'
-    });
-
-    var success = new Notify({
-      type: 'success',
-      message: 'some very fucking long success and unsuccess message from hell and heaven'
-    });
-
-    var info = new Notify({
-      type: 'info',
-      message: 'very informative info message '
-    })
-    var rect = getElm('#rect');
-    
-    rect.onclick = function () {
-      error.message = 'creating another message'
-      error.createNotif(rect);
-    }
-
-    rect.ondblclick = function () {
-      success.createNotif(rect)
-    }
-
-    window.onkeypress = function () {
-      info.createNotif(rect)
-    }
-</script>
-<script>
-
-
-</script>
+  <!-- testing a new function -->
+  <script src="scripts/test.js"></script>
 </body>
 
 </html>

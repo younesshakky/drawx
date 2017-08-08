@@ -1,33 +1,75 @@
-// get (2d) dimensions of a certain element
-var dimensions = function (item) {
-  if (typeof item == 'undefined' || !item) {
+(function () {
+
+  function isNull(e) {
+    return (e === ('' || null) ? true : false)
+  }
+
+  var dimensions = {}
+
+  var getWidth = function (element) {
+    if (isNull(element)) {
+      return;
+    }
+    var width = element.innerWidth || element.offsetWidth;
+    if (isNaN(width)) {
+      return;
+    }
+    return width
+  }
+  var getHeight = function (element) {
+    if (isNull(element)) {
+      return;
+    }
+    var height = element.innerHeight || element.offsetHeight;
+    if (isNaN(height)) {
+      return;
+    }
+
+    return height;
+  }
+
+  var getHalf = function () {
+    var axis = arguments[1];
+    var el = arguments[0];
+
+    if (axis === 'x-axis') {
+      return getWidth(el) / 2;
+    }
+    if (axis === 'y-axis') {
+      return getHeight(el) / 2;
+    }
     return false;
   }
 
-  function getWidth() {
-    return item.innerWidth || item.offsetWidth;
-  }
 
-  function getHeight() {
-    return item.innerHeight || item.offsetHeight;
-  }
 
-  function half() {
-    return {
-      x: () => {
-        return getWidth() / 2
-      },
-      y: () => {
-        return getHeight() / 2
+  dimensions = {
+    get: function (element) {
+      if (isNull(element)) {
+        return null;
       }
-
+      return {
+        el: element,
+        width: getWidth(element),
+        height: getHeight(element),
+        half: function (axis) {
+          return parseInt(getHalf(this.el, axis))
+        }
+      }
+    },
+    set: function (element) {
+      if (isNull(element)) {
+        return null;
+      }
+      return {
+        width: setWidth,
+        height: setHeight
+      }
     }
   }
 
-  return {
-    height: getHeight(),
-    width: getWidth(),
-    halfX: half().x,
-    halfY: half().y
-  }
-}
+  window.dimensions = dimensions
+
+})();
+
+// var test = dimension.get('slab').height;
