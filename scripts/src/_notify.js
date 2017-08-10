@@ -21,6 +21,10 @@ function Notify(opts = {}) {
     parent.removeChild(notif)
   }
 
+  // function onclose () {
+    
+  // }
+
   return {
 
     createNotif: function (parent) {

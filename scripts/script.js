@@ -1,8 +1,9 @@
 (function () {
 
   function isNull(e) {
-    return (e === ('' || null) ? true : false)
+    return e === ('' || null) ? true : false
   }
+  // window.isNull = isNull
 
   var dimensions = {}
 
@@ -21,6 +22,7 @@
       return;
     }
     var height = element.innerHeight || element.offsetHeight;
+
     if (isNaN(height)) {
       return;
     }
@@ -29,18 +31,19 @@
   }
 
   var getHalf = function () {
-    var axis = arguments[1];
-    var el = arguments[0];
-
-    if (axis === 'x-axis') {
-      return getWidth(el) / 2;
+    if (arguments.length) {
+      var axis = arguments[1];
+      var el = arguments[0];
+      switch (axis) {
+        case 'x-axis':
+          return getWidth(el) / 2;
+          break;
+        case 'y-axis':
+          return getHeight(el) / 2;
+          break;
+      }
     }
-    if (axis === 'y-axis') {
-      return getHeight(el) / 2;
-    }
-    return false;
   }
-
 
 
   dimensions = {
@@ -77,7 +80,7 @@
  * general purpose functions
  */
 
-// is (http/s) flag is set
+// is (http/s) set
 var httpIsset = function (url) {
   return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
 }
@@ -106,6 +109,10 @@ function Notify(opts = {}) {
   function removeNotif(notif, parent) {
     parent.removeChild(notif)
   }
+
+  // function onclose () {
+    
+  // }
 
   return {
 
@@ -331,3 +338,22 @@ var createImg = function (src, parent) {
 
 // var drawCanva = document.getElementById('prim-canva');
 // ctx = drawCanva.getContext('2d');
+
+var cnv = cnv || {};
+
+function MakeCanvas (id) {
+  var canvas = document.createElement('canvas');
+  canvas.id = id;
+  return canvas;
+}
+
+styleText = 'background:red;padding:100px;margin:120px';
+
+function setStyle (el, css) {
+  var props = css.split(';');
+  var prop = props.forEach(function(e) {
+    return e.split('')
+  });
+
+  return prop;
+}

@@ -6,8 +6,7 @@ console.log(elm.width)
 console.log(elm.half('x-axis'))
 console.log(elm.half('y-axis'))
 
-dimensions.prototype = {
-  get width (){
-    return this.el.width;
-  }
-}
+
+var parent = getElm('#rect');
+var canvass = MakeCanvas('borrdssy');
+parent.appendChild(canvass)

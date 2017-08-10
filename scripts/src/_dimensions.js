@@ -1,8 +1,9 @@
 (function () {
 
   function isNull(e) {
-    return (e === ('' || null) ? true : false)
+    return e === ('' || null) ? true : false
   }
+  // window.isNull = isNull
 
   var dimensions = {}
 
@@ -21,6 +22,7 @@
       return;
     }
     var height = element.innerHeight || element.offsetHeight;
+
     if (isNaN(height)) {
       return;
     }
@@ -29,18 +31,19 @@
   }
 
   var getHalf = function () {
-    var axis = arguments[1];
-    var el = arguments[0];
-
-    if (axis === 'x-axis') {
-      return getWidth(el) / 2;
+    if (arguments.length) {
+      var axis = arguments[1];
+      var el = arguments[0];
+      switch (axis) {
+        case 'x-axis':
+          return getWidth(el) / 2;
+          break;
+        case 'y-axis':
+          return getHeight(el) / 2;
+          break;
+      }
     }
-    if (axis === 'y-axis') {
-      return getHeight(el) / 2;
-    }
-    return false;
   }
-
 
 
   dimensions = {
