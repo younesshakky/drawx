@@ -11,60 +11,66 @@
  * ** (url not valid)
  */
 
-function Notify(opts = {}) {
-
-  var type = opts.type,
-    message = opts.message
+function Notify() {
+  opts = arguments[1] || {}
   var isCreated = false;
+
+  this.message = opts.message || 'default message';
+  this.type = opts.type  || 'error';
+  this.init = opts.init || false;
+  this.parent = arguments[0]
+
+  console.log(opts)
+
+  if(this.init){
+    createNotif(this.parent);
+  }
 
   function removeNotif(notif, parent) {
     parent.removeChild(notif)
   }
 
-  // function onclose () {
-    
-  // }
+  function createNotif(parent) {
+    if (typeof parent == ('undefined' || null)) {
+      return;
+    }
+    if (isCreated) {
+      return;
+    }
+    // if parent position is relative or absolute
+    isPositioned = (getComputedStyle(parent).position) == ('absolute' || 'relative') ?
+      true :
+      false;
 
-  return {
+    if (!isPositioned) {
+      parent.style.position = 'relative'
+    }
 
-    createNotif: function (parent) {
-      if (typeof parent == ('undefined' || null)) {
-        return;
-      }
-      if (isCreated) {
-        return;
-      }
-      // if parent position is relative or absolute
-      isPositioned = (getComputedStyle(parent).position) == ('absolute' || 'relative') ?
-        true :
-        false;
-        
-      if (!isPositioned) {
-        parent.style.position = 'relative'
-      }
+    var notif = document.createElement('div');
+    notif.className = 'notify';
+    parent.appendChild(notif);
+    notif.classList.add('notify--' + this.type);
+    notif.innerText = this.message;
 
-      var notif = document.createElement('div');
-      notif.className = 'notify';
-      parent.appendChild(notif);
-      notif.classList.add(notif.className + '--' + opts.type);
-      notif.classList.add('notify--' + opts.type);
+    var close = document.createElement('button')
+    close.className = 'notify--close';
+    close.innerText = 'close'
+    // inDomNotif.appendChild(close)
 
-      var inDomNotif = getElm('.' + notif.classList[1]);
-      inDomNotif.innerText = this.message;
+    isCreated = true;
 
-      var close = document.createElement('button')
-      close.className = 'notify--close';
-      close.innerText = 'close'
-      // inDomNotif.appendChild(close)
+    // remove notification after 4 seconds
+    setTimeout(function () {
+      removeNotif(notif, parent);
+      isCreated = false;
+    }, 4000);
 
-      isCreated = true;
-
-      // remove notification after 4 seconds
-      setTimeout(function () {
-        removeNotif(inDomNotif, parent);
-        isCreated = false;
-      }, 4000);
-    },
-    message: opts.message
+    // return 
   }
 }
+
+// Notify.prototype = {
+//   init: (el) =>{
+//     this.createNotif(el);
+//   }
+// }

@@ -8,9 +8,10 @@ var getRandom = function (max) {
 }
 
 // geting random position
+// 
 var getRandPos = function (elm, rel) {
   if (typeof elm === 'undefined') {
-    throw new Error("some error tho!")
+    return undefined
   }
 
   function getLimit() {
@@ -34,17 +35,17 @@ var getRandPos = function (elm, rel) {
 // exeption (LOL) :  read line 2
 // to put in _ui-actions
 // for elements with unknown dimensions 
-function centerElm(elm, rel) {
-  // position relative for parent is required
-  var isParentRelative = (getComputedStyle(rel).position == 'relative') ? true : false;
-  if (!isParentRelative) {
-    rel.style.position = 'relative';
-  }
+// function centerElm(elm, rel) {
+//   // position relative for parent is required
+//   var isParentRelative = (getComputedStyle(rel).position == 'relative') ? true : false;
+//   if (!isParentRelative) {
+//     rel.style.position = 'relative';
+//   }
 
-  valueX = dimensions.get(rel).halfX() - dimensions.get(elm).halfX();
-  valueY = dimensions.get(rel).halfY() - dimensions.get(elm).halfY();
-  elm.style.position = 'absolute';
-  elm.style.left = valueX + 'px';
-  elm.style.top = valueY + 'px';
+//   valueX = dimensions.get(rel).halfX() - dimensions.get(elm).halfX();
+//   valueY = dimensions.get(rel).halfY() - dimensions.get(elm).halfY();
+//   elm.style.position = 'absolute';
+//   elm.style.left = valueX + 'px';
+//   elm.style.top = valueY + 'px';
 
-}
+// }

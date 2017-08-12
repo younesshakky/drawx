@@ -10,15 +10,12 @@ var confirmUi = getElm('#confirm-input-img');
 var url = inputURL.value;
 var rawImg = new Image()
 
-var error = new Notify({
-  type: 'error',
-  message: 'error'
-});
+// var image = {}
 
-var success = new Notify({
-  type: 'success',
-  message: 'bless'
-});
+// image.init = {
+//   url: url,
+// }
+
 
 // chaning url when taping
 inputURL.oninput = function () {
@@ -27,43 +24,56 @@ inputURL.oninput = function () {
 
 getElm('#submit').onclick = function (e) {
   e.preventDefault();
-  if (url.length > 3) {
-    activeUi('confirm-input-img');
-    // prefixing url with http if it's not already been set 
-    rawImg = createImg(url, getElm('#confirm-input-img .img-display'))
+  if (url.length < 4) {
+    Notify(getElm('main'), {
+      type: 'error',
+      message: 'please enter at least 4 chars',
+      init: true
+    });
 
-  } else {
-
-    error.message = 'please enter at least 4 chars';
-    error.createNotif(getElm('#item-inputs'));
+    return;
   }
-  console.log(rawImg)
-  // while()
+
+  rawImg = createImg(url, getElm('.img-display'))
+  confirmUi.classList.add('is-loading');
+
+  // if image has loaded properly
+  rawImg.onload = function () {
+    activeUi('confirm-input-img');
+    confirmUi.classList.remove('is-loading');
+
+    Notify(getElm('main'), {
+      type: 'success',
+      message: 'Your image is here, you\'re ready to go.',
+      init: true
+    });
+  }
+  // if image has not loaded
+  rawImg.onerror = function () {
+    Notify(getElm('main'), {
+      type: 'error',
+      message: 'image not found',
+      init: true
+    });
+    confirmUi.classList.remove('is-loading');
+  }
 }
 
-// handling image loading issues
-rawImg.onload = function () {
-  success.message = 'bless, image loaded';
-  success.createNotif(getElm('main'));
-  confirmUi.classList.remove('is-loading');
-}
-
-rawImg.onerror = function () {
-  error.message = 'it looks like an evil error';
-  error.createNotif(getElm('main'));
-}
 
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
   activeUi('item-inputs');
-  confirmUi.querySelector('img').src = '';
   url = '';
   inputURL.value = '';
+
+  getElm('.img-display').removeChild(getElm('.img-display').querySelector('img'))
+
 }
 
-
 getElm('#isTrue').onclick = function () {
-  console.log('moving to next step')
+  console.log('moving to next step');
+  var edtr = getElm('#edit-img');
+  activeUi(edtr);
 }
 
 
@@ -71,4 +81,4 @@ getElm('#isTrue').onclick = function () {
 // https://s-media-cache-ak0.pinimg.com/originals/90/21/41/902141f8da614fec9b97d884f907ec04.jpg
 
 // for offline
-// http://localhost:3000/assassins_creed_game-HD-Wallpaper.jpg
+// http://localhost:3000/1.jpg

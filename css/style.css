@@ -143,12 +143,14 @@ body {
 
 #confirm-input-img .img-display {
   width: 98%;
-  border: 2px solid #fff;
   height: auto;
   margin-bottom: 15px;
   min-height: 180px; }
   #confirm-input-img .img-display img {
     width: 100%; }
+
+#confirm-input-img #submit_name {
+  display: none; }
 
 #confirm-input-img #isTrue {
   float: left; }

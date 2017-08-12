@@ -103,6 +103,7 @@ var addRemoveClass = function (el, toAdd, toRemove) {
 
 
 var createImg = function (src, parent) {
+  // debugger
   if (
     typeof src == ('undefined' || null) ||
     typeof parent == ('undefined' || null)
@@ -118,10 +119,15 @@ var createImg = function (src, parent) {
     return;
   }
   initImg.src = src;
-  console.log(parent)
+  initImg.onload = function () {
+    if (imgHasLoaded(initImg) == false) {
+      return false;
+    }
+  }
+
   parent.appendChild(initImg)
 
   isCreated = true
   return initImg;
-
+  
 }
