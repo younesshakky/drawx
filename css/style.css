@@ -149,6 +149,21 @@ body {
   #confirm-input-img .img-display img {
     width: 100%; }
 
+#confirm-input-img form {
+  margin: 40px 0; }
+
+#confirm-input-img #img_name {
+  display: block;
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+  color: white;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: 0;
+  text-align: center; }
+
 #confirm-input-img #submit_name {
   display: none; }
 

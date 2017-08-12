@@ -113,6 +113,22 @@ body {
 
     }
   }
+  form {
+    margin: 40px 0;
+  }
+  #img_name {
+    display: block;
+    width: 70%;
+    margin:auto;
+    padding: 10px;
+    color: white;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: 0;
+    text-align: center;
+
+  }
   #submit_name {
     display: none;
   }

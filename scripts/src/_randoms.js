@@ -3,7 +3,21 @@
  */
 
 // get random number with max value
-var getRandom = function (max) {
+var getRandom = function (max, min) {
+  var rand = Math.floor(Math.random() * max);
+  if(min === (null || undefined) ){
+    return rand;
+  }
+
+  if(rand > min){
+    return rand;
+  }else {
+    rand = Math.floor(Math.random() * max);
+  }
+
+  if(arguments.length > 1) {
+    return Math.min(arguments[1], Math.floor( Math.random() * max ))
+  }
   return Math.floor(Math.random() * max)
 }
 
@@ -49,3 +63,21 @@ var getRandPos = function (elm, rel) {
 //   elm.style.top = valueY + 'px';
 
 // }
+
+// get random alphabets string
+// names randomly picked from :
+// https://en.wikipedia.org/wiki/List_of_Intel_codenames
+var randName = function () {
+  var names = [
+    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 
+  ]
+
+  return names[ getRandom(names.length) ]
+}
+
+/**
+
+
+
+
+*/

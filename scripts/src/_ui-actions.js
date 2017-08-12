@@ -10,11 +10,8 @@ var eventOn = function (element, events, fn) {
   events.split(/\s/gi).forEach((e) => element.addEventListener(e, fn, false));
 }
 
-
-
-
 // grabing uis dynamically
-var getUis = (function () {
+var getUis = function () {
 
   var elms = document.querySelectorAll('.ui_elm');
   var uisArr = []
@@ -23,7 +20,7 @@ var getUis = (function () {
     uisArr.push(elms[i].id)
   }
   return uisArr;
-})
+}
 
 var UIs = getUis();
 
@@ -31,7 +28,7 @@ var UIs = getUis();
  * @todo Getting multiple elements not 1
  */
 // elements transportating
-function getElm(selector) {
+var getElm = function (selector) {
   if (typeof selector == 'undefined' || selector == null) {
     return null
   }

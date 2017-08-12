@@ -57,8 +57,24 @@ getElm('#submit').onclick = function (e) {
     });
     confirmUi.classList.remove('is-loading');
   }
+
+  getElm('#img_name').value = randName()
+
 }
 
+getElm('#submit_name').onclick = function (e) {
+  e.preventDefault();
+  console.log('youlwalui');
+  getElm('#isTrue').click()
+  
+}
+
+getElm('#isTrue').onclick = function () {
+  console.log('moving to next step');
+  var edtr = getElm('#edit-img');
+  activeUi(edtr);
+  saveImg(getElm('#img_name').value, url)  
+}
 
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
@@ -70,11 +86,6 @@ getElm("#isFalse").onclick = function (e) {
 
 }
 
-getElm('#isTrue').onclick = function () {
-  console.log('moving to next step');
-  var edtr = getElm('#edit-img');
-  activeUi(edtr);
-}
 
 
 // testing urls

@@ -83,9 +83,12 @@ var httpIsset = function (url) {
   return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
 }
 
-// save url to localStorage
+// save image url to localStorage
 
-// var saveUrl = function (url) {}
+var saveImg = function (name, url) {
+  localStorage.setItem(name, url)
+}
+
 
 // verify if every thing is right and move to canvas editing
 /**
@@ -169,7 +172,21 @@ function Notify() {
  */
 
 // get random number with max value
-var getRandom = function (max) {
+var getRandom = function (max, min) {
+  var rand = Math.floor(Math.random() * max);
+  if(min === (null || undefined) ){
+    return rand;
+  }
+
+  if(rand > min){
+    return rand;
+  }else {
+    rand = Math.floor(Math.random() * max);
+  }
+
+  if(arguments.length > 1) {
+    return Math.min(arguments[1], Math.floor( Math.random() * max ))
+  }
   return Math.floor(Math.random() * max)
 }
 
@@ -215,6 +232,24 @@ var getRandPos = function (elm, rel) {
 //   elm.style.top = valueY + 'px';
 
 // }
+
+// get random alphabets string
+// names randomly picked from :
+// https://en.wikipedia.org/wiki/List_of_Intel_codenames
+var randName = function () {
+  var names = [
+    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 
+  ]
+
+  return names[ getRandom(names.length) ]
+}
+
+/**
+
+
+
+
+*/
 /**
  * functions that interacts with Dom
  */
@@ -227,11 +262,8 @@ var eventOn = function (element, events, fn) {
   events.split(/\s/gi).forEach((e) => element.addEventListener(e, fn, false));
 }
 
-
-
-
 // grabing uis dynamically
-var getUis = (function () {
+var getUis = function () {
 
   var elms = document.querySelectorAll('.ui_elm');
   var uisArr = []
@@ -240,7 +272,7 @@ var getUis = (function () {
     uisArr.push(elms[i].id)
   }
   return uisArr;
-})
+}
 
 var UIs = getUis();
 
@@ -248,7 +280,7 @@ var UIs = getUis();
  * @todo Getting multiple elements not 1
  */
 // elements transportating
-function getElm(selector) {
+var getElm = function (selector) {
   if (typeof selector == 'undefined' || selector == null) {
     return null
   }

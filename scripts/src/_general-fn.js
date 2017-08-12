@@ -5,8 +5,11 @@ var httpIsset = function (url) {
   return url.match(/^(http:\/\/|https:\/\/)/) ? true : false
 }
 
-// save url to localStorage
+// save image url to localStorage
 
-// var saveUrl = function (url) {}
+var saveImg = function (name, url) {
+  localStorage.setItem(name, url)
+}
+
 
 // verify if every thing is right and move to canvas editing
