@@ -31,10 +31,12 @@
 @keyframes slideUp {
   0% {
     margin-top: 0px;
+    top: -10px;
     opacity: 1; }
   100% {
     opacity: 0;
-    margin-top: -25px; } }
+    margin-top: -25px;
+    top: 0; } }
 
 @keyframes fadeIn {
   0% {
@@ -61,9 +63,10 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: 'montserrat';
+  font-family: 'lato';
+  font-size: 16px;
   box-sizing: border-box;
-  /* opacity: 0; */ }
+  letter-spacing: 0.05em; }
 
 html,
 body {
@@ -71,11 +74,13 @@ body {
   margin: 0; }
 
 body {
-  background: #172025; }
+  background: #fff;
+  color: #0e232e; }
 
 .page_wrap {
   position: relative;
   height: 100%;
+  padding: 30px 0;
   perspective: 500px; }
 
 .cf {
@@ -96,53 +101,71 @@ body {
   display: block;
   animation: scaleIn 0.4s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; }
 
+::-webkit-input-placeholder {
+  color: #bdbfc1; }
+
 .ui_elm {
-  width: 490px;
+  width: 520px;
   position: absolute;
   padding: 20px 30px;
   top: 100px;
-  left: calc(50% - 245px);
+  left: calc(50% - 260px);
   min-height: 230px;
-  background: #26333b;
+  background: #ffe76c;
+  border: 7px solid #0e232e;
   text-align: center;
-  max-width: 98%; }
+  max-width: 98%;
+  box-shadow: 0px 23px 47px rgba(0, 0, 0, 0.1); }
+
+.bd-input {
+  border: 4px solid #0e232e; }
 
 #item-inputs .input-url {
   display: flex;
   /* height: 60px; */
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  padding: 30px 0; }
+  #item-inputs .input-url label {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px; }
   #item-inputs .input-url input {
-    font-size: 20px;
+    font-size: 18px;
+    text-align: center;
     width: 90%;
     background: #fff;
     padding: 20px 30px;
     border-radius: 43px;
-    border: 2px solid #1e2c31;
     margin-bottom: 15px;
     color: #333;
     outline: none; }
+  #item-inputs .input-url #submit {
+    margin-top: 12  px; }
 
 .button-prim {
-  padding: 15px 40px;
+  display: inline-block;
+  padding: 15px 55px;
   border-radius: 43px;
-  font-size: 20px;
-  background: #0eee64;
-  color: white;
-  border: 0;
+  font-size: 21px;
+  text-transform: uppercase;
+  background: #44ffdc;
+  color: #0e232e;
+  font-weight: 900;
   cursor: pointer; }
-  .button-prim.gray {
-    background: rgba(0, 0, 0, 0.3); }
+  .button-prim.rev {
+    background: #0e232e;
+    color: white; }
 
 #confirm-input-img h2 {
-  color: white;
-  font-weight: bold;
+  color: #0e232e;
+  font-weight: 900;
   font-size: 22px;
   text-transform: uppercase;
   padding: 15px 10px; }
 
 #confirm-input-img .img-display {
-  width: 98%;
+  width: 98.5%;
   height: auto;
   margin-bottom: 15px;
   min-height: 180px; }
@@ -151,34 +174,41 @@ body {
 
 #confirm-input-img form {
   margin: 40px 0; }
-
-#confirm-input-img #img_name {
-  display: block;
-  width: 70%;
-  margin: auto;
-  padding: 10px;
-  color: white;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid white;
-  outline: 0;
-  text-align: center; }
-
-#confirm-input-img #submit_name {
-  display: none; }
+  #confirm-input-img form label {
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    opacity: .6; }
+  #confirm-input-img form #img_name {
+    display: block;
+    width: 70%;
+    margin: auto;
+    padding: 10px;
+    color: #0e232e;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #0e232e;
+    outline: 0;
+    text-align: center; }
+  #confirm-input-img form #submit_name {
+    display: none; }
 
 #confirm-input-img #isTrue {
-  float: left; }
+  float: left;
+  padding-left: 30px;
+  padding-right: 30px; }
 
 #confirm-input-img #isFalse {
-  float: right; }
+  float: right;
+  padding-left: 30px;
+  padding-right: 30px; }
 
 .is-loading::after {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  height: 4px;
+  height: 8px;
   width: 100%;
   overflow: hidden;
   background-size: 500% 500%;
@@ -205,22 +235,23 @@ body {
 .notify {
   background: #efe;
   padding: 12px 18px;
-  background: rgba(0, 0, 0, 0.3);
   position: fixed;
   font-size: 14px;
+  font-weight: bold;
   border-radius: 5px;
   user-select: none;
-  animation: slideDown .4s ease forwards;
-  bottom: 25px;
+  color: #0e232e;
+  animation: fadeIn .4s ease forwards;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box; }
   .notify--error {
-    color: #E53A40; }
+    background: #E53A40; }
   .notify--success {
-    color: #8CD790; }
+    background: #8CD790; }
   .notify--info {
-    color: #30A9DE; }
+    background: #30A9DE; }
   .notify--close {
     background: transparent;
     border-radius: 50%;

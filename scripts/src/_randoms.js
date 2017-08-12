@@ -69,15 +69,8 @@ var getRandPos = function (elm, rel) {
 // https://en.wikipedia.org/wiki/List_of_Intel_codenames
 var randName = function () {
   var names = [
-    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 
+    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 'Woodridge', 'Zion'
   ]
 
   return names[ getRandom(names.length) ]
 }
-
-/**
-
-
-
-
-*/

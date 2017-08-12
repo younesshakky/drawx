@@ -113,7 +113,7 @@ function Notify() {
   this.init = opts.init || false;
   this.parent = arguments[0]
 
-  console.log(opts)
+  // console.log(opts)
 
   if(this.init){
     createNotif(this.parent);
@@ -238,18 +238,11 @@ var getRandPos = function (elm, rel) {
 // https://en.wikipedia.org/wiki/List_of_Intel_codenames
 var randName = function () {
   var names = [
-    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 
+    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 'Woodridge', 'Zion'
   ]
 
   return names[ getRandom(names.length) ]
 }
-
-/**
-
-
-
-
-*/
 /**
  * functions that interacts with Dom
  */
@@ -359,7 +352,7 @@ var createImg = function (src, parent) {
   ) { return; }
 
   if (httpIsset(url) == false) {
-    src = 'https://' + src;
+    src = '//' + src;
   }
 
   var initImg = new Image(),

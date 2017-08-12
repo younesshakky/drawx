@@ -7,6 +7,7 @@
 
 var inputURL = getElm('#in-img-url');
 var confirmUi = getElm('#confirm-input-img');
+var initUI = getElm('#item-inputs')
 var url = inputURL.value;
 var rawImg = new Image()
 
@@ -30,17 +31,16 @@ getElm('#submit').onclick = function (e) {
       message: 'please enter at least 4 chars',
       init: true
     });
-
     return;
   }
 
   rawImg = createImg(url, getElm('.img-display'))
-  confirmUi.classList.add('is-loading');
+  initUI.classList.add('is-loading');
 
   // if image has loaded properly
   rawImg.onload = function () {
     activeUi('confirm-input-img');
-    confirmUi.classList.remove('is-loading');
+    initUI.classList.remove('is-loading');
 
     Notify(getElm('main'), {
       type: 'success',
@@ -55,10 +55,11 @@ getElm('#submit').onclick = function (e) {
       message: 'image not found',
       init: true
     });
-    confirmUi.classList.remove('is-loading');
+    initUI.classList.remove('is-loading');
   }
 
   getElm('#img_name').value = randName()
+  getElm('#img_name').setAttribute('autofocus', 'true')
 
 }
 
@@ -70,10 +71,11 @@ getElm('#submit_name').onclick = function (e) {
 }
 
 getElm('#isTrue').onclick = function () {
-  console.log('moving to next step');
+  // console.log('moving to next step');
   var edtr = getElm('#edit-img');
   activeUi(edtr);
   saveImg(getElm('#img_name').value, url)  
+  console.log(localStorage)
 }
 
 getElm("#isFalse").onclick = function (e) {
@@ -82,9 +84,18 @@ getElm("#isFalse").onclick = function (e) {
   url = '';
   inputURL.value = '';
 
-  getElm('.img-display').removeChild(getElm('.img-display').querySelector('img'))
+  getElm('.img-display').innerHTML = null
 
 }
+
+// for looping through an object 
+/*
+for (var key in str) {
+  if (str.hasOwnProperty(key)) {
+    console.log(str[key]);
+  }
+}
+*/
 
 
 

@@ -107,7 +107,7 @@ var createImg = function (src, parent) {
   ) { return; }
 
   if (httpIsset(url) == false) {
-    src = 'https://' + src;
+    src = '//' + src;
   }
 
   var initImg = new Image(),

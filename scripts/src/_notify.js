@@ -20,7 +20,7 @@ function Notify() {
   this.init = opts.init || false;
   this.parent = arguments[0]
 
-  console.log(opts)
+  // console.log(opts)
 
   if(this.init){
     createNotif(this.parent);

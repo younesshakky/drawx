@@ -1,11 +1,16 @@
 @import 'animations';
 
+$darkblue: #0e232e;
+$softyellow: #ffe76c;
+$aquagreen: #44ffdc;
+
 * {
   padding: 0;
   margin: 0;
-  font-family: 'montserrat';
+  font-family: 'lato';
+  font-size: 16px;
   box-sizing: border-box;
-  /* opacity: 0; */
+  letter-spacing: 0.05em;
 }
 
 html,
@@ -15,12 +20,14 @@ body {
 }
 
 body {
-  background: #172025;
+  background: #fff;
+  color: $darkblue;
 }
 
 .page_wrap {
   position: relative;
   height: 100%;
+  padding: 30px 0;
   perspective: 500px
 }
 
@@ -48,16 +55,27 @@ body {
   animation: scaleIn .4s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
 }
 
+::-webkit-input-placeholder{
+  color: #bdbfc1;
+}
+
 .ui_elm{
-  width: 490px;
+  width: 520px;
   position: absolute;
   padding: 20px 30px;
   top: 100px;
-  left: calc(50% - 245px);
+  left: calc(50% - 260px);
   min-height: 230px;
-  background: #26333b;
+  background: $softyellow;
+  border: 7px solid $darkblue;
   text-align: center;
   max-width: 98%;
+  box-shadow: 0px 23px 47px rgba(0, 0, 0, 0.1);
+}
+
+
+.bd-input {
+  border: 4px solid $darkblue;
 }
 
 #item-inputs{
@@ -65,31 +83,43 @@ body {
       display: flex;
       /* height: 60px; */
       flex-direction: column;
-      align-items: center; 
+      align-items: center;
+      padding: 30px 0;
+      label {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
       input {
-        font-size: 20px;
+        font-size: 18px;
+        text-align: center;
         width: 90%;
         background: #fff;
         padding: 20px 30px;
         border-radius: 43px;
-        border: 2px solid #1e2c31;
         margin-bottom: 15px;
         color: #333;
         outline: none;
+      }
+      #submit {
+        margin-top: 12  px
       }
    }
 }
 
 .button-prim {
-  padding: 15px 40px;
+  display: inline-block;
+  padding: 15px 55px;
   border-radius: 43px;
-  font-size: 20px;
-  background: #0eee64;
-  color: white;
-  border: 0;
+  font-size: 21px;
+  text-transform: uppercase;
+  background: $aquagreen;
+  color: $darkblue;
+  font-weight: 900;
   cursor: pointer;
-  &.gray {
-    background: rgba(0, 0, 0, .3)
+  &.rev {
+    background: $darkblue;
+    color: white;
 
   }
 }
@@ -97,14 +127,14 @@ body {
 
 #confirm-input-img{
   h2 {
-    color: white;
-    font-weight: bold;
+    color: $darkblue;
+    font-weight: 900;
     font-size: 22px;
     text-transform: uppercase;
     padding: 15px 10px;
   }
   .img-display {
-    width: 98%;
+    width: 98.5%;
     height: auto;
     margin-bottom: 15px;
     min-height: 180px;
@@ -115,30 +145,41 @@ body {
   }
   form {
     margin: 40px 0;
-  }
-  #img_name {
-    display: block;
-    width: 70%;
-    margin:auto;
-    padding: 10px;
-    color: white;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid white;
-    outline: 0;
-    text-align: center;
+    label {
+      font-weight: bold;
+      font-size: 18px;
+      text-transform: uppercase;
+      opacity: .6
+    }
+    #img_name {
+      display: block;
+      width: 70%;
+      margin: auto;
+      padding: 10px;
+      color: $darkblue;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid $darkblue;
+      outline: 0;
+      text-align: center;
+    }
 
+    #submit_name {
+      display: none;
+    }
   }
-  #submit_name {
-    display: none;
-  }
+
   
   #isTrue {
-    float: left
+    float: left;
+    padding-left: 30px;
+    padding-right: 30px
   }
 
   #isFalse {
-    float: right
+    float: right;
+    padding-left: 30px;
+    padding-right: 30px
   }
 }
 
@@ -146,9 +187,9 @@ body {
   &::after{
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 4px;
+    height: 8px;
     width: 100%;
     overflow: hidden;
     background-size: 500% 500%;
@@ -174,32 +215,32 @@ body {
 
 }
 
-
-
 /* notify styles */
 
 .notify {
   background: #efe;
   padding: 12px 18px;
-  background: rgba(0, 0, 0, .3);
+  // background: rgba(0, 0, 0, .3);
   position: fixed;
   font-size: 14px;
+  font-weight: bold;
   border-radius: 5px;
   user-select: none;
-  animation: slideDown .4s ease forwards;
-  bottom: 25px;
+  color: $darkblue;
+  animation: fadeIn .4s ease forwards;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
 
   &--error {
-    color: #E53A40;
+    background: #E53A40;
   }
   &--success {
-    color: #8CD790;
+    background: #8CD790;
   }
   &--info {
-    color: #30A9DE;
+    background: #30A9DE;
   }
 
   &--close {

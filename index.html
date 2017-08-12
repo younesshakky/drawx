@@ -11,19 +11,20 @@
 
 <body>
 
-  <!-- big view  -->
-  <!-- <canvas id="drawCanva"></canvas> -->
   <!-- facebook-like photo editing -->
   <main class="page_wrap">
-    <!-- <div style="text-align:center">
-      <img src="some.png" height="90" alt="">
-    </div> -->
-    <!-- end item inputs -->
+
+    <div class="history">
+      <a id="show-history" href="#">Your last images</a>
+      <div class="history-items"></div>
+    </div>
+    <!-- item inputs -->
     <div class="ui_elm active" id="item-inputs">
       <form action="/">
         <div class="input-url">
-          <input id="in-img-url" type="text" placeholder="coolmme.com/image.png">
-          <button class="button-prim" id="submit">Submit</button>
+          <label for="in-img-url">IMAGE URL</label>
+          <input id="in-img-url" class="bd-input" type="text" placeholder="coolmme.com/image.png">
+          <button class="button-prim bd-input" id="submit">Submit</button>
         </div>
         <!-- not available now -->
         <div class="input-upload">
@@ -50,8 +51,8 @@
         <input  type="submit" id="submit_name">
       </form>
       <div class="isError"></div>
-      <button id="isTrue" class="button-prim">yes</button>
-      <button id="isFalse" class="button-prim gray">no</button>
+      <button id="isTrue" class="button-prim bd-input">yes</button>
+      <button id="isFalse" class="button-prim rev bd-input">no</button>
       <div class="cf"></div>
     </div>
 
