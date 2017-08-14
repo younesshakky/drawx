@@ -6,7 +6,6 @@ var httpIsset = function (url) {
 }
 
 // save image url to localStorage
-
 var saveImg = function (name, url) {
   localStorage.setItem(name, url)
 }

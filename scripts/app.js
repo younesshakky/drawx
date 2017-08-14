@@ -5,18 +5,17 @@
  * remove console notifs for ui notifications 
  */
 
-var inputURL = getElm('#in-img-url');
-var confirmUi = getElm('#confirm-input-img');
 var initUI = getElm('#item-inputs')
+var confirmUi = getElm('#confirm-input-img');
+var inputURL = getElm('#in-img-url');
+
 var url = inputURL.value;
 var rawImg = new Image()
 
-// var image = {}
 
-// image.init = {
-//   url: url,
-// }
-
+// bools
+/** if the main canvas has been initialized */
+var isCanvasInit = false
 
 // chaning url when taping
 inputURL.oninput = function () {
@@ -72,11 +71,23 @@ getElm('#submit_name').onclick = function (e) {
   
 }
 
-getElm('#isTrue').onclick = function () {
+getElm('#isTrue').onclick = function (e) {
+  var imgName = getElm('#img_name').value;
+  e.preventDefault()
+
+  if(imgName < 1){
+    Notify(getElm('main'), {
+      type: 'error',
+      message: 'add more charcters',
+      init: true
+    });
+
+    return;
+  }
   // console.log('moving to next step');
   var edtr = getElm('#edit-img');
   activeUi(edtr);
-  saveImg(getElm('#img_name').value, url)  
+  saveImg(imgName, url)  
   console.log(localStorage)
 }
 
@@ -107,19 +118,4 @@ getElm('#show-history').onclick = function(e) {
   }
 }
 
-// for looping through an object 
-/*
-for (var key in str) {
-  if (str.hasOwnProperty(key)) {
-    console.log(str[key]);
-  }
-}
-*/
 
-
-
-// testing urls
-// https://s-media-cache-ak0.pinimg.com/originals/90/21/41/902141f8da614fec9b97d884f907ec04.jpg
-
-// for offline
-// http://localhost:3000/1.jpg
