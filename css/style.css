@@ -93,10 +93,6 @@ body {
 .ui_elm {
   display: none; }
 
-.inactive,
-.active {
-  transition: all 0.35s cubic-bezier(0.1, 0.74, 0.51, 1); }
-
 .active {
   display: block;
   animation: scaleIn 0.4s cubic-bezier(0.65, 0.05, 0.36, 1) forwards; }
@@ -114,8 +110,9 @@ body {
   background: #ffe76c;
   border: 7px solid #0e232e;
   text-align: center;
-  max-width: 98%;
-  box-shadow: 0px 23px 47px rgba(0, 0, 0, 0.1); }
+  max-width: 100%;
+  box-shadow: 0px 23px 47px rgba(0, 0, 0, 0.1);
+  margin-bottom: 84px; }
 
 .bd-input {
   border: 4px solid #0e232e; }
@@ -167,8 +164,7 @@ body {
 #confirm-input-img .img-display {
   width: 98.5%;
   height: auto;
-  margin-bottom: 15px;
-  min-height: 180px; }
+  margin-bottom: 15px; }
   #confirm-input-img .img-display img {
     width: 100%; }
 
@@ -271,14 +267,28 @@ body {
     font-size: 18px;
     margin-bottom: 20px; }
   .history .history-items {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center; }
+    text-align: left; }
     .history .history-items:empty {
       display: none; }
-    .history .history-items .single-img {
-      overflow: hidden;
-      text-align: center; }
-      .history .history-items .single-img img {
-        height: 100%;
-        width: 100%; }
+    .history .history-items .single-link {
+      display: inline-block;
+      text-align: left;
+      border: 2px solid #0e232e;
+      margin-right: 3px;
+      margin-bottom: 3px; }
+      .history .history-items .single-link a {
+        background: #0e232e;
+        color: wheat;
+        display: inherit;
+        font-size: 17px;
+        font-weight: bolder;
+        text-decoration: none;
+        text-transform: capitalize;
+        padding: 10px 15px; }
+
+#primary-canvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }

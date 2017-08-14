@@ -27,7 +27,10 @@ function Notify() {
   }
 
   function removeNotif(notif, parent) {
-    parent.removeChild(notif)
+    if(isCreated) {
+      parent.removeChild(notif)
+      isCreated = false;
+    }
   }
 
   function createNotif(parent) {
@@ -52,6 +55,7 @@ function Notify() {
     notif.classList.add('notify--' + this.type);
     notif.innerText = this.message;
 
+
     var close = document.createElement('button')
     close.className = 'notify--close';
     close.innerText = 'close'
@@ -59,18 +63,15 @@ function Notify() {
 
     isCreated = true;
 
+    notif.onclick = function () {
+      removeNotif(notif, parent)
+    }
+
     // remove notification after 4 seconds
     setTimeout(function () {
       removeNotif(notif, parent);
-      isCreated = false;
     }, 4000);
 
     // return 
   }
 }
-
-// Notify.prototype = {
-//   init: (el) =>{
-//     this.createNotif(el);
-//   }
-// }

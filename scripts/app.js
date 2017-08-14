@@ -9,6 +9,8 @@ var initUI = getElm('#item-inputs')
 var confirmUi = getElm('#confirm-input-img');
 var inputURL = getElm('#in-img-url');
 
+var mainCanvas;
+
 var url = inputURL.value;
 var rawImg = new Image()
 
@@ -18,8 +20,39 @@ var rawImg = new Image()
 var isCanvasInit = false
 
 // chaning url when taping
-inputURL.oninput = function () {
+
+eventOn(inputURL, 'input change', function (){
   url = encodeURI(inputURL.value);
+})
+// inputURL.oninput = function () {
+// }
+
+var isInserted = false;
+getElm('#show-history').onclick = function (e) {
+  e.preventDefault()
+  activeUi('history-imgs');
+  var histImages = historyURLS();
+  if (!isInserted) {
+    histImages.forEach((e) => {
+    var urlJSON = JSON.parse(e[1])
+      getElm('#history-imgs').innerHTML +=
+        `<div class="single-link">
+        <a target="_blank" href="${urlJSON.url}">${urlJSON.name}</a>
+      </div>`;
+    });
+    isInserted = true
+  }
+  // to fix later in getElm()
+  var slink = document.querySelectorAll('.single-link');
+  for (let i = 0; i < slink.length; i++) {
+    slink[i].querySelector('a').onclick = function (e) {
+      e.preventDefault();
+      activeUi('item-inputs')
+      // url = this.href;
+      inputURL.value = this.href;      
+      url = inputURL.value;
+    }
+  }
 }
 
 getElm('#submit').onclick = function (e) {
@@ -33,7 +66,8 @@ getElm('#submit').onclick = function (e) {
     return;
   }
 
-  rawImg = createImg(url, getElm('.img-display'))
+  clearHTMLFrom('.img-display');
+  rawImg = createImg(url, getElm('.img-display'));
   initUI.classList.add('is-loading');
 
   // if image has loaded properly
@@ -55,8 +89,8 @@ getElm('#submit').onclick = function (e) {
       init: true
     });
     initUI.classList.remove('is-loading');
-    getElm('.img-display').innerHTML = null
-
+    // clea
+    clearHTMLFrom('.img-display');
   }
 
   getElm('#img_name').value = randName()
@@ -66,16 +100,14 @@ getElm('#submit').onclick = function (e) {
 
 getElm('#submit_name').onclick = function (e) {
   e.preventDefault();
-  console.log('youlwalui');
   getElm('#isTrue').click()
-  
 }
 
 getElm('#isTrue').onclick = function (e) {
   var imgName = getElm('#img_name').value;
   e.preventDefault()
 
-  if(imgName < 1){
+  if(imgName.length < 1){
     Notify(getElm('main'), {
       type: 'error',
       message: 'add more charcters',
@@ -84,38 +116,36 @@ getElm('#isTrue').onclick = function (e) {
 
     return;
   }
-  // console.log('moving to next step');
+
   var edtr = getElm('#edit-img');
   activeUi(edtr);
   saveImg(imgName, url)  
-  console.log(localStorage)
+  // console.log(localStorage)
+
+  mainCanvas = MakeCanva('primary-canvas');
+  edtr.appendChild(mainCanvas)
+
+  mainCanvas.height = cnv.dims.height(
+    dimensions.get(window).height
+  );
+  mainCanvas.width = cnv.dims.width(
+    dimensions.get(window).width
+  );
+
+  var checkCanvas = setInterval(() => {
+    if (mainCanvas) {
+      console.log('canvas has initialized')
+      isCanvasInit = true
+      clearInterval(checkCanvas)
+    }
+  }, 100)
 }
+
 
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
   activeUi('item-inputs');
   url = '';
   inputURL.value = '';
-
-  getElm('.img-display').innerHTML = null
-
+  clearHTMLFrom('.img-display')
 }
-
-
-var isInseted = false;
-getElm('#show-history').onclick = function(e) {
-  e.preventDefault()
-  activeUi('history-imgs');
-  if(!isInseted){
-    var histImages = historyURLS();
-    histImages.forEach((e) => {
-      getElm('#history-imgs').innerHTML += 
-      `<div class="single-img">
-        <a target="_blank" href="${e}">${e}</a>
-      </div>`;
-      isInseted = true
-    });
-  }
-}
-
-

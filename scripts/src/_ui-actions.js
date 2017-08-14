@@ -46,6 +46,18 @@ var getPointer = function (e) {
   }
 }
 
+var clearHTMLFrom = function (el) {
+  var toBeCleared;
+
+  if(typeof el == 'string'){
+    toBeCleared = getElm(el);
+  }
+  if(typeof el == 'object'){
+    toBeCleared = el;
+  }
+  toBeCleared.innerHTML = null
+}
+
 // set and active ui
 
 var activeUi = function (elmID) {
@@ -132,14 +144,14 @@ var createImg = function (src, parent) {
 
 var historyURLS = function () {
   var store = localStorage;
-  var URLs = [];
+  var items = [];
 
   for (key in store) {
     if (store.hasOwnProperty(key)){
-      URLs.push(store[key])
+      items.push([key, store[key]])
     }
   }
 
-  return URLs;
+  return items;
 
 }
