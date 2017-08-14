@@ -29,6 +29,7 @@ var UIs = getUis();
  */
 // elements transportating
 var getElm = function (selector) {
+  this.el = selector;
   if (typeof selector == 'undefined' || selector == null) {
     return null
   }
@@ -73,18 +74,18 @@ var imgHasLoaded = function (img) {
   return true
 }
 
-// adding & removing class
-var addRemoveClass = function (el, toAdd, toRemove) {
-  if (typeof el == 'undefined') {
-    return null;
-  }
-  if (!toAdd) toAdd = '';
-  if (!toRemove) toRemove = '';
-
-  el.classList.add(toAdd);
-  el.classList.remove(toRemove);
-  return el
+// adding class
+var addClassTo = function (el, className) {
+  el.classList.add(className)
+  return el;
 }
+
+// removing class
+var  removeClassFrom = function (el, className) {
+  el.classList.remove(className)
+  return el;
+}
+
 
 // set random position relatively to parent element
 // function setRandPos(elm, rel) {
@@ -126,5 +127,19 @@ var createImg = function (src, parent) {
 
   isCreated = true
   return initImg;
-  
+}
+
+
+var historyURLS = function () {
+  var store = localStorage;
+  var URLs = [];
+
+  for (key in store) {
+    if (store.hasOwnProperty(key)){
+      URLs.push(store[key])
+    }
+  }
+
+  return URLs;
+
 }

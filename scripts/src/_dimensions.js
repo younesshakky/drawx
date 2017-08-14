@@ -45,6 +45,14 @@
     }
   }
 
+  var setWidth = function (w) {
+    this.el.width = w;
+  }
+
+  var setHeight = function (h) {
+    this.el.height = h;
+  }
+
 
   dimensions = {
     get: function (element) {
@@ -74,5 +82,3 @@
   window.dimensions = dimensions
 
 })();
-
-// var test = dimension.get('slab').height;

@@ -56,6 +56,8 @@ getElm('#submit').onclick = function (e) {
       init: true
     });
     initUI.classList.remove('is-loading');
+    getElm('.img-display').innerHTML = null
+
   }
 
   getElm('#img_name').value = randName()
@@ -86,6 +88,23 @@ getElm("#isFalse").onclick = function (e) {
 
   getElm('.img-display').innerHTML = null
 
+}
+
+
+var isInseted = false;
+getElm('#show-history').onclick = function(e) {
+  e.preventDefault()
+  activeUi('history-imgs');
+  if(!isInseted){
+    var histImages = historyURLS();
+    histImages.forEach((e) => {
+      getElm('#history-imgs').innerHTML += 
+      `<div class="single-img">
+        <a target="_blank" href="${e}">${e}</a>
+      </div>`;
+      isInseted = true
+    });
+  }
 }
 
 // for looping through an object 

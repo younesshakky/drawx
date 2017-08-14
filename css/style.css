@@ -262,3 +262,23 @@ body {
     transform: translateY(-50%);
     right: 10px;
     font-size: 10px; }
+
+.history {
+  text-align: center; }
+  .history #show-history {
+    color: #0e232e;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px; }
+  .history .history-items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; }
+    .history .history-items:empty {
+      display: none; }
+    .history .history-items .single-img {
+      overflow: hidden;
+      text-align: center; }
+      .history .history-items .single-img img {
+        height: 100%;
+        width: 100%; }

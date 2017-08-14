@@ -255,3 +255,32 @@ body {
     font-size: 10px;
   }
 }
+
+.history {
+  text-align: center;
+  #show-history {
+    color: $darkblue;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .history-items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &:empty{
+      display: none;
+    }
+    .single-img {
+      // width: 102px;
+      // height: 102px;
+      overflow: hidden;
+      text-align: center;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
