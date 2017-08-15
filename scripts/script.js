@@ -413,20 +413,6 @@ var  removeClassFrom = function (el, className) {
   return el;
 }
 
-
-// set random position relatively to parent element
-// function setRandPos(elm, rel) {
-//   var randPos = getRandPos(elm, rel)
-//   if (rel !== (window || document)) {
-//     rel.style.position = 'relative';
-//     console.log('not a window or a document')
-//   }
-//   elm.style.position = 'absolute';
-//   elm.style.left = randPos[0] + 'px'
-//   elm.style.top = randPos[1] + 'px'
-// }
-
-
 var createImg = function (src, parent) {
   // debugger
   if (
@@ -459,7 +445,7 @@ var createImg = function (src, parent) {
 
 var historyURLS = function () {
   var store = localStorage;
-  var items = [];
+  var items = items || [];
 
   for (key in store) {
     if (store.hasOwnProperty(key)){
