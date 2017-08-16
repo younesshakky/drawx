@@ -45,6 +45,37 @@ var getPointer = function (e) {
     y: e.clientY
   }
 }
+var takeoff  = function (type, target, cb){
+
+
+  if (typeof el == 'string') {
+    target = getElm(target);
+  }
+
+  if (typeof el == 'object') {
+    target = target;
+  }
+
+  switch (type) {
+    case 'html':
+      target.innerHTML = null;
+      break
+
+    case 'text':
+      target.innerText = null;
+      break
+
+    case 'inputValue':
+      target.value = null;
+      break;
+  
+    default:
+      break;
+  }
+  if(cb) {
+    return cb.call(this, ...arguments)
+  }
+}
 
 var clearHTMLFrom = function (el) {
   var toBeCleared;

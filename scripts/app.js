@@ -66,7 +66,7 @@ getElm('#submit').onclick = function (e) {
     return;
   }
 
-  clearHTMLFrom('.img-display');
+  takeoff('html', '.img-display');
   rawImg = createImg(url, getElm('.img-display'));
   initUI.classList.add('is-loading');
 
@@ -90,7 +90,7 @@ getElm('#submit').onclick = function (e) {
     });
     initUI.classList.remove('is-loading');
     // clea
-    clearHTMLFrom('.img-display');
+    takeoff('html', '.img-display');
   }
 
   getElm('#img_name').value = randName()
@@ -147,5 +147,6 @@ getElm("#isFalse").onclick = function (e) {
   activeUi('item-inputs');
   url = '';
   inputURL.value = '';
-  clearHTMLFrom('.img-display')
+  takeoff('html', '.img-display')
+  // clearHTMLFrom('.img-display')
 }
