@@ -510,5 +510,35 @@ var historyURLS = function () {
   }
 
   return items;
-
 }
+
+
+var moveTo = function (id, dostuff) {
+  var el = document.getElementById(id);
+  el.removeAttribute('id');
+  location.hash = id;
+  el.setAttribute('id', id);
+  // return call.dostuff(this, ...arguments)
+}
+
+// var activeUi = function () {
+
+//   var hash = location.hash;
+
+
+
+//   if (typeof elmID === 'object') {
+//     elmID = elmID.id
+//   }
+
+//   var beActive = getElm('#' + elmID)
+//   beActive.classList.add('active')
+
+//   setRandPos(beActive, window)
+
+//   for (var i = 0; i < UIs.length; i++) {
+//     if (UIs[i] !== null && UIs[i] !== elmID) {
+//       document.getElementById(UIs[i]).classList.remove('active')
+//     }
+//   }
+// }
