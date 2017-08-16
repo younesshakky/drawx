@@ -52,9 +52,11 @@ var clearHTMLFrom = function (el) {
   if(typeof el == 'string'){
     toBeCleared = getElm(el);
   }
+
   if(typeof el == 'object'){
     toBeCleared = el;
   }
+
   toBeCleared.innerHTML = null
 }
 
