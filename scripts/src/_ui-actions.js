@@ -77,20 +77,6 @@ var takeoff  = function (type, target, cb){
   }
 }
 
-var clearHTMLFrom = function (el) {
-  var toBeCleared;
-
-  if(typeof el == 'string'){
-    toBeCleared = getElm(el);
-  }
-
-  if(typeof el == 'object'){
-    toBeCleared = el;
-  }
-
-  toBeCleared.innerHTML = null
-}
-
 // set and active ui
 
 var activeUi = function (elmID) {
