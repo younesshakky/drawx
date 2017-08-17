@@ -88,24 +88,24 @@
 // var drawCanva = document.getElementById('prim-canva');
 // ctx = drawCanva.getContext('2d');
 
-var cnv = cnv || {};
+var canvas = canvas || {};
 
 
 // verifications before getting canvas to function
-cnv.verify = {
+canvas.verify = {
   // verify if the playground is actually a canvas element
   isCanvas: function () {
-    if (cnv.playground){
-      return (cnv.playground.constructor == HTMLCanvasElement) ? true : false;
+    if (canvas.playground){
+      return (canvas.playground.constructor == HTMLCanvasElement) ? true : false;
     }
   },
   isInDom: function () {
-    return (!!getElm('#' + cnv.playground.id) == true) ? true : false;
+    return (!!getElm('#' + canvas.playground.id) == true) ? true : false;
   }
 }
 
 // getting targeted canvas
-cnv.getcanva = function (id) {
+canvas.getcanva = function (id) {
   this.playground = document.getElementById(id)
   if(this.playground === null){
     throw new Error(`i can't find any element associated with id "${id}" \n tnx!`)
@@ -123,7 +123,7 @@ function MakeCanva (id) {
 }
 
 // getting or setting canvas dimesions
-cnv.dims = {
+canvas.dims = {
   height: function (h) {
     // get the maximum height of window
     var wdMaxHeight = dimensions.get(window).height;
@@ -159,29 +159,29 @@ cnv.dims = {
 }
 
 // working with context
-cnv.context = function () {
+canvas.context = function () {
   if(!this.playground){
     throw new Error('wtf');
     // return;
   }
-  return cnv.playground.getContext('2d');
+  return canvas.playground.getContext('2d');
 }
 // canvas events
-cnv.event = {
+canvas.event = {
 
   mousedown: function () {
-    cnv.verify.isMouseDown = true;
+    canvas.verify.isMouseDown = true;
     // do stuff
   },
   drag: function () {
-    if (!cnv.verify.isMousedown){
+    if (!canvas.verify.isMousedown){
       // don't do stuff
     }
     // do stuff, like consoling, seems a cool feature
-    cnv.verify.isDragging = true
+    canvas.verify.isDragging = true
   },
   mouseover: function () {
-    // if (cnv.verify.isMousedown){
+    // if (canvas.verify.isMousedown){
     //   // do stuff
     // }
     
@@ -189,7 +189,31 @@ cnv.event = {
 }
 
 // using elsewhere in the app
-ctx = cnv.context;
+// ctx = canvas.context;
+
+var Resizer = function (canvasElement) {
+  var _canvas = canvasElement;
+  var events = {
+    mousedown: function (e) {
+      events.isMouseDown = true;
+    },
+    mouseup: function () {
+      events.isMouseDown = false;
+    },
+    mousemove: function (e) {
+      if (this.isMouseDown) {
+        _canvas.width = e.clientX + 30
+        _canvas.height = e.clientY + 30
+      }
+
+
+    }
+  }
+  return {
+    events,
+    domElement: _canvas
+  }
+}
 // general purpose functions
 
 // is (http/s) set
@@ -417,13 +441,8 @@ var getPointer = function (e) {
 var takeoff  = function (type, target, cb){
 
 
-  if (typeof el == 'string') {
-    target = getElm(target);
-  }
-
-  if (typeof el == 'object') {
-    target = target;
-  }
+  if (typeof el == 'string') { target = getElm(target) }
+  if (typeof el == 'object') { target = target }
 
   switch (type) {
     case 'html':
@@ -441,23 +460,7 @@ var takeoff  = function (type, target, cb){
     default:
       break;
   }
-  if(cb) {
-    return cb.call(this, ...arguments)
-  }
-}
-
-var clearHTMLFrom = function (el) {
-  var toBeCleared;
-
-  if(typeof el == 'string'){
-    toBeCleared = getElm(el);
-  }
-
-  if(typeof el == 'object'){
-    toBeCleared = el;
-  }
-
-  toBeCleared.innerHTML = null
+  if(cb) { return cb.call(this, ...arguments) }
 }
 
 // set and active ui
@@ -512,10 +515,9 @@ var createImg = function (src, parent) {
   }
 
   var initImg = new Image(),
-    isCreated = false;
-  if (isCreated) {
-    return;
-  }
+      isCreated = false;
+  if (isCreated) { return }
+
   initImg.src = src;
   initImg.onload = function () {
     if (imgHasLoaded(initImg) == false) {
@@ -524,8 +526,8 @@ var createImg = function (src, parent) {
   }
 
   parent.appendChild(initImg)
-
   isCreated = true
+  
   return initImg;
 }
 

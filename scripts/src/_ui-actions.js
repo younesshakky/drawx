@@ -48,13 +48,8 @@ var getPointer = function (e) {
 var takeoff  = function (type, target, cb){
 
 
-  if (typeof el == 'string') {
-    target = getElm(target);
-  }
-
-  if (typeof el == 'object') {
-    target = target;
-  }
+  if (typeof el == 'string') { target = getElm(target) }
+  if (typeof el == 'object') { target = target }
 
   switch (type) {
     case 'html':
@@ -72,9 +67,7 @@ var takeoff  = function (type, target, cb){
     default:
       break;
   }
-  if(cb) {
-    return cb.call(this, ...arguments)
-  }
+  if(cb) { return cb.call(this, ...arguments) }
 }
 
 // set and active ui
@@ -129,10 +122,9 @@ var createImg = function (src, parent) {
   }
 
   var initImg = new Image(),
-    isCreated = false;
-  if (isCreated) {
-    return;
-  }
+      isCreated = false;
+  if (isCreated) { return }
+
   initImg.src = src;
   initImg.onload = function () {
     if (imgHasLoaded(initImg) == false) {
@@ -141,8 +133,8 @@ var createImg = function (src, parent) {
   }
 
   parent.appendChild(initImg)
-
   isCreated = true
+  
   return initImg;
 }
 
