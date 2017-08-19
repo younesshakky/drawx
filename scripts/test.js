@@ -65,3 +65,36 @@ ctx.arc(230, 80, 50, 0, 2 * Math.PI)
 ctx.lineWidth = 5
 ctx.fill()
 ctx.stroke()
+
+// animation
+// var r = 1
+
+// function animateArc (ratio){
+//   ctx.beginPath();
+//   if(ratio < 100){
+//     ctx.arc(230, 80, ratio, 0,   2 * Math.PI)
+//   }
+//   ctx.fillStyle = 'lightgreen'
+//   ctx.fill()
+// }
+
+
+// setInterval(() => {
+//   r++
+//   animateArc(r)
+// }, 50)
+const myText = 'texting is cool!'
+const axis = {
+  x: 30,
+  y: 220
+}
+ctx.fillStyle = "white"
+ctx.font = 'bold 30px impact'
+ctx.fillText(myText, axis.x, axis.y)
+
+ctx.strokeStyle = 'black'
+ctx.lineWidth = 2
+ctx.strokeText(myText, axis.x, axis.y)
+
+// ctx.fillStyle = 'white'
+// ctx.strokeStyle = 'black'

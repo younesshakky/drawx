@@ -78,21 +78,53 @@ let's see what w3resources are saying:
 did you have understand something? me neither, **but it's not that complex :**
 
  ```js
-ctx.fillStyle = 'lightgreen'
-ctx.beginPath();
+context.fillStyle = 'lightgreen'
+context.beginPath();
 /** params: (x, y, radius, startAngle, endAngle, direction) */
-ctx.arc(100, 100, 50, 0, 2 * Math.PI)
-ctx.fill()
+context.arc(100, 100, 50, 0, 2 * Math.PI)
+context.fill()
  ```
 Another one
 
 ```js
-ctx.fillStyle = 'red'
-ctx.strokeStyle = '#0e232e'
-ctx.beginPath();
-ctx.arc(100, 100, 50, 0, 2 * Math.PI)
-ctx.lineWidth = 5
-ctx.fill()
-ctx.stroke()
+context.fillStyle = 'red'
+context.strokeStyle = '#0e232e'
+context.beginPath();
+context.arc(100, 100, 50, 0, 2 * Math.PI)
+context.lineWidth = 5
+context.fill()
+context.stroke()
 ```
 [more deep (mathy) crap about arcs on w3resources](http://www.w3resource.com/html5-canvas/html5-canvas-arc.php)
+
+### guess what? we can do texts also!
+so how? fairly simple
+
+```js
+// setting font
+
+context.font = '30px Arial'
+context.fillText('texting is cool!', 120, 120)
+
+```
+
+what about doing something cool with text? a meme style text? why not!
+
+> note: you must download "impact" font
+
+```js
+const myText = 'texting is cool!'
+const axis = {x: 120, y: 220}
+context.font = 'bold 30px impact'
+// white fill layer
+context.fillStyle = "white"
+context.fillText(myText, axis.x, axis.y)
+// black stroke layer
+context.strokeStyle = 'black'
+context.lineWidth = 2
+context.strokeText(myText, axis.x, axis.y)
+```
+
+<!-- ## Here comes the best (& worst part) : **Images** -->
+
+
