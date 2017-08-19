@@ -13,22 +13,22 @@
 
   var getWidth = function (element) {
     if (isNull(element)) {
-      return;
+      return null;
     }
     var width = element.innerWidth || element.offsetWidth;
     if (isNaN(width)) {
-      return;
+      return NaN
     }
     return width
   }
   var getHeight = function (element) {
     if (isNull(element)) {
-      return;
+      return null
     }
     var height = element.innerHeight || element.offsetHeight;
 
     if (isNaN(height)) {
-      return;
+      return NaN
     }
 
     return height;
