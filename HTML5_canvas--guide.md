@@ -1,4 +1,6 @@
-# This is a very cool guide to html5 canvas
+# This is a very cool guide to HTML5 canvas
+
+> note: that's just a personal, documenting my  journey using&learning HTML5 canvas in this project
 
 ok let's see what's MDN says : 
 
