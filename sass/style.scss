@@ -114,10 +114,14 @@ body {
   color: $darkblue;
   font-weight: 900;
   cursor: pointer;
+  outline: 0;
   &.rev {
     background: $darkblue;
     color: white;
 
+  }
+  &:active {
+    transform: translateY(1px)
   }
 }
 
@@ -270,7 +274,6 @@ body {
       // overflow: hidden;
       display: inline-block;
       text-align: left;
-      border: 2px solid $darkblue;
       margin-right: 3px;
       margin-bottom: 3px;
 
@@ -282,7 +285,8 @@ body {
         font-weight: bolder;
         text-decoration: none;
         text-transform: capitalize;
-        padding: 10px 15px;
+        padding: 12px 15px;
+        &:hover {background: lighten($darkblue, 3%)}
 
       }
     }
