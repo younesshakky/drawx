@@ -240,6 +240,8 @@ var saveImg = function (name, url) {
   return dataJson
 }
 
+console.log('hello node')
+
 
 // verify if every thing is right and move to canvas editing
 /**
@@ -496,15 +498,24 @@ var imgHasLoaded = function (img) {
 }
 
 // adding class
-var addClassTo = function (el, className) {
-  el.classList.add(className)
-  return el;
+var addClass = function (el, c) {
+  if(el.classList) {
+    el.classList.add(c)
+  }else {
+    el.className +=  ' ' + c
+  }
+
+  // return el;
 }
 
 // removing class
-var  removeClassFrom = function (el, className) {
-  el.classList.remove(className)
-  return el;
+var removeClass = function (el, c) {
+  if(el.classList) {
+    el.classList.remove(c)
+  }else {
+    el.className = el.className.replace(c, '')
+  }
+
 }
 
 var createImg = function (src, parent) {
@@ -557,25 +568,3 @@ var moveTo = function (id, dostuff) {
   el.setAttribute('id', id);
   // return call.dostuff(this, ...arguments)
 }
-
-// var activeUi = function () {
-
-//   var hash = location.hash;
-
-
-
-//   if (typeof elmID === 'object') {
-//     elmID = elmID.id
-//   }
-
-//   var beActive = getElm('#' + elmID)
-//   beActive.classList.add('active')
-
-//   setRandPos(beActive, window)
-
-//   for (var i = 0; i < UIs.length; i++) {
-//     if (UIs[i] !== null && UIs[i] !== elmID) {
-//       document.getElementById(UIs[i]).classList.remove('active')
-//     }
-//   }
-// }

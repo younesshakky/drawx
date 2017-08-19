@@ -149,10 +149,13 @@ body {
   background: #44ffdc;
   color: #0e232e;
   font-weight: 900;
-  cursor: pointer; }
+  cursor: pointer;
+  outline: 0; }
   .button-prim.rev {
     background: #0e232e;
     color: white; }
+  .button-prim:active {
+    transform: translateY(1px); }
 
 #confirm-input-img h2 {
   color: #0e232e;
@@ -273,7 +276,6 @@ body {
     .history .history-items .single-link {
       display: inline-block;
       text-align: left;
-      border: 2px solid #0e232e;
       margin-right: 3px;
       margin-bottom: 3px; }
       .history .history-items .single-link a {
@@ -284,7 +286,9 @@ body {
         font-weight: bolder;
         text-decoration: none;
         text-transform: capitalize;
-        padding: 10px 15px; }
+        padding: 12px 15px; }
+        .history .history-items .single-link a:hover {
+          background: #122c3a; }
 
 #primary-canvas {
   position: fixed;
