@@ -41,7 +41,7 @@ context.fillRect(20, 20, 120, 120)
 
 ### too Small ?
 
-Your canvas actually looks small than your ambitions! let's bump up the size a bit.
+Your canvas actually looks smaller than your ambitions! let's bump up the size a bit.
 
 ```js
 canvas.width = 500
@@ -59,13 +59,16 @@ You can also do that
 let's do a straight line
 
 ```js
-ctx.moveTo(10, 40) // where to start
-ctx.lineTo(180, 40)
-ctx.stroke()
+// where to start
+// params: (x, y)
+context.moveTo(10, 40)
+context.lineTo(180, 40)
+context.lineWidth = 4
+context.stroke()
 ```
 
 ### How about drawing circles? 
-we can do **circles** too.. but look it will seems like math.. but it isn't _(im lying tho)_!
+we can do **circles** too.. but look it could seem a little bit like math.. but it isn't!! _(im lying tho)_!
 
 let's see what w3resources are saying:
 

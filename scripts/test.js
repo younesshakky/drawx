@@ -54,6 +54,7 @@ ctx.save();
 
 ctx.moveTo(10, 40) // where to start
 ctx.lineTo(180, 40)
+ctx.lineWidth = 4
 ctx.stroke()
 ctx.save()
 
