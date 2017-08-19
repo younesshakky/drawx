@@ -127,6 +127,37 @@ context.lineWidth = 2
 context.strokeText(myText, axis.x, axis.y)
 ```
 
-<!-- ## Here comes the best (& worst part) : **Images** -->
+<!-- @todo: dig into gradients -->
+
+## Here comes the best part : **Images**
+
+you can easily draw an image: 
+
+```js
+// grab an image that you already have in DOM
+const img = document.getElementById('my-cool-img');
+context.drawImage(img, 0, 0)
+```
+
+or :
+
+```js
+// create an image object
+const img = new Image()
+img.src = 'my-nice-image.png'
+context.drawImage(img, 0, 0)
+```
+
+if you want to ensure that your img is loaded correctly
+
+```js
+// create an image object
+const img = new Image()
+img.src = 'my-nice-image.png'
+img.addEventListener('load', () => {
+  context.drawImage(img, 0, 0)
+})
+```
+> there's a better way, you can discover it by yourself!
 
 

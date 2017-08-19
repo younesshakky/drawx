@@ -77,7 +77,7 @@ ctx.stroke()
 //   ctx.fillStyle = 'lightgreen'
 //   ctx.fill()
 // }
-
+  
 
 // setInterval(() => {
 //   r++
@@ -88,13 +88,26 @@ const axis = {
   x: 30,
   y: 220
 }
-ctx.fillStyle = "white"
-ctx.font = 'bold 30px impact'
-ctx.fillText(myText, axis.x, axis.y)
 
-ctx.strokeStyle = 'black'
-ctx.lineWidth = 2
-ctx.strokeText(myText, axis.x, axis.y)
 
-// ctx.fillStyle = 'white'
-// ctx.strokeStyle = 'black'
+ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+// images
+
+const img = new Image();
+img.src = 'https://cdn-images-1.medium.com/max/1000/0*qfwxjBcOK3LD_3MZ.jpeg'
+img.addEventListener('load', function (e) {
+  console.log(img.complete)
+  ctx.drawImage(img, 0, 0)
+  ctx.fillStyle = "white"
+  ctx.font = 'bold 30px impact'
+  ctx.fillText(myText, axis.x, axis.y)
+
+  ctx.strokeStyle = 'black'
+  ctx.lineWidth = 2
+  ctx.strokeText(myText, axis.x, axis.y)
+})
+
+
+
+// console.log(img.__proto__)
