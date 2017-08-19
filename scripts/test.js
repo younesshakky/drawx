@@ -1,47 +1,4 @@
 // // testing features
-var elm = dimensions.get(window)
-
-console.log(elm.height)
-console.log(elm.width)
-console.log(elm.half('x-axis'))
-console.log(elm.half('y-axis'))
-
-
-var parent = getElm('#rect');
-
-parent.style.backgroundColor = 'darkred';
-
-var cnvs = MakeCanva('resizer');
-cnvs.style.background = 'red'
-parent.appendChild(cnvs)
-
-var resizer = new Resizer(cnvs);
-
-var resize = resizer.domElement;
-
-console.log(resizer)
-resize.onmousedown = function (e) {
-  resizer.events.mousedown(e)
-}
-
-resize.onmouseup = function (e) {
-  resizer.events.mouseup(e)
-}
-
-resize.onmousemove = function (e) {
-  resizer.events.mousemove(e)
-}
-
-// resize.onmousemove = resizer.events.mousemove
-
-
-
-// getElm('#canvahey').onclick = function (ev) {
-//   alert('canvahey clicked : ' + ev.bubbles)
-// }
-
-// 
-
 
 // var getDOM = function (selector) {
 //   getDOM.el = el;
@@ -59,7 +16,24 @@ resize.onmousemove = function (e) {
 //       console.log(this.el.querySelector(s))
 //     }
 //   }
-
 // }
+
+var elm = dimensions.get(window)
+
+console.log(elm.height)
+console.log(elm.width)
+console.log(elm.half('x-axis'))
+console.log(elm.half('y-axis'))
+
+
+var parent = getElm('#rect');
+
+parent.style.backgroundColor = 'lavender';
+
+var cnvs = MakeCanva('resizer');
+cnvs.height = dimensions.get(window).height - 100;
+cnvs.width = dimensions.get(window).width - 100;
+cnvs.style.background = '#efefef'
+parent.appendChild(cnvs)
 
 

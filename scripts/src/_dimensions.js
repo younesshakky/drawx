@@ -5,7 +5,11 @@
   }
   // window.isNull = isNull
 
-  var dimensions = {}
+  var dimensions = dimensions || {};
+
+  var resizeEvent = function () {
+    
+  }
 
   var getWidth = function (element) {
     if (isNull(element)) {
