@@ -98,14 +98,23 @@ const img = new Image();
 img.src = 'https://cdn-images-1.medium.com/max/1000/0*qfwxjBcOK3LD_3MZ.jpeg'
 img.addEventListener('load', function (e) {
   console.log(img.complete)
-  ctx.drawImage(img, 0, 0)
   ctx.fillStyle = "white"
   ctx.font = 'bold 30px impact'
   ctx.fillText(myText, axis.x, axis.y)
-
+  
   ctx.strokeStyle = 'black'
   ctx.lineWidth = 2
   ctx.strokeText(myText, axis.x, axis.y)
+
+  ctx.mozImageSmoothingEnabled = false;
+  ctx.webkitImageSmoothingEnabled = false;
+  ctx.msImageSmoothingEnabled = false;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(img, 0, 0, 300, 120, 0, 0, 300, 300)
+
+
+
+  console.log(img.naturalWidth ,img.naturalHeight)
 })
 
 

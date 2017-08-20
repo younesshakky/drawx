@@ -151,13 +151,23 @@ context.drawImage(img, 0, 0)
 if you want to ensure that your img is loaded correctly
 
 ```js
-// create an image object
-const img = new Image()
-img.src = 'my-nice-image.png'
 img.addEventListener('load', () => {
   context.drawImage(img, 0, 0)
 })
+// there's a better way ofc! 
 ```
-> there's a better way, you can discover it by yourself!
+Why? : 
+> If you try to call `drawImage()` before the image has finished loading, it won't do anything (or, in older browsers, may even throw an exception). So you need to be sure to use the load event so you don't try this before the image has loaded - MDN
 
+We can set height & width for our image also : 
 
+```js
+context.drawImage(img, 0, 0, 300, 100)
+```
+
+guess what? we can clip (slice) our image also :
+
+```js
+// (image, sourceX, sourceY, sourceWidth, sourceHeight, directionX, directionY, directionWidth, directionHeight)
+ctx.drawImage(img, 0, 0, 300, 120, 0, 0, 300, 300)
+```
