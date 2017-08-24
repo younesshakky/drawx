@@ -30,7 +30,7 @@ var UIs = getUis();
 // elements transportating
 var getElm = function (selector) {
   this.el = selector;
-  if (typeof selector == 'undefined' || selector == null) {
+  if (selector == null) {
     return null
   }
 
@@ -39,12 +39,12 @@ var getElm = function (selector) {
 }
 
 // get pointer position relatively to an element
-var getPointer = function (e) {
-  return {
-    x: e.clientX,
-    y: e.clientY
-  }
-}
+// var getPointer = function (e) {
+//   return {
+//     x: e.clientX,
+//     y: e.clientY
+//   }
+// }
 var takeoff  = function (type, target, cb){
 
 
@@ -54,11 +54,11 @@ var takeoff  = function (type, target, cb){
   switch (type) {
     case 'html':
       target.innerHTML = null;
-      break
+      break;
 
     case 'text':
       target.innerText = null;
-      break
+      break;
 
     case 'inputValue':
       target.value = null;

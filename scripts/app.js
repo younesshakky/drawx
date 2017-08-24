@@ -1,10 +1,5 @@
 // direct Manipulation
 
-/**
- * @todo after building error UIs
- * remove console notifs for ui notifications 
- */
-
 var initUI = getElm('#item-inputs')
 var confirmUi = getElm('#confirm-input-img');
 var inputURL = getElm('#in-img-url');
@@ -32,6 +27,7 @@ getElm('#show-history').onclick = function (e) {
   e.preventDefault()
   activeUi('history-imgs');
   var histImages = historyURLS();
+  
   if (!isInserted) {
     histImages.forEach((e) => {
     var urlJSON = JSON.parse(e[1])
