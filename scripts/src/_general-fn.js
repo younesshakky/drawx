@@ -20,7 +20,4 @@ var saveImg = function (name, url) {
   return dataJson
 }
 
-console.log('hello node')
-
-
 // verify if every thing is right and move to canvas editing
