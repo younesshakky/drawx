@@ -27,8 +27,8 @@ var UIs = getUis('.ui_elm');
 /**
  * @todo Getting multiple elements not 1
  */
-// elements transportating
-var getElm = function (selector) {
+
+ var getElm = function (selector) {
   this.el = selector;
   if (selector == null) {
     return null
