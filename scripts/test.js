@@ -41,7 +41,7 @@ parent.appendChild(canvas)
 var ctx = canvas.getContext('2d');
 
 
-const myText = 'texting is cool!'
+let myText = 'texting is cool!'
 const axis = {
   x: 30,
   y: 220
@@ -135,8 +135,8 @@ eventOn(window, 'load resize', function () {
   //   width: dimensions.get(window).width + 'px',
   //   height: dimensions.get(window).height + 'px'
   // })
-  canvas.width = dimensions.get(window).width
-  canvas.height = dimensions.get(window).height
+  // canvas.width = dimensions.get(window).width
+  // canvas.height = dimensions.get(window).height
 })
 
 css(canvas, {
@@ -144,5 +144,18 @@ css(canvas, {
   left: "0px",
   top: "0px"
 })
+
+var x = dimensions.get(canvas).width / 2;
+myText = myText.toUpperCase()
+
+ctx.font = 'bold 30px impact'
+// white fill layer
+ctx.fillStyle = "white"
+ctx.textAlign="center"; 
+ctx.fillText(myText, x, axis.y)
+// black stroke layer
+ctx.strokeStyle = 'black'
+ctx.lineWidth = 2
+ctx.strokeText(myText, x, axis.y)
 
 // requestAnimationFrame(autodraw)
