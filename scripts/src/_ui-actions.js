@@ -11,9 +11,9 @@ var eventOn = function (element, events, fn) {
 }
 
 // grabing uis dynamically
-var getUis = function () {
+var getUis = function (c) {
 
-  var elms = document.querySelectorAll('.ui_elm');
+  var elms = document.querySelectorAll(c);
   var uisArr = []
 
   for(var i = 0; i < elms.length; i++){
@@ -22,7 +22,7 @@ var getUis = function () {
   return uisArr;
 }
 
-var UIs = getUis();
+var UIs = getUis('.ui_elm');
 
 /**
  * @todo Getting multiple elements not 1
@@ -49,7 +49,7 @@ var takeoff  = function (type, target, cb){
 
 
   if (typeof el == 'string') { target = getElm(target) }
-  if (typeof el == 'object') { target = target }
+  // if (typeof el == 'object') { target = target }
 
   switch (type) {
     case 'html':
