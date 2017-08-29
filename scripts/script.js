@@ -426,7 +426,7 @@ var UIs = getUis();
 // elements transportating
 var getElm = function (selector) {
   this.el = selector;
-  if (typeof selector == 'undefined' || selector == null) {
+  if (selector == null) {
     return null
   }
 
