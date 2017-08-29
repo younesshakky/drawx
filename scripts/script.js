@@ -92,9 +92,10 @@
 // var drawCanva = document.getElementById('prim-canva');
 // ctx = drawCanva.getContext('2d');
 
+var canvas = canvas || {};
+
 (function () {
 
-  var canvas = canvas || {};
 
   // var Canvas = function (id) {
   //   this.id = id;
@@ -240,46 +241,12 @@ var Resizer = function (canvasElement) {
 
 // -- hole new era
 
-function MakeCanva(id) {
+function makeCanva(id) {
   var canvas = document.createElement('canvas');
   canvas.id = id;
-  return canvas;
+  return canvas
 }
 
-
-// var cnv = {};
-
-var cnv = function () {
-
-   function setHeight (height) {
-    cnv.canvasArea.height = height
-  }
-  
-  function setWidth (width) {
-    cnv.canvasArea.width = width
-  }
-
-  return {
-    setHeight: setHeight,
-    setWidth: setWidth
-  }
-}
-
-cnv.canvasArea = function (id) {
-  return document.getElementById(id)
-}
-
-// cnv.setHeight = function (height) {
-//   cnv.canvasArea.height = height
-// }
-
-// cnv.setWidth = function (width) {
-//   cnv.canvasArea.width = width
-// }
-
-// function dinamicSize (wMax, hMax) {
-
-// }
 // general purpose functions
 
 // is (http/s) set
@@ -504,9 +471,9 @@ var eventOn = function (element, events, fn) {
 }
 
 // grabing uis dynamically
-var getUis = function () {
+var getUis = function (c) {
 
-  var elms = document.querySelectorAll('.ui_elm');
+  var elms = document.querySelectorAll(c);
   var uisArr = []
 
   for(var i = 0; i < elms.length; i++){
@@ -515,15 +482,15 @@ var getUis = function () {
   return uisArr;
 }
 
-var UIs = getUis();
+var UIs = getUis('.ui_elm');
 
 /**
  * @todo Getting multiple elements not 1
  */
-// elements transportating
-var getElm = function (selector) {
+
+ var getElm = function (selector) {
   this.el = selector;
-  if (typeof selector == 'undefined' || selector == null) {
+  if (selector == null) {
     return null
   }
 
@@ -542,7 +509,7 @@ var takeoff  = function (type, target, cb){
 
 
   if (typeof el == 'string') { target = getElm(target) }
-  if (typeof el == 'object') { target = target }
+  // if (typeof el == 'object') { target = target }
 
   switch (type) {
     case 'html':

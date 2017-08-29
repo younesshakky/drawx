@@ -152,8 +152,8 @@ var Resizer = function (canvasElement) {
 
 // -- hole new era
 
-function MakeCanva(id) {
+function makeCanva(id) {
   var canvas = document.createElement('canvas');
   canvas.id = id;
-  return canvas;
+  return canvas
 }

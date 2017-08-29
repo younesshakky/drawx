@@ -31,7 +31,7 @@
 var parent = getElm('#rect');
 
 
-var canvas = MakeCanva('resizer');
+var canvas = makeCanva('resizer');
 canvas.width = 500;
 canvas.height = 400
 canvas.style.background = '#efefef'
@@ -201,6 +201,10 @@ function autodraw () {
   
 
 }
+
+
+canvas.width = dimensions.get(window).width
+canvas.height = dimensions.get(window).height
 
 
 // requestAnimationFrame(autodraw)

@@ -13,7 +13,9 @@ gulp.task('serve', () => {
 
 gulp.task('sass', function () {
   return gulp.src('./sass/**/*.scss')
-    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(sass.sync({
+      outputStyle: "expanded"
+    }).on('error', sass.logError))
     .pipe(gulp.dest('./css'));
 });
 
