@@ -203,4 +203,4 @@ function autodraw () {
 }
 
 
-requestAnimationFrame(autodraw)
+// requestAnimationFrame(autodraw)

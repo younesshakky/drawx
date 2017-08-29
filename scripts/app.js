@@ -1,10 +1,5 @@
 // direct Manipulation
 
-/**
- * @todo after building error UIs
- * remove console notifs for ui notifications 
- */
-
 var initUI = getElm('#item-inputs')
 var confirmUi = getElm('#confirm-input-img');
 var inputURL = getElm('#in-img-url');
@@ -24,8 +19,7 @@ var isCanvasInit = false
 eventOn(inputURL, 'input change', function (){
   url = encodeURI(inputURL.value);
 })
-// inputURL.oninput = function () {
-// }
+
 
 var isInserted = false;
 getElm('#show-history').onclick = function (e) {
@@ -93,7 +87,7 @@ getElm('#submit').onclick = function (e) {
     takeoff('html', '.img-display');
   }
 
-  getElm('#img_name').value = randName()
+  getElm('#img_name').value = randName();
   getElm('#img_name').setAttribute('autofocus', 'true')
 
 }
@@ -119,8 +113,8 @@ getElm('#isTrue').onclick = function (e) {
 
   var edtr = getElm('#edit-img');
   activeUi(edtr);
-  saveImg(imgName, url)  
-  // console.log(localStorage)
+  // uncoment code below later
+  // saveImg(imgName, url)
 
   mainCanvas = MakeCanva('primary-canvas');
   edtr.appendChild(mainCanvas)
@@ -132,7 +126,7 @@ getElm('#isTrue').onclick = function (e) {
     dimensions.get(window).width
   );
 
-  var checkCanvas = setInterval(() => {
+  var checkCanvas = setInterval(function  () {
     if (mainCanvas) {
       console.log('canvas has initialized')
       isCanvasInit = true
@@ -148,5 +142,4 @@ getElm("#isFalse").onclick = function (e) {
   url = '';
   inputURL.value = '';
   takeoff('html', '.img-display')
-  // clearHTMLFrom('.img-display')
 }
