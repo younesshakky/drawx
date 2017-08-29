@@ -476,7 +476,7 @@ var getUis = function (c) {
   var elms = document.querySelectorAll(c);
   var uisArr = []
 
-  for(var i = 0; i < elms.length; i++){
+  for (var i = 0; i < elms.length; i++) {
     uisArr.push(elms[i].id)
   }
   return uisArr;
@@ -488,7 +488,7 @@ var UIs = getUis('.ui_elm');
  * @todo Getting multiple elements not 1
  */
 
- var getElm = function (selector) {
+var getElm = function (selector) {
   this.el = selector;
   if (selector == null) {
     return null
@@ -505,10 +505,12 @@ var UIs = getUis('.ui_elm');
 //     y: e.clientY
 //   }
 // }
-var takeoff  = function (type, target, cb){
+var takeoff = function (type, target, cb) {
 
 
-  if (typeof el == 'string') { target = getElm(target) }
+  if (typeof el == 'string') {
+    target = getElm(target)
+  }
   // if (typeof el == 'object') { target = target }
 
   switch (type) {
@@ -523,11 +525,13 @@ var takeoff  = function (type, target, cb){
     case 'inputValue':
       target.value = null;
       break;
-  
+
     default:
       break;
   }
-  if(cb) { return cb.call(this, ...arguments) }
+  if (cb) {
+    return cb.call(this, ...arguments)
+  }
 }
 
 // set and active ui
@@ -560,23 +564,20 @@ var imgHasLoaded = function (img) {
 
 // adding class
 var addClass = function (el, c) {
-  if(el.classList) {
+  if (el.classList) {
     el.classList.add(c)
-  }else {
-    el.className +=  ' ' + c
+  } else {
+    el.className += ' ' + c
   }
-
-  // return el;
 }
 
 // removing class
 var removeClass = function (el, c) {
-  if(el.classList) {
+  if (el.classList) {
     el.classList.remove(c)
-  }else {
+  } else {
     el.className = el.className.replace(c, '')
   }
-
 }
 
 var createImg = function (src, parent) {
@@ -584,15 +585,19 @@ var createImg = function (src, parent) {
   if (
     typeof src == ('undefined' || null) ||
     typeof parent == ('undefined' || null)
-  ) { return; }
+  ) {
+    return;
+  }
 
   if (httpIsset(url) == false) {
     src = '//' + src;
   }
 
   var initImg = new Image(),
-      isCreated = false;
-  if (isCreated) { return }
+    isCreated = false;
+  if (isCreated) {
+    return
+  }
 
   initImg.src = src;
   initImg.onload = function () {
@@ -603,7 +608,7 @@ var createImg = function (src, parent) {
 
   parent.appendChild(initImg)
   isCreated = true
-  
+
   return initImg;
 }
 
@@ -613,7 +618,7 @@ var historyURLS = function () {
   var items = items || [];
 
   for (key in store) {
-    if (store.hasOwnProperty(key)){
+    if (store.hasOwnProperty(key)) {
       items.push([key, store[key]])
     }
   }
@@ -628,4 +633,10 @@ var moveTo = function (id, dostuff) {
   location.hash = id;
   el.setAttribute('id', id);
   // return call.dostuff(this, ...arguments)
+}
+
+function css(el, styles) {
+  for (prop in styles) {
+    el.style[prop] = styles[prop]
+  }
 }
