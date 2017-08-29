@@ -94,103 +94,123 @@
 
 var canvas = canvas || {};
 
+(function () {
 
-// verifications before getting canvas to function
-canvas.verify = {
-  // verify if the playground is actually a canvas element
-  isCanvas: function () {
-    if (canvas.playground){
-      return (canvas.playground.constructor == HTMLCanvasElement) ? true : false;
+
+  // var Canvas = function (id) {
+  //   this.id = id;
+  // }
+
+  // Canvas.dimensions = {} || canvas.dimensions
+
+  // Canvas.dimensions.height = function (width) {
+  //   var el = Canvas.el;
+  //   if(!width){
+  //     return el.width;
+  //   }else {
+  //     el.width = width;
+  //     return el;
+  //   }
+  // }
+
+
+  // verifications before getting canvas to function
+  canvas.verify = {
+    // verify if the playground is actually a canvas element
+    isCanvas: function () {
+      if (canvas.playground) {
+        return (canvas.playground.constructor == HTMLCanvasElement) ? true : false;
+      }
+    },
+    isInDom: function () {
+      return (!!getElm('#' + canvas.playground.id) == true) ? true : false;
     }
-  },
-  isInDom: function () {
-    return (!!getElm('#' + canvas.playground.id) == true) ? true : false;
   }
-}
 
-// getting targeted canvas
-canvas.getcanva = function (id) {
-  this.playground = document.getElementById(id)
-  if(this.playground === null){
-    throw new Error(`i can't find any element associated with id "${id}" \n tnx!`)
-  }
-  return this.playground;
-}
-
-/**
- * create canvas without appending it to the Dom
- */
-function MakeCanva (id) {
-  var canvas = document.createElement('canvas');
-  canvas.id = id;
-  return canvas;
-}
-
-// getting or setting canvas dimesions
-canvas.dims = {
-  height: function (h) {
-    // get the maximum height of window
-    var wdMaxHeight = dimensions.get(window).height;
-    var height = wdMaxHeight - 200;
-
-    // setting height
-    if (h) { height = h }
-
-    if (height < 0) {
-      // Note: it's a bug to fix later
-      console.log('huh! ta malk mrid ', height)
-      return 0;
+  // getting targeted canvas
+  canvas.getcanva = function (id) {
+    this.playground = document.getElementById(id)
+    if (this.playground === null) {
+      throw new Error(`i can't find any element associated with id "${id}" \n tnx!`)
     }
-    return height
-  },
-
-  width: function (w) {
-    // get the maximum width of window
-    var wdMaxWidth = dimensions.get(window).width;
-    var width = wdMaxWidth - 200;
-
-    // setting height
-    if (w) {
-      width = w
-    }
-    if (width < 0) {
-      // Note: it's a bug to fix later
-      console.log('huh! ta malk mrid ', width)
-      return 0
-    }
-    return width;
+    return this.playground;
   }
-}
 
-// working with context
-canvas.context = function () {
-  if(!this.playground){
-    throw new Error('wtf');
-    // return;
-  }
-  return canvas.playground.getContext('2d');
-}
-// canvas events
-canvas.event = {
+  /**
+   * create canvas without appending it to the Dom
+   */
 
-  mousedown: function () {
-    canvas.verify.isMouseDown = true;
-    // do stuff
-  },
-  drag: function () {
-    if (!canvas.verify.isMousedown){
-      // don't do stuff
+
+  // getting or setting canvas dimesions
+  canvas.dims = {
+    height: function (h) {
+      // get the maximum height of window
+      var wdMaxHeight = dimensions.get(window).height;
+      var height = wdMaxHeight - 200;
+
+      // setting height
+      if (h) { height = h }
+
+      if (height < 0) {
+        // Note: it's a bug to fix later
+        console.log('huh! ta malk mrid ', height)
+        return 0;
+      }
+      return height
+    },
+
+    width: function (w) {
+      // get the maximum width of window
+      var wdMaxWidth = dimensions.get(window).width;
+      var width = wdMaxWidth - 200;
+
+      // setting height
+      if (w) {
+        width = w
+      }
+      if (width < 0) {
+        // Note: it's a bug to fix later
+        console.log('huh! ta malk mrid ', width)
+        return 0
+      }
+      return width;
     }
-    // do stuff, like consoling, seems a cool feature
-    canvas.verify.isDragging = true
-  },
-  mouseover: function () {
-    // if (canvas.verify.isMousedown){
-    //   // do stuff
-    // }
-    
   }
-}
+
+  // working with context
+  canvas.context = function () {
+    if (!this.playground) {
+      throw new Error('wtf');
+      // return;
+    }
+    return canvas.playground.getContext('2d');
+  }
+  // canvas events
+  canvas.event = {
+
+    mousedown: function () {
+      canvas.verify.isMouseDown = true;
+      // do stuff
+    },
+    drag: function () {
+      if (!canvas.verify.isMousedown) {
+        // don't do stuff
+      }
+      // do stuff, like consoling, seems a cool feature
+      canvas.verify.isDragging = true
+    },
+    mouseover: function () {
+      // if (canvas.verify.isMousedown){
+      //   // do stuff
+      // }
+
+    }
+  }
+
+  // window.canvas = canvas
+
+})()
+
 
 // using elsewhere in the app
 // ctx = canvas.context;
@@ -218,6 +238,15 @@ var Resizer = function (canvasElement) {
     domElement: _canvas
   }
 }
+
+// -- hole new era
+
+function makeCanva(id) {
+  var canvas = document.createElement('canvas');
+  canvas.id = id;
+  return canvas
+}
+
 // general purpose functions
 
 // is (http/s) set
@@ -240,7 +269,42 @@ var saveImg = function (name, url) {
   return dataJson
 }
 
-// verify if every thing is right and move to canvas editing
+function imgNaturalSize (img) {
+  if(img) {
+    var height = img.naturalHeight;
+    var width = img.naturalWidth;
+    return {
+      width: width,
+      height: height
+    }
+  }
+}
+
+function setCanvasHeight (canvas, img) {
+  var 
+    // window dimensions (viewport)
+    wdWidth = dimensions.get(window).width,
+    wdHeight = dimensions.get(window).height,
+      
+    // image natural dimensions
+    imgWidth = imgNaturalSize(img).width,
+    imgHeight = imgNaturalSize(img).height;
+
+
+
+  
+
+  // if window width is greater than img width
+  // if(wdWidth >= imgWidth)
+}
+
+function calcArea (img) {
+  var width = imgNaturalSize(img).width || img.innerWidth || img.width,
+    height = imgNaturalSize(img).height || img.innerHeight || img.height;
+
+  return (width + height) * 2
+
+} 
 /**
  * @todo
  * this Js file will contain all error, success, info messages...
@@ -407,23 +471,23 @@ var eventOn = function (element, events, fn) {
 }
 
 // grabing uis dynamically
-var getUis = function () {
+var getUis = function (c) {
 
-  var elms = document.querySelectorAll('.ui_elm');
+  var elms = document.querySelectorAll(c);
   var uisArr = []
 
-  for(var i = 0; i < elms.length; i++){
+  for (var i = 0; i < elms.length; i++) {
     uisArr.push(elms[i].id)
   }
   return uisArr;
 }
 
-var UIs = getUis();
+var UIs = getUis('.ui_elm');
 
 /**
  * @todo Getting multiple elements not 1
  */
-// elements transportating
+
 var getElm = function (selector) {
   this.el = selector;
   if (selector == null) {
@@ -441,11 +505,13 @@ var getElm = function (selector) {
 //     y: e.clientY
 //   }
 // }
-var takeoff  = function (type, target, cb){
+var takeoff = function (type, target, cb) {
 
 
-  if (typeof el == 'string') { target = getElm(target) }
-  if (typeof el == 'object') { target = target }
+  if (typeof el == 'string') {
+    target = getElm(target)
+  }
+  // if (typeof el == 'object') { target = target }
 
   switch (type) {
     case 'html':
@@ -459,11 +525,13 @@ var takeoff  = function (type, target, cb){
     case 'inputValue':
       target.value = null;
       break;
-  
+
     default:
       break;
   }
-  if(cb) { return cb.call(this, ...arguments) }
+  if (cb) {
+    return cb.call(this, ...arguments)
+  }
 }
 
 // set and active ui
@@ -496,23 +564,20 @@ var imgHasLoaded = function (img) {
 
 // adding class
 var addClass = function (el, c) {
-  if(el.classList) {
+  if (el.classList) {
     el.classList.add(c)
-  }else {
-    el.className +=  ' ' + c
+  } else {
+    el.className += ' ' + c
   }
-
-  // return el;
 }
 
 // removing class
 var removeClass = function (el, c) {
-  if(el.classList) {
+  if (el.classList) {
     el.classList.remove(c)
-  }else {
+  } else {
     el.className = el.className.replace(c, '')
   }
-
 }
 
 var createImg = function (src, parent) {
@@ -520,15 +585,19 @@ var createImg = function (src, parent) {
   if (
     typeof src == ('undefined' || null) ||
     typeof parent == ('undefined' || null)
-  ) { return; }
+  ) {
+    return;
+  }
 
   if (httpIsset(url) == false) {
     src = '//' + src;
   }
 
   var initImg = new Image(),
-      isCreated = false;
-  if (isCreated) { return }
+    isCreated = false;
+  if (isCreated) {
+    return
+  }
 
   initImg.src = src;
   initImg.onload = function () {
@@ -539,7 +608,7 @@ var createImg = function (src, parent) {
 
   parent.appendChild(initImg)
   isCreated = true
-  
+
   return initImg;
 }
 
@@ -549,7 +618,7 @@ var historyURLS = function () {
   var items = items || [];
 
   for (key in store) {
-    if (store.hasOwnProperty(key)){
+    if (store.hasOwnProperty(key)) {
       items.push([key, store[key]])
     }
   }
@@ -564,4 +633,10 @@ var moveTo = function (id, dostuff) {
   location.hash = id;
   el.setAttribute('id', id);
   // return call.dostuff(this, ...arguments)
+}
+
+function css(el, styles) {
+  for (prop in styles) {
+    el.style[prop] = styles[prop]
+  }
 }

@@ -31,7 +31,7 @@
 var parent = getElm('#rect');
 
 
-var canvas = MakeCanva('resizer');
+var canvas = makeCanva('acanvas');
 canvas.width = 500;
 canvas.height = 400
 canvas.style.background = '#efefef'
@@ -40,88 +40,16 @@ parent.appendChild(canvas)
 
 var ctx = canvas.getContext('2d');
 
-// ctx.fillStyle = '#58C9B9';
-// ctx.fillRect(20, 20, 120, 120);
-// ctx.fillStyle = '#44ee66';
-// ctx.fillRect(30, 30, 30, 44);
 
-// ctx.fillStyle = '#44ee66';
-// ctx.fillRect(100, 30, 30, 44);
-
-// // ctx.fillStyle = '#44ee66';
-// ctx.fillRect(30, 110, 100, 15);
-// ctx.save();
-
-// ctx.moveTo(10, 40) // where to start
-// ctx.lineTo(180, 40)
-// ctx.lineWidth = 4
-// ctx.stroke()
-// ctx.save()
-
-// ctx.fillStyle = 'lightgreen'
-// ctx.strokeStyle = '#0e232e'
-// // ctx.beginPath();
-// ctx.arc(230, 80, 50, 0, 2 * Math.PI)
-// ctx.lineWidth = 5
-// ctx.fill()
-// ctx.stroke()
-
-// ctx.save()
-
-// animation
-// var r = 1
-
-// function animateArc (ratio){
-//   ctx.beginPath();
-//   if(ratio < 100){
-//     ctx.arc(230, 80, ratio, 0,   2 * Math.PI)
-//   }
-//   ctx.fillStyle = 'lightgreen'
-//   ctx.fill()
-// }
-  
-
-// setInterval(() => {
-//   r++
-//   animateArc(r)
-// }, 50)
-const myText = 'texting is cool!'
+let myText = 'texting is cool!'
 const axis = {
   x: 30,
   y: 220
 }
 
 
-ctx.clearRect(0, 0, canvas.width, canvas.height)
+// ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-// images
-
-// const img = new Image();
-// img.src = 'https://cdn-images-1.medium.com/max/1000/0*qfwxjBcOK3LD_3MZ.jpeg'
-// img.addEventListener('load', function (e) {
-//   console.log(img.complete)
-//   ctx.fillStyle = "white"
-//   ctx.font = 'bold 30px impact'
-//   ctx.fillText(myText, axis.x, axis.y)
-  
-//   ctx.strokeStyle = 'black'
-//   ctx.lineWidth = 2
-//   ctx.strokeText(myText, axis.x, axis.y)
-
-//   ctx.mozImageSmoothingEnabled = false;
-//   ctx.webkitImageSmoothingEnabled = false;
-//   ctx.msImageSmoothingEnabled = false;
-//   ctx.imageSmoothingEnabled = false;
-//   ctx.drawImage(img, 0, 0, 300, 120, 0, 0, 300, 300)
-
-
-
-//   console.log(img.naturalWidth ,img.naturalHeight)
-// })
-
-
-
-// console.log(img.__proto__)
 
 
 function draw (event) {
@@ -197,10 +125,37 @@ function autodraw () {
   //   }, 10)
 
 
-  setTimeout( () =>  requestAnimationFrame(autodraw), 0)
+  setTimeout(() => requestAnimationFrame(autodraw), 0)
   
 
 }
 
+eventOn(window, 'load resize', function () {
+  // css(canvas, {
+  //   width: dimensions.get(window).width + 'px',
+  //   height: dimensions.get(window).height + 'px'
+  // })
+  // canvas.width = dimensions.get(window).width
+  // canvas.height = dimensions.get(window).height
+})
 
-requestAnimationFrame(autodraw)
+css(canvas, {
+  position: "absolute",
+  left: "0px",
+  top: "0px"
+})
+
+var x = dimensions.get(canvas).width / 2;
+myText = myText.toUpperCase()
+
+ctx.font = 'bold 30px impact'
+// white fill layer
+ctx.fillStyle = "white"
+ctx.textAlign="center"; 
+ctx.fillText(myText, x, axis.y)
+// black stroke layer
+ctx.strokeStyle = 'black'
+ctx.lineWidth = 2
+ctx.strokeText(myText, x, axis.y)
+
+// requestAnimationFrame(autodraw)
