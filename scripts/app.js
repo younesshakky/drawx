@@ -26,6 +26,7 @@ getElm('#show-history').onclick = function (e) {
   e.preventDefault()
   activeUi('history-imgs');
   var histImages = historyURLS();
+  
   if (!isInserted) {
     histImages.forEach((e) => {
     var urlJSON = JSON.parse(e[1])
