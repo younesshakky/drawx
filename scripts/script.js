@@ -149,7 +149,9 @@ var canvas = canvas || {};
       var height = wdMaxHeight - 200;
 
       // setting height
-      if (h) { height = h }
+      if (h) {
+        height = h
+      }
 
       if (height < 0) {
         // Note: it's a bug to fix later
@@ -246,7 +248,6 @@ function makeCanva(id) {
   canvas.id = id;
   return canvas
 }
-
 // general purpose functions
 
 // is (http/s) set
@@ -373,6 +374,13 @@ function Notify() {
     notif.onclick = function () {
       removeNotif(notif, parent)
     }
+
+    if(isCreated){
+      document.onclick = function () {
+        removeNotif(notif, parent)      
+      }
+    }
+  
 
     // remove notification after 4 seconds
     setTimeout(function () {

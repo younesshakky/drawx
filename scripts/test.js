@@ -52,10 +52,10 @@ const axis = {
 
 
 
-function draw (event) {
+function draw(event) {
   var i = 10;
-  this.randSize  = 30;
-  while (i--){
+  this.randSize = 30;
+  while (i--) {
     ctx.beginPath()
     ctx.lineWidth = 1;
     ctx.arc(
@@ -67,8 +67,8 @@ function draw (event) {
       2 * Math.PI
     )
     ctx.lineJoin = 'round'
-  console.log(this.randSize)
-  
+    console.log(this.randSize)
+
   }
   // ctx.moveTo(event.clientX, event.clientY);
   ctx.stroke();
@@ -84,9 +84,9 @@ canvas.onmousedown = function (e) {
 }
 
 canvas.onmousemove = function (e) {
-  if (isMouseDown){
+  if (isMouseDown) {
     draw(e)
-    console.log(draw(e)) 
+    console.log(draw(e))
   }
 
 }
@@ -100,7 +100,7 @@ var start = canvas.width;
 var finish = canvas.height;
 
 
-function drawArc(x, y){
+function drawArc(x, y) {
   ctx.strokeStyle = `rgb(${getRandom(255)}, ${getRandom(255)}, ${getRandom(255)})`;
   ctx.beginPath()
   ctx.lineWidth = 3;
@@ -115,9 +115,9 @@ function drawArc(x, y){
   ctx.stroke();
 }
 
-function autodraw () {
+function autodraw() {
   ctx.strokeStyle = 'green'
-  drawArc( start-=1.4, 30  )
+  drawArc(start -= 1.4, 30)
   ctx.moveTo(start, finish)
   // setTimeout(
   //   function () {
@@ -126,7 +126,7 @@ function autodraw () {
 
 
   setTimeout(() => requestAnimationFrame(autodraw), 0)
-  
+
 
 }
 
@@ -151,7 +151,7 @@ myText = myText.toUpperCase()
 ctx.font = 'bold 30px impact'
 // white fill layer
 ctx.fillStyle = "white"
-ctx.textAlign="center"; 
+ctx.textAlign = "center";
 ctx.fillText(myText, x, axis.y)
 // black stroke layer
 ctx.strokeStyle = 'black'

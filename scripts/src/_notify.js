@@ -67,6 +67,13 @@ function Notify() {
       removeNotif(notif, parent)
     }
 
+    if(isCreated){
+      document.onclick = function () {
+        removeNotif(notif, parent)      
+      }
+    }
+  
+
     // remove notification after 4 seconds
     setTimeout(function () {
       removeNotif(notif, parent);

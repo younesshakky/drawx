@@ -60,7 +60,9 @@ var canvas = canvas || {};
       var height = wdMaxHeight - 200;
 
       // setting height
-      if (h) { height = h }
+      if (h) {
+        height = h
+      }
 
       if (height < 0) {
         // Note: it's a bug to fix later
