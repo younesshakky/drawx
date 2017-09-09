@@ -93,7 +93,7 @@ body {
 }
 
 #item-inputs .input-url #submit {
-  margin-top: 12  px;
+  margin-top: 12 px;
 }
 
 .button-prim {
@@ -288,12 +288,51 @@ body {
   background: #122c3a;
 }
 
-#primary-canvas {
+.edit-mode #edit-img {
   position: fixed;
-  top: 0;
-  bottom: 0;
+  height: 100%;
+  width: 100%;
   left: 0;
-  right: 0;
+  top: 0;
+  padding: 0;
+  text-align: unset;
+}
+
+.edit-ops {
+  width: 90px;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.edit-ops--single {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.edit-ops--btn {
+  border: 0;
+  padding: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icn {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.icn-text {
+  background-image: url("../images/text.svg");
+}
+
+.icn-emoji {
+  background-image: url("../images/emoji.svg");
 }
 
 @keyframes spin {

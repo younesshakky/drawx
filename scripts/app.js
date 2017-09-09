@@ -127,7 +127,7 @@ getElm('#isTrue').onclick = function (e) {
   var edtr = getElm('#edit-img');
   activeUi(edtr);
   // uncoment code below later
-  saveImg(imgName, url)
+  // saveImg(imgName, url)
 
   if (!body.classList.contains('edit-mode')) {
     body.className = 'edit-mode'
@@ -136,12 +136,8 @@ getElm('#isTrue').onclick = function (e) {
   mainCanvas = makeCanva('primary-canvas');
   edtr.appendChild(mainCanvas)
 
-  mainCanvas.height = cnv.dims.height(
-    dimensions.get(window).height
-  );
-  mainCanvas.width = cnv.dims.width(
-    dimensions.get(window).width
-  );
+  mainCanvas.height = 500
+  mainCanvas.width = 400
 
   var checkCanvas = setInterval(function  () {
     if (mainCanvas) {

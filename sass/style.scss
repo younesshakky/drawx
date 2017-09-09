@@ -1,8 +1,6 @@
-
 $darkblue: #0e232e;
 $softyellow: #ffe76c;
 $aquagreen: #44ffdc;
-
 * {
   padding: 0;
   margin: 0;
@@ -34,6 +32,7 @@ body {
   clear: both
 }
 
+
 /* hide "upload image" section (i dont need it now) */
 
 .input-upload {
@@ -44,17 +43,16 @@ body {
   display: none
 }
 
-
 .active {
   display: block;
   animation: scaleIn .4s cubic-bezier(0.65, 0.05, 0.36, 1) forwards;
 }
 
-::-webkit-input-placeholder{
+::-webkit-input-placeholder {
   color: #bdbfc1;
 }
 
-.ui_elm{
+.ui_elm {
   width: 520px;
   position: absolute;
   padding: 20px 30px;
@@ -69,12 +67,11 @@ body {
   margin-bottom: 84px;
 }
 
-
 .bd-input {
   border: 4px solid $darkblue;
 }
 
-#item-inputs{
+#item-inputs {
   .input-url {
     display: flex;
     /* height: 60px; */
@@ -98,7 +95,7 @@ body {
       outline: none;
     }
     #submit {
-      margin-top: 12  px
+      margin-top: 12 px
     }
   }
 }
@@ -117,15 +114,13 @@ body {
   &.rev {
     background: $darkblue;
     color: white;
-    
   }
   &:active {
     transform: translateY(1px)
   }
 }
 
-
-#confirm-input-img{
+#confirm-input-img {
   h2 {
     color: $darkblue;
     font-weight: 900;
@@ -139,7 +134,6 @@ body {
     margin-bottom: 15px;
     img {
       width: 100%;
-      
     }
   }
   form {
@@ -162,19 +156,15 @@ body {
       outline: 0;
       text-align: center;
     }
-    
     #submit_name {
       display: none;
     }
   }
-  
-  
   #isTrue {
     float: left;
     padding-left: 30px;
     padding-right: 30px
   }
-
   #isFalse {
     float: right;
     padding-left: 30px;
@@ -182,8 +172,8 @@ body {
   }
 }
 
-.is-loading{
-  &::after{
+.is-loading {
+  &::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -211,15 +201,14 @@ body {
     animation: spin .7s cubic-bezier(0.31, 0.53, 0.43, 1.08) infinite;
     /* box-sizing: border-box;  */
   }
-
 }
+
 
 /* notify styles */
 
 .notify {
   background: #efe;
-  padding: 12px 18px;
-  // background: rgba(0, 0, 0, .3);
+  padding: 12px 18px; // background: rgba(0, 0, 0, .3);
   position: fixed;
   font-size: 14px;
   font-weight: bold;
@@ -231,7 +220,6 @@ body {
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
-
   &--error {
     background: #E53A40;
   }
@@ -241,7 +229,6 @@ body {
   &--info {
     background: #81d0f3;
   }
-
   &--close {
     background: transparent;
     border-radius: 50%;
@@ -265,8 +252,7 @@ body {
   }
   .history-items {
     text-align: left;
-
-    &:empty{
+    &:empty {
       display: none;
     }
     .single-link {
@@ -275,7 +261,6 @@ body {
       text-align: left;
       margin-right: 3px;
       margin-bottom: 3px;
-
       a {
         background: $darkblue;
         color: white;
@@ -285,23 +270,71 @@ body {
         text-decoration: none;
         text-transform: capitalize;
         padding: 12px 15px;
-        &:hover {background: lighten($darkblue, 3%)}
-
+        &:hover {
+          background: lighten($darkblue, 3%)
+        }
       }
     }
   }
 }
 
-
-// primary canvas
-
-#primary-canvas {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+@mixin iconSize($unisize) {
+  width: $unisize;
+  height: $unisize  
 }
 
+.edit-mode #edit-img {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding: 0;
+  text-align: unset
+}
+
+// primary canvas
+// #primary-canvas {
+//   // position: fixed;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+// }
+// edit controls (ops)
+.edit-ops {
+  width: 90px;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, .1);
+  &--single {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  &--btn {
+    border: 0;
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+
+// icons
+.icn {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: inline-block;
+  @include iconSize(20px);
+  
+  &-text {
+    background-image: url('../images/text.svg')
+  }
+  &-emoji {
+    background-image: url('../images/emoji.svg')
+  }
+}
 
 @import 'animations';

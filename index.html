@@ -59,14 +59,30 @@
     </div>
 
     <div class="ui_elm" id="edit-img">
-
+      <div class="edit-ops">
+        <div class="edit-ops--single">
+          <button class="edit-ops--btn text" id="inset-text">
+            <i class="icn icn-text"></i>
+          </button>
+        </div>
+        <div class="edit-ops--single">
+          <button class="edit-ops--btn emoji" id="insert-emoji">
+            <i class="icn icn-emoji"></i>
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="ui_elm" id="save-img"></div>
+    <!-- <div class="ui_elm" id="save-img"></div> -->
 
   </main>
 
   <script src="scripts/script.js"></script>
   <script src="scripts/app.js"></script>
+  <script>
+    // temporary for developing easily
+    document.body.className = 'edit-mode'
+    activeUi('edit-img')
+  </script>
 </body>
 
 </html>
