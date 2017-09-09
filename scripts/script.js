@@ -378,9 +378,9 @@ function Notify() {
     }
 
     if(isCreated){
-      document.onclick = function () {
-        removeNotif(notif, parent)      
-      }
+      // document.onclick = function () {
+      //   removeNotif(notif, parent)      
+      // }
     }
   
 

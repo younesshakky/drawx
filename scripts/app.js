@@ -24,9 +24,19 @@ eventOn(inputURL, 'input change', function (){
 var isInserted = false;
 getElm('#show-history').onclick = function (e) {
   e.preventDefault()
+  if(!localStorage.length){
+    Notify(getElm('main'), {
+      type: 'info',
+      message: 'no image found in history',
+      init: true
+    })
+    console.log('loool')
+    return;
+  }
+
   activeUi('history-imgs');
   var histImages = historyURLS();
-  
+
   if (!isInserted) {
     histImages.forEach((e) => {
     var urlJSON = JSON.parse(e[1])
