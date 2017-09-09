@@ -313,11 +313,13 @@ function calcArea (img) {
  * such as insert notif in the dom or remove it
  */
 
-/**
- * Error cases
- * ** (image not loaded or url broken)
- * ** (url not valid)
- */
+// how to use (for now)
+
+// new Notify (container, {
+//   type: 'success',
+//   message: 'nice looking successful operation',
+//   init: true
+// })
 
 function Notify() {
   opts = arguments[1] || {}
