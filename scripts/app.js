@@ -9,6 +9,8 @@ var mainCanvas;
 var url = inputURL.value;
 var rawImg = new Image()
 
+var body = document.body;
+
 
 // bools
 /** if the main canvas has been initialized */
@@ -125,9 +127,13 @@ getElm('#isTrue').onclick = function (e) {
   var edtr = getElm('#edit-img');
   activeUi(edtr);
   // uncoment code below later
-  // saveImg(imgName, url)
+  saveImg(imgName, url)
 
-  mainCanvas = MakeCanva('primary-canvas');
+  if (!body.classList.contains('edit-mode')) {
+    body.className = 'edit-mode'
+  } 
+
+  mainCanvas = makeCanva('primary-canvas');
   edtr.appendChild(mainCanvas)
 
   mainCanvas.height = cnv.dims.height(
