@@ -29,7 +29,7 @@ var UIs = getUis('.ui_elm');
  */
 
 var getElm = function (selector) {
-  this.el = selector;
+  // this.el = selector;
   if (selector == null) {
     return null
   }
@@ -67,6 +67,7 @@ var takeoff = function (type, target, cb) {
       break;
 
     default:
+    target = ''
       break;
   }
   if (cb) {

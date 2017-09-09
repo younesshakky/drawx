@@ -3,36 +3,28 @@
 var initUI = getElm('#item-inputs')
 var confirmUi = getElm('#confirm-input-img');
 var inputURL = getElm('#in-img-url');
-
-var mainCanvas;
+var edtr = getElm('#edit-img');
 
 var url = inputURL.value;
 var rawImg = new Image()
-
 var body = document.body;
 
+var mainCanvas;
 
-// bools
-/** if the main canvas has been initialized */
+//if the main canvas has been initialized
 var isCanvasInit = false
 
-// chaning url when taping
-
-eventOn(inputURL, 'input change', function (){
-  url = encodeURI(inputURL.value);
-})
-
-
+// is images history inserted to DOM
 var isInserted = false;
-getElm('#show-history').onclick = function (e) {
-  e.preventDefault()
-  if(!localStorage.length){
+
+
+function showHistory(e) {
+  if (!localStorage.length) {
     Notify(getElm('main'), {
       type: 'info',
       message: 'no image found in history',
       init: true
     })
-    console.log('loool')
     return;
   }
 
@@ -41,7 +33,7 @@ getElm('#show-history').onclick = function (e) {
 
   if (!isInserted) {
     histImages.forEach((e) => {
-    var urlJSON = JSON.parse(e[1])
+      var urlJSON = JSON.parse(e[1])
       getElm('#history-imgs').innerHTML +=
         `<div class="single-link">
         <a target="_blank" href="${urlJSON.url}">${urlJSON.name}</a>
@@ -56,14 +48,35 @@ getElm('#show-history').onclick = function (e) {
       e.preventDefault();
       activeUi('item-inputs')
       // url = this.href;
-      inputURL.value = this.href;      
+      inputURL.value = this.href;
       url = inputURL.value;
     }
   }
 }
 
-getElm('#submit').onclick = function (e) {
-  e.preventDefault();
+function imageHasLoaded() {
+  activeUi('confirm-input-img');
+  initUI.classList.remove('is-loading');
+
+  Notify(getElm('main'), {
+    type: 'success',
+    message: 'Your image is here, you\'re ready to go.',
+    init: true
+  });
+}
+
+function imageHasNotLoaded() {
+  Notify(getElm('main'), {
+    type: 'error',
+    message: 'image not found',
+    init: true
+  });
+  initUI.classList.remove('is-loading');
+  // clea
+  takeoff('html', '.img-display');
+}
+
+function submitUrl(e) {
   if (url.length < 4) {
     Notify(getElm('main'), {
       type: 'error',
@@ -79,42 +92,27 @@ getElm('#submit').onclick = function (e) {
 
   // if image has loaded properly
   rawImg.onload = function () {
-    activeUi('confirm-input-img');
-    initUI.classList.remove('is-loading');
-
-    Notify(getElm('main'), {
-      type: 'success',
-      message: 'Your image is here, you\'re ready to go.',
-      init: true
-    });
+    imageHasLoaded()
   }
+
   // if image has not loaded
   rawImg.onerror = function () {
-    Notify(getElm('main'), {
-      type: 'error',
-      message: 'image not found',
-      init: true
-    });
-    initUI.classList.remove('is-loading');
-    // clea
-    takeoff('html', '.img-display');
+    imageHasNotLoaded()
   }
 
-  getElm('#img_name').value = randName();
-  getElm('#img_name').setAttribute('autofocus', 'true')
-
+  setRandomName()
 }
 
-getElm('#submit_name').onclick = function (e) {
-  e.preventDefault();
-  getElm('#isTrue').click()
+function setRandomName() {
+  var imgInput = getElm('#img_name')
+  imgInput.value = randName();
+  imgInput.setAttribute('autofocus', 'true')
 }
 
-getElm('#isTrue').onclick = function (e) {
+function validAndSave() {
   var imgName = getElm('#img_name').value;
-  e.preventDefault()
 
-  if(imgName.length < 1){
+  if (imgName.length < 1) {
     Notify(getElm('main'), {
       type: 'error',
       message: 'add more charcters',
@@ -124,22 +122,31 @@ getElm('#isTrue').onclick = function (e) {
     return;
   }
 
-  var edtr = getElm('#edit-img');
-  activeUi(edtr);
   // uncoment code below later
   // saveImg(imgName, url)
+}
 
-  if (!body.classList.contains('edit-mode')) {
-    body.className = 'edit-mode'
-  } 
+function openEditor() {
+  activeUi('edit-img');
+  var className = 'edit-mode'
 
+  if (!body.classList.contains(className)) {
+    body.className = className
+  }
+}
+
+function backToURL() {
+  activeUi('item-inputs');
+  url = '';
+  inputURL.value = '';
+  takeoff('html', '.img-display')
+}
+
+function initiateCanvas() {
   mainCanvas = makeCanva('primary-canvas');
   edtr.appendChild(mainCanvas)
 
-  mainCanvas.height = 500
-  mainCanvas.width = 400
-
-  var checkCanvas = setInterval(function  () {
+  var checkCanvas = setInterval(function () {
     if (mainCanvas) {
       console.log('canvas has initialized')
       isCanvasInit = true
@@ -148,11 +155,39 @@ getElm('#isTrue').onclick = function (e) {
   }, 100)
 }
 
+// chaning url when taping
+eventOn(inputURL, 'input change', function () {
+  url = encodeURI(inputURL.value);
+})
 
+// show imageshistory 
+getElm('#show-history').onclick = function (e) {
+  e.preventDefault();
+  showHistory(e)
+}
+
+// submit url
+getElm('#submit').onclick = function (e) {
+  e.preventDefault();
+  submitUrl(e)
+}
+
+// submit name
+getElm('#submit_name').onclick = function (e) {
+  e.preventDefault();
+  getElm('#isTrue').click()
+}
+
+// satisfied & move to editing
+getElm('#isTrue').onclick = function (e) {
+  e.preventDefault()
+  validAndSave()
+  initiateCanvas()
+  openEditor()
+}
+
+// get back to url input
 getElm("#isFalse").onclick = function (e) {
   e.preventDefault();
-  activeUi('item-inputs');
-  url = '';
-  inputURL.value = '';
-  takeoff('html', '.img-display')
+  backToURL()
 }
