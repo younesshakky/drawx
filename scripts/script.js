@@ -281,31 +281,7 @@ function imgNaturalSize (img) {
   }
 }
 
-function setCanvasHeight (canvas, img) {
-  var 
-    // window dimensions (viewport)
-    wdWidth = dimensions.get(window).width,
-    wdHeight = dimensions.get(window).height,
-      
-    // image natural dimensions
-    imgWidth = imgNaturalSize(img).width,
-    imgHeight = imgNaturalSize(img).height;
 
-
-
-  
-
-  // if window width is greater than img width
-  // if(wdWidth >= imgWidth)
-}
-
-function calcArea (img) {
-  var width = imgNaturalSize(img).width || img.innerWidth || img.width,
-    height = imgNaturalSize(img).height || img.innerHeight || img.height;
-
-  return (width + height) * 2
-
-} 
 /**
  * @todo
  * this Js file will contain all error, success, info messages...
@@ -537,7 +513,6 @@ var takeoff = function (type, target, cb) {
       break;
 
     default:
-    target = ''
       break;
   }
   if (cb) {

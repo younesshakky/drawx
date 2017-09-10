@@ -72,7 +72,7 @@ function imageHasNotLoaded() {
     init: true
   });
   initUI.classList.remove('is-loading');
-  // clea
+  
   takeoff('html', '.img-display');
 }
 
@@ -163,13 +163,13 @@ eventOn(inputURL, 'input change', function () {
 // show imageshistory 
 getElm('#show-history').onclick = function (e) {
   e.preventDefault();
-  showHistory(e)
+  showHistory()
 }
 
 // submit url
 getElm('#submit').onclick = function (e) {
   e.preventDefault();
-  submitUrl(e)
+  submitUrl()
 }
 
 // submit name

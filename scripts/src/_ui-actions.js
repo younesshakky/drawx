@@ -67,7 +67,6 @@ var takeoff = function (type, target, cb) {
       break;
 
     default:
-    target = ''
       break;
   }
   if (cb) {
