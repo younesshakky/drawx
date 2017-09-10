@@ -56,7 +56,7 @@ function showHistory(e) {
 
 function imageHasLoaded() {
   activeUi('confirm-input-img');
-  initUI.classList.remove('is-loading');
+  removeClass(initUI, 'is-loading');
 
   Notify(getElm('main'), {
     type: 'success',
@@ -88,7 +88,7 @@ function submitUrl(e) {
 
   takeoff('html', '.img-display');
   rawImg = createImg(url, getElm('.img-display'));
-  initUI.classList.add('is-loading');
+  addClass(initUI, 'is-loading')
 
   // if image has loaded properly
   rawImg.onload = function () {
