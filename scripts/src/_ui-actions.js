@@ -174,3 +174,19 @@ function css(el, styles) {
     el.style[prop] = styles[prop]
   }
 }
+
+function createElement (tag, opts) {
+  var el = document.createElement(tag)
+  if (opts) {
+    if (opts.className) {
+      el.className = opts.className;
+    }
+    if (opts.inner) {
+      el.innerHTML = opts.inner;
+    }
+    if (opts.appendTo) {
+      opts.appendTo.appendChild(el)
+    }
+  }
+  return el;
+}
