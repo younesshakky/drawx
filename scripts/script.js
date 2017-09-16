@@ -339,13 +339,7 @@ var UIs = getUis('.ui_elm');
  */
 
 var getElm = function (selector) {
-  // this.el = selector;
-  if (selector == null) {
-    return null
-  }
-
-  var element = document.querySelector(selector)
-  return element
+  return document.querySelector(selector)
 }
 
 // get pointer position relatively to an element
