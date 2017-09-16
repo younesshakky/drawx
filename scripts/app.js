@@ -4,6 +4,7 @@ var initUI = getElm('#item-inputs')
 var confirmUi = getElm('#confirm-input-img');
 var inputURL = getElm('#in-img-url');
 var edtr = getElm('#edit-img');
+var PG = getElm('.edit-playground');
 
 var url = inputURL.value;
 var rawImg = new Image()
@@ -72,7 +73,7 @@ function imageHasNotLoaded() {
     init: true
   });
   initUI.classList.remove('is-loading');
-  
+
   takeoff('html', '.img-display');
 }
 
@@ -144,16 +145,18 @@ function backToURL() {
 
 function initiateCanvas() {
   mainCanvas = makeCanva('primary-canvas');
-  edtr.appendChild(mainCanvas)
+  PG.appendChild(mainCanvas)
 
-  var checkCanvas = setInterval(function () {
-    if (mainCanvas) {
-      console.log('canvas has initialized')
-      isCanvasInit = true
-      clearInterval(checkCanvas)
-    }
-  }, 100)
+  isCanvasInit = true
+  console.log('canvas has in<itialized')
+
+
+  setTimeout(function () {
+    mainCanvas.width = dimensions.get(PG).width
+    mainCanvas.height = dimensions.get(PG).height
+  }, 400)
 }
+
 
 // chaning url when taping
 eventOn(inputURL, 'input change', function () {
@@ -178,16 +181,18 @@ getElm('#submit_name').onclick = function (e) {
   getElm('#isTrue').click()
 }
 
+
+// get back to url input
+getElm("#isFalse").onclick = function (e) {
+  e.preventDefault();
+  backToURL()
+}
+
 // satisfied & move to editing
 getElm('#isTrue').onclick = function (e) {
   e.preventDefault()
   validAndSave()
   initiateCanvas()
   openEditor()
-}
 
-// get back to url input
-getElm("#isFalse").onclick = function (e) {
-  e.preventDefault();
-  backToURL()
 }

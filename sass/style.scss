@@ -302,10 +302,12 @@ body {
 //   right: 0;
 // }
 // edit controls (ops)
+
 .edit-ops {
   width: 90px;
   height: 100%;
-  position: absolute;
+  // position: absolute;
+  float: left;
   background: rgba(0, 0, 0, .1);
   &--single {
     text-align: center;
@@ -314,6 +316,7 @@ body {
   }
   &--btn {
     border: 0;
+    background: transparent;
     padding: 20px;
     border-radius: 50%;
     cursor: pointer;
@@ -323,11 +326,11 @@ body {
 
 // icons
 .icn {
+  @include iconSize(20px);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   display: inline-block;
-  @include iconSize(20px);
   
   &-text {
     background-image: url('../images/text.svg')
@@ -335,6 +338,13 @@ body {
   &-emoji {
     background-image: url('../images/emoji.svg')
   }
+}
+
+.edit-playground {
+  background: #F0F0F0;
+  height: 100%;
+  float: left;
+  width: calc(100% - 90px);
 }
 
 @import 'animations';
