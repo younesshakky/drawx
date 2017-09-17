@@ -7,8 +7,8 @@
 
   function Editor () {}
 
-
-  Editor.prototype.make = function () {
+  // experimental method
+  Editor.prototype.log = function () {
     console.log('hello Editor.js')
   }
 
@@ -19,7 +19,9 @@
 // -- hole new era
 
 function makeCanva(id) {
-  var canvas = document.createElement('canvas');
-  canvas.id = id;
+  var canvas = createElement('canvas', {
+    id: id
+  })
+
   return canvas
 }

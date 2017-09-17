@@ -177,12 +177,19 @@ function css(el, styles) {
 
 function createElement (tag, opts) {
   var el = document.createElement(tag)
+  
   if (opts) {
     if (opts.className) {
-      el.className = opts.className;
+      el.className = opts.className
     }
-    if (opts.inner) {
-      el.innerHTML = opts.inner;
+    if (opts.id) {
+      el.id = opts.id
+    }
+    if (opts.text) {
+      el.innerText = opts.inner
+    }
+    if (opts.html) {
+      el.innerHTML = opts.html      
     }
     if (opts.appendTo) {
       opts.appendTo.appendChild(el)

@@ -51,17 +51,19 @@ function Notify() {
       parent.style.position = 'relative'
     }
 
-    var notif = document.createElement('div');
-    notif.className = 'notify';
-    parent.appendChild(notif);
+    var notif = createElement('div', {
+      className: 'notify',
+      text: this.message,
+      appendTo: parent
+    })
+
     notif.classList.add('notify--' + this.type);
-    notif.innerText = this.message;
 
+    var close = createElement('button', {
+      className: 'notify--close',
+      text: 'close'
+    })
 
-    var close = document.createElement('button')
-    close.className = 'notify--close';
-    close.innerText = 'close'
-    // inDomNotif.appendChild(close)
 
     isCreated = true;
 

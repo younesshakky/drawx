@@ -96,8 +96,8 @@
 
   function Editor () {}
 
-
-  Editor.prototype.make = function () {
+  // experimental method
+  Editor.prototype.log = function () {
     console.log('hello Editor.js')
   }
 
@@ -108,8 +108,10 @@
 // -- hole new era
 
 function makeCanva(id) {
-  var canvas = document.createElement('canvas');
-  canvas.id = id;
+  var canvas = createElement('canvas', {
+    id: id
+  })
+
   return canvas
 }
 // general purpose functions
@@ -199,17 +201,19 @@ function Notify() {
       parent.style.position = 'relative'
     }
 
-    var notif = document.createElement('div');
-    notif.className = 'notify';
-    parent.appendChild(notif);
+    var notif = createElement('div', {
+      className: 'notify',
+      text: this.message,
+      appendTo: parent
+    })
+
     notif.classList.add('notify--' + this.type);
-    notif.innerText = this.message;
 
+    var close = createElement('button', {
+      className: 'notify--close',
+      text: 'close'
+    })
 
-    var close = document.createElement('button')
-    close.className = 'notify--close';
-    close.innerText = 'close'
-    // inDomNotif.appendChild(close)
 
     isCreated = true;
 
@@ -487,12 +491,19 @@ function css(el, styles) {
 
 function createElement (tag, opts) {
   var el = document.createElement(tag)
+  
   if (opts) {
     if (opts.className) {
-      el.className = opts.className;
+      el.className = opts.className
     }
-    if (opts.inner) {
-      el.innerHTML = opts.inner;
+    if (opts.id) {
+      el.id = opts.id
+    }
+    if (opts.text) {
+      el.innerText = opts.inner
+    }
+    if (opts.html) {
+      el.innerHTML = opts.html      
     }
     if (opts.appendTo) {
       opts.appendTo.appendChild(el)

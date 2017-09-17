@@ -10,6 +10,8 @@ var url = inputURL.value;
 var rawImg = new Image()
 var body = document.body;
 
+var editor;
+
 var mainCanvas;
 
 //if the main canvas has been initialized
