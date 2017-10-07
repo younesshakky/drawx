@@ -147,18 +147,43 @@ function backToURL() {
 
 function initiateCanvas() {
   mainCanvas = makeCanva('primary-canvas');
-  PG.appendChild(mainCanvas)
+  PG.querySelector('.canvas-holder').appendChild(mainCanvas)
 
   isCanvasInit = true
   console.log('canvas has in<itialized')
 
-
+  
   setTimeout(function () {
     mainCanvas.width = dimensions.get(PG).width
     mainCanvas.height = dimensions.get(PG).height
+    initEditor()
+    
   }, 400)
 }
 
+function initEditor() {
+  editor = new Editor(mainCanvas);
+  editor.setImage(rawImg)
+}
+
+function DragEvents (el, callback) {
+  this.isMousedown = false;
+
+  el.addEventListener('mouseover', function () {
+    if (this.isMousedown) {
+      callback.call(this, el);
+    }
+  })
+
+  el.addEventListener('mousedown', function () {
+    this.isMousedown = true;
+    console.log(this.isMousedown)
+  })
+
+  el.addEventListener('mouseup', function () {
+    this.isMousedown = false;
+  })
+}
 
 // chaning url when taping
 eventOn(inputURL, 'input change', function () {
@@ -196,5 +221,22 @@ getElm('#isTrue').onclick = function (e) {
   validAndSave()
   initiateCanvas()
   openEditor()
+}
 
+
+getElm('#insert-text').onclick = function (e) {
+  var fieldContainer = createElement('div', {
+    className: 'text-input-container',
+    appendTo: getElm('.st-layer')
+  })
+
+  var textarea = createElement('div', {
+    className: 'text-input',
+    appendTo: fieldContainer,
+    text: 'Edit this text'
+  })
+
+  textarea.setAttribute('contenteditable', true)
+
+  textarea.value = 'this is a nice text'
 }

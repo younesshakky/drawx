@@ -18,8 +18,8 @@ function Notify() {
   var isCreated = false;
 
   this.message = opts.message || 'default message';
-  this.type = opts.type  || 'error';
-  this.init = opts.init || false;
+  this.type = opts.type  || 'info';
+  this.init = opts.init || true;
   this.parent = arguments[0]
 
   // console.log(opts)
@@ -56,27 +56,17 @@ function Notify() {
       text: this.message,
       appendTo: parent
     })
+    
+    console.log(this.message)
 
     notif.classList.add('notify--' + this.type);
 
-    var close = createElement('button', {
-      className: 'notify--close',
-      text: 'close'
-    })
-
-
     isCreated = true;
 
+    // remove notification by clicking on it
     notif.onclick = function () {
       removeNotif(notif, parent)
     }
-
-    if(isCreated){
-      // document.onclick = function () {
-      //   removeNotif(notif, parent)      
-      // }
-    }
-  
 
     // remove notification after 4 seconds
     setTimeout(function () {

@@ -341,10 +341,43 @@ body {
 }
 
 .edit-playground {
+  position: relative;
   background: #F0F0F0;
   height: 100%;
   float: left;
   width: calc(100% - 90px);
 }
 
+.st-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  // background: black;
+  opacity: .9
+}
+
+
+.text-input-container {
+  position: absolute;
+  left: 40px; // default pos
+  top: 40px
+}
+
+.text-input {
+  // resize: none;
+  min-width: 340px;
+  min-height: 140px;
+  background: transparent;
+  font-size: 30px;
+  background: rgba(0, 0, 0, .1);
+  user-select: none;
+  div {font-size: inherit}
+}
+
+
+
+
+// animations
 @import 'animations';

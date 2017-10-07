@@ -186,7 +186,7 @@ function createElement (tag, opts) {
       el.id = opts.id
     }
     if (opts.text) {
-      el.innerText = opts.inner
+      el.innerText = opts.text
     }
     if (opts.html) {
       el.innerHTML = opts.html      

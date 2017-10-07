@@ -1,6 +1,20 @@
 (function (window) {
   var document = window.document;
 
+  /** 
+   * extend objects
+   * a= extended; b= source
+   *  */
+
+  function extend( a, b ) {
+		for( var key in b ) { 
+			if( b.hasOwnProperty( key ) ) {
+				a[key] = b[key];
+			}
+		}
+		return a;
+  }
+  
   // editor class
 
   function Editor (canvas, opts) {
@@ -10,18 +24,18 @@
       }else {
         this.canvas = canvas
       }
-      this.context = this.canvas.getContext('2d')
+      this.ctx = this.canvas.getContext('2d')
+    }
+    if (opts){
+      this.options = opts
     }
   }
 
 
-  Editor.prototype.make = function () {
-    console.log('hello from HELL!')
-  }
-
-  Editor.prototype.setImage = function (img) {
-    var self = this;
-
+  Editor.prototype = {
+    setImage: function (img) {
+      this.ctx.drawImage(img, 0, 0)
+    }
   }
 
   window.Editor = Editor

@@ -90,6 +90,20 @@
 (function (window) {
   var document = window.document;
 
+  /** 
+   * extend objects
+   * a= extended; b= source
+   *  */
+
+  function extend( a, b ) {
+		for( var key in b ) { 
+			if( b.hasOwnProperty( key ) ) {
+				a[key] = b[key];
+			}
+		}
+		return a;
+  }
+  
   // editor class
 
   function Editor (canvas, opts) {
@@ -99,18 +113,18 @@
       }else {
         this.canvas = canvas
       }
-      this.context = this.canvas.getContext('2d')
+      this.ctx = this.canvas.getContext('2d')
+    }
+    if (opts){
+      this.options = opts
     }
   }
 
 
-  Editor.prototype.make = function () {
-    console.log('hello from HELL!')
-  }
-
-  Editor.prototype.setImage = function (img) {
-    var self = this;
-
+  Editor.prototype = {
+    setImage: function (img) {
+      this.ctx.drawImage(img, 0, 0)
+    }
   }
 
   window.Editor = Editor
@@ -183,8 +197,8 @@ function Notify() {
   var isCreated = false;
 
   this.message = opts.message || 'default message';
-  this.type = opts.type  || 'error';
-  this.init = opts.init || false;
+  this.type = opts.type  || 'info';
+  this.init = opts.init || true;
   this.parent = arguments[0]
 
   // console.log(opts)
@@ -221,27 +235,17 @@ function Notify() {
       text: this.message,
       appendTo: parent
     })
+    
+    console.log(this.message)
 
     notif.classList.add('notify--' + this.type);
 
-    var close = createElement('button', {
-      className: 'notify--close',
-      text: 'close'
-    })
-
-
     isCreated = true;
 
+    // remove notification by clicking on it
     notif.onclick = function () {
       removeNotif(notif, parent)
     }
-
-    if(isCreated){
-      // document.onclick = function () {
-      //   removeNotif(notif, parent)      
-      // }
-    }
-  
 
     // remove notification after 4 seconds
     setTimeout(function () {
@@ -515,7 +519,7 @@ function createElement (tag, opts) {
       el.id = opts.id
     }
     if (opts.text) {
-      el.innerText = opts.inner
+      el.innerText = opts.text
     }
     if (opts.html) {
       el.innerHTML = opts.html      

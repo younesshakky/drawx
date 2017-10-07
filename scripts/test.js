@@ -159,3 +159,28 @@ ctx.lineWidth = 2
 ctx.strokeText(myText, x, axis.y)
 
 // requestAnimationFrame(autodraw)
+
+
+function DragEvents (el, callback) {
+  this.isMousedown = false;
+  
+  document.body.addEventListener('mouseover', function (e) {
+    console.log(e)
+    if (this.isMousedown) {
+      callback.call(this, el);
+    }
+  }, false)
+  
+  el.addEventListener('mousedown', function () {
+    this.isMousedown = true;
+    console.log(this.isMousedown)
+  })
+  
+  el.addEventListener('mouseup', function () {
+    this.isMousedown = false;
+  })
+}
+
+var ev = new DragEvents(getElm('.tst'), function () {
+  console.log('fuck you dude!')
+} )
