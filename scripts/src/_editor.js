@@ -31,12 +31,51 @@
     }
   }
 
-
   Editor.prototype = {
+
+    options: {
+      container: document.querySelector('.st-layer')
+    },
+
     setImage: function (img) {
       this.ctx.drawImage(img, 0, 0)
+    },
+
+    putText: function () {
+      if (this.textInseted) {
+        return false;
+      }
+
+      this.fieldContainer = createElement('div', {
+        className: 'text-input-container',
+        appendTo: getElm('.st-layer')
+      })
+
+      this.dragHold = createElement('div', {
+        className: 'drag-hold',
+        appendTo: this.fieldContainer
+      })
+
+      // button to enable edit mode
+      this.editBtn = createElement('div', {
+        id: 'drag-indic',
+        className: 'icn icn-drag',
+        // text: 'edit',
+        appendTo: this.dragHold
+      })
+
+      // text-input
+      this.textarea = createElement('div', {
+        className: 'text-input',
+        appendTo: this.fieldContainer,
+        text: 'Edit this text'
+      })
+
+      this.textInseted = true
     }
   }
+
+
 
   window.Editor = Editor
 

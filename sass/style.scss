@@ -1,6 +1,7 @@
 $darkblue: #0e232e;
 $softyellow: #ffe76c;
 $aquagreen: #44ffdc;
+
 * {
   padding: 0;
   margin: 0;
@@ -21,6 +22,11 @@ body {
   color: $darkblue;
 }
 
+button {
+  background: #eee;
+  border: 0;
+  cursor: pointer;
+}
 .page_wrap {
   position: relative;
   height: 100%;
@@ -338,6 +344,9 @@ body {
   &-emoji {
     background-image: url('../images/emoji.svg')
   }
+  &-drag {
+    background-image: url('../images/drag.svg')
+  }
 }
 
 .edit-playground {
@@ -354,15 +363,27 @@ body {
   top: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   // background: black;
-  opacity: .9
+  opacity: .9;
 }
 
 
 .text-input-container {
   position: absolute;
   left: 40px; // default pos
-  top: 40px
+  top: 40px;
+  padding-bottom: 20px;
+  transition: all .07s ease;
+  user-select: none !important;
+}
+
+.drag-hold {
+  height: 30px;
+  width: 100%;
+  background: white;
+  text-align: center;
+  cursor: move;
 }
 
 .text-input {
@@ -372,8 +393,14 @@ body {
   background: transparent;
   font-size: 30px;
   background: rgba(0, 0, 0, .1);
-  user-select: none;
+  // user-select: none;
   div {font-size: inherit}
+}
+
+#drag-indic {
+  margin: 8px 0;
+  opacity: .6;
+  @include iconSize(15px)
 }
 
 

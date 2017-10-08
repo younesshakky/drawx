@@ -48,7 +48,7 @@ const axis = {
 }
 
 
-// ctx.clearRect(0, 0, canvas.width, canvas.height)
+ctx.clearRect(0, 0, canvas.width, canvas.height)
 
 
 
@@ -83,13 +83,12 @@ canvas.onmousedown = function (e) {
   draw(e);
 }
 
-canvas.onmousemove = function (e) {
+canvas.addEventListener('mousemove', function (e) {
   if (isMouseDown) {
     draw(e)
     console.log(draw(e))
   }
-
-}
+})
 
 canvas.onmouseup = function () {
   isMouseDown = false;
@@ -161,26 +160,3 @@ ctx.strokeText(myText, x, axis.y)
 // requestAnimationFrame(autodraw)
 
 
-function DragEvents (el, callback) {
-  this.isMousedown = false;
-  
-  document.body.addEventListener('mouseover', function (e) {
-    console.log(e)
-    if (this.isMousedown) {
-      callback.call(this, el);
-    }
-  }, false)
-  
-  el.addEventListener('mousedown', function () {
-    this.isMousedown = true;
-    console.log(this.isMousedown)
-  })
-  
-  el.addEventListener('mouseup', function () {
-    this.isMousedown = false;
-  })
-}
-
-var ev = new DragEvents(getElm('.tst'), function () {
-  console.log('fuck you dude!')
-} )

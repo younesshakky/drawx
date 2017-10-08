@@ -166,24 +166,6 @@ function initEditor() {
   editor.setImage(rawImg)
 }
 
-function DragEvents (el, callback) {
-  this.isMousedown = false;
-
-  el.addEventListener('mouseover', function () {
-    if (this.isMousedown) {
-      callback.call(this, el);
-    }
-  })
-
-  el.addEventListener('mousedown', function () {
-    this.isMousedown = true;
-    console.log(this.isMousedown)
-  })
-
-  el.addEventListener('mouseup', function () {
-    this.isMousedown = false;
-  })
-}
 
 // chaning url when taping
 eventOn(inputURL, 'input change', function () {
@@ -225,18 +207,24 @@ getElm('#isTrue').onclick = function (e) {
 
 
 getElm('#insert-text').onclick = function (e) {
-  var fieldContainer = createElement('div', {
-    className: 'text-input-container',
-    appendTo: getElm('.st-layer')
-  })
-
-  var textarea = createElement('div', {
-    className: 'text-input',
-    appendTo: fieldContainer,
-    text: 'Edit this text'
-  })
-
-  textarea.setAttribute('contenteditable', true)
-
-  textarea.value = 'this is a nice text'
+  editor.putText()
+  dragEv = new Dragger( editor.dragHold, dragAround )
+  
+  editor.textarea.setAttribute('contenteditable', true)
 }
+
+function dragAround (el, e) {
+  // console.log(el, e)
+
+  el.parentNode.style.left = (e.clientX - el.offsetWidth/2 ) + 'px';
+  el.parentNode.style.top = (e.clientY - el.offsetHeight/2) + 'px';
+
+}
+
+var dragEv;
+
+// document.onkeydown = function (e) {
+//   if (e.keyCode == 9) {
+//     e.preventDefault()
+//   }
+// }

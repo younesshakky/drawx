@@ -120,12 +120,51 @@
     }
   }
 
-
   Editor.prototype = {
+
+    options: {
+      container: document.querySelector('.st-layer')
+    },
+
     setImage: function (img) {
       this.ctx.drawImage(img, 0, 0)
+    },
+
+    putText: function () {
+      if (this.textInseted) {
+        return false;
+      }
+
+      this.fieldContainer = createElement('div', {
+        className: 'text-input-container',
+        appendTo: getElm('.st-layer')
+      })
+
+      this.dragHold = createElement('div', {
+        className: 'drag-hold',
+        appendTo: this.fieldContainer
+      })
+
+      // button to enable edit mode
+      this.editBtn = createElement('div', {
+        id: 'drag-indic',
+        className: 'icn icn-drag',
+        // text: 'edit',
+        appendTo: this.dragHold
+      })
+
+      // text-input
+      this.textarea = createElement('div', {
+        className: 'text-input',
+        appendTo: this.fieldContainer,
+        text: 'Edit this text'
+      })
+
+      this.textInseted = true
     }
   }
+
+
 
   window.Editor = Editor
 
@@ -365,13 +404,6 @@ var getElm = function (selector) {
   return document.querySelector(selector)
 }
 
-// get pointer position relatively to an element
-// var getPointer = function (e) {
-//   return {
-//     x: e.clientX,
-//     y: e.clientY
-//   }
-// }
 var takeoff = function (type, target, cb) {
 
 
@@ -530,3 +562,43 @@ function createElement (tag, opts) {
   }
   return el;
 }
+
+function Dragger (el, callback) {
+
+  var self = this;
+
+  this.isMousedown = false;
+
+  this.init = function (e) {
+    if (callback) {
+      return callback.call(this, el, e);
+    }
+  }
+
+  window.onmousemove = function (event) {
+    if (self.isMousedown) {
+      self.init(event)
+    }
+  }
+
+  // window.addEventListener('mouseover', function (event) {
+  //   if (self.isMousedown) {
+  //     self.init(event)
+  //   }
+  // })
+
+
+  el.onmousedown = function (e) {
+    self.isMousedown = true;
+    console.log(self.isMousedown)
+  }
+
+
+  el.onmouseup = function (e) {
+    self.isMousedown = false;
+    console.log(self.isMousedown)
+  }
+
+}
+
+

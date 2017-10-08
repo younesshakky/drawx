@@ -32,13 +32,6 @@ var getElm = function (selector) {
   return document.querySelector(selector)
 }
 
-// get pointer position relatively to an element
-// var getPointer = function (e) {
-//   return {
-//     x: e.clientX,
-//     y: e.clientY
-//   }
-// }
 var takeoff = function (type, target, cb) {
 
 
@@ -197,3 +190,43 @@ function createElement (tag, opts) {
   }
   return el;
 }
+
+function Dragger (el, callback) {
+
+  var self = this;
+
+  this.isMousedown = false;
+
+  this.init = function (e) {
+    if (callback) {
+      return callback.call(this, el, e);
+    }
+  }
+
+  window.onmousemove = function (event) {
+    if (self.isMousedown) {
+      self.init(event)
+    }
+  }
+
+  // window.addEventListener('mouseover', function (event) {
+  //   if (self.isMousedown) {
+  //     self.init(event)
+  //   }
+  // })
+
+
+  el.onmousedown = function (e) {
+    self.isMousedown = true;
+    console.log(self.isMousedown)
+  }
+
+
+  el.onmouseup = function (e) {
+    self.isMousedown = false;
+    console.log(self.isMousedown)
+  }
+
+}
+
+

@@ -18,6 +18,12 @@ body {
   color: #0e232e;
 }
 
+button {
+  background: #eee;
+  border: 0;
+  cursor: pointer;
+}
+
 .page_wrap {
   position: relative;
   height: 100%;
@@ -336,6 +342,10 @@ body {
   background-image: url("../images/emoji.svg");
 }
 
+.icn-drag {
+  background-image: url("../images/drag.svg");
+}
+
 .edit-playground {
   position: relative;
   background: #F0F0F0;
@@ -350,6 +360,7 @@ body {
   top: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   opacity: .9;
 }
 
@@ -357,6 +368,17 @@ body {
   position: absolute;
   left: 40px;
   top: 40px;
+  padding-bottom: 20px;
+  transition: all .07s ease;
+  user-select: none !important;
+}
+
+.drag-hold {
+  height: 30px;
+  width: 100%;
+  background: white;
+  text-align: center;
+  cursor: move;
 }
 
 .text-input {
@@ -365,11 +387,17 @@ body {
   background: transparent;
   font-size: 30px;
   background: rgba(0, 0, 0, 0.1);
-  user-select: none;
 }
 
 .text-input div {
   font-size: inherit;
+}
+
+#drag-indic {
+  margin: 8px 0;
+  opacity: .6;
+  width: 15px;
+  height: 15px;
 }
 
 @keyframes spin {
