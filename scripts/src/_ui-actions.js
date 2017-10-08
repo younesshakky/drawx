@@ -228,5 +228,3 @@ function Dragger (el, callback) {
   }
 
 }
-
-
