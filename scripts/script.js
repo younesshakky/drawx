@@ -365,9 +365,7 @@ var getRandPos = function (elm, rel) {
 // https://en.wikipedia.org/wiki/List_of_Intel_codenames
 var randName = function () {
   var names = [
-    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 
-    'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 
-    'Spring Meadow', 'Stoneville', 'Kyrene', 'Woodridge', 'Zion'
+    'Agate', 'Jaketown', 'Kirkwood', 'Conroe', 'Dimona', 'Flaxton', 'Fort Sumter', 'Long Cove', 'Menlow', 'Bonetrail', 'Aurora', 'Altair', 'Spring Meadow', 'Stoneville', 'Kyrene', 'Woodridge', 'Zion'
   ]
 
   return names[ getRandom(names.length) ]
@@ -527,6 +525,15 @@ var historyURLS = function () {
   return items;
 }
 
+
+var moveTo = function (id, dostuff) {
+  var el = document.getElementById(id);
+  el.removeAttribute('id');
+  location.hash = id;
+  el.setAttribute('id', id);
+  // return call.dostuff(this, ...arguments)
+}
+
 function css(el, styles) {
   for (prop in styles) {
     el.style[prop] = styles[prop]
@@ -573,6 +580,7 @@ function Dragger (el, callback) {
       self.init(event)
     }
   }
+
 
   // from here we learn that event listener is not the same as a handler
   // fuck you listeners.. you screwed me out

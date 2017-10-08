@@ -209,6 +209,10 @@ function Dragger (el, callback) {
     }
   }
 
+
+  // from here we learn that event listener is not the same as a handler
+  // fuck you listeners.. you screwed me out
+
   // window.addEventListener('mouseover', function (event) {
   //   if (self.isMousedown) {
   //     self.init(event)
