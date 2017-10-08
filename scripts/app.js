@@ -209,7 +209,7 @@ getElm('#isTrue').onclick = function (e) {
 getElm('#insert-text').onclick = function (e) {
   editor.putText()
   dragEv = new Dragger( editor.dragHold, dragAround )
-  
+
   editor.textarea.setAttribute('contenteditable', true)
 }
 

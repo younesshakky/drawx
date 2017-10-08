@@ -407,7 +407,7 @@ var getElm = function (selector) {
 var takeoff = function (type, target, cb) {
 
 
-  if (typeof el == 'string') {
+  if (typeof target == 'string') {
     target = getElm(target)
   }
   // if (typeof el == 'object') { target = target }
