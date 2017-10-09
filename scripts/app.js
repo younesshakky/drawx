@@ -11,7 +11,6 @@ var rawImg = new Image()
 var body = document.body;
 
 var editor;
-
 var mainCanvas;
 
 //if the main canvas has been initialized
@@ -19,7 +18,6 @@ var isCanvasInit = false
 
 // is images history inserted to DOM
 var isInserted = false;
-
 
 function showHistory(e) {
   if (!localStorage.length) {
@@ -44,6 +42,7 @@ function showHistory(e) {
     });
     isInserted = true
   }
+
   // to fix later in getElm()
   var slink = document.querySelectorAll('.single-link');
   for (let i = 0; i < slink.length; i++) {
@@ -63,7 +62,7 @@ function imageHasLoaded() {
 
   Notify(getElm('main'), {
     type: 'success',
-    message: 'Your image is here, you\'re ready to go.',
+    message: 'Your image is here, you\'re ready to go!',
     init: true
   });
 }
@@ -215,10 +214,13 @@ getElm('#insert-text').onclick = function (e) {
 
 function dragAround (el, e) {
   // console.log(el, e)
+  var posX = (e.clientX - el.offsetWidth);
+  var posY = (e.clientY - el.offsetHeight);
 
-  el.parentNode.style.left = (e.clientX - el.offsetWidth/2 ) + 'px';
-  el.parentNode.style.top = (e.clientY - el.offsetHeight/2) + 'px';
+  el.parentNode.style.left = posX + 'px';
+  el.parentNode.style.top = posY + 'px';
 
+  // console.log(e)
 }
 
 var dragEv;
@@ -228,3 +230,4 @@ var dragEv;
 //     e.preventDefault()
 //   }
 // }
+

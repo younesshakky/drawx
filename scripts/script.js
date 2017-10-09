@@ -575,7 +575,7 @@ function Dragger (el, callback) {
     }
   }
 
-  window.onmousemove = function (event) {
+  getElm('.st-layer').onmousemove = function (event) {
     if (self.isMousedown) {
       self.init(event)
     }
